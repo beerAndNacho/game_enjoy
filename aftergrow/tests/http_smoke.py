@@ -47,6 +47,7 @@ def main() -> None:
                     AG.Store.data.selected='io';
                     AG.Store.data.seeds=137;
                     AG.Store.data.research.focus=2;
+                    AG.Store.data.settings.tutorialSeen=true;
                     AG.Store.save();
                     return JSON.parse(localStorage.getItem('clockout.office.v1'));
                 }""")
@@ -56,9 +57,10 @@ def main() -> None:
                 after = page.evaluate("""() => ({
                     selected: AG.Store.data.selected,
                     seeds: AG.Store.data.seeds,
-                    focus: AG.Store.data.research.focus
+                    focus: AG.Store.data.research.focus,
+                    tutorialSeen: AG.Store.data.settings.tutorialSeen
                 })""")
-                assert after == {"selected": "io", "seeds": 137, "focus": 2}, after
+                assert after == {"selected": "io", "seeds": 137, "focus": 2, "tutorialSeen": True}, after
                 assert page.evaluate("location.pathname") == "/aftergrow/"
                 context.close()
 
