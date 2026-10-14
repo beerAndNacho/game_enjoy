@@ -4,7 +4,7 @@
   const $=id=>document.getElementById(id),C=AG.Content,S=AG.Store,A=AG.Art;
   const icon=A.icon,escape=s=>String(s).replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
   const fmt=t=>`${String(Math.floor(t/60)).padStart(2,'0')}:${String(Math.floor(t%60)).padStart(2,'0')}`;
-  let route='home',overlayKind=null,helpReturn=null,selectedArchive='origin',introPage=0,toastTimer,battleTimer,cutTimer,inputGuard=0;
+  let route='home',overlayKind=null,helpReturn=null,selectedArchive='origin',introPage=0,tutorialPage=0,toastTimer,battleTimer,cutTimer,inputGuard=0;
   let game=null,ready=false;
   const keys=new Set();let stick={active:false,id:null,x:0,y:0,ox:0,oy:0};
   const char=()=>C.characters.find(c=>c.id===S.data.selected)||C.characters[0];
@@ -24,8 +24,14 @@
     $('sound-btn').setAttribute('aria-label',AG.Audio.enabled?'소리 끄기':'소리 켜기');
     document.body.classList.toggle('low-motion',!S.data.settings.motion);
   }
+  const touchMode=()=>matchMedia('(pointer: coarse)').matches;
+  function resetPad(){
+    const pad=$('touch-stick');
+    pad.classList.remove('active');pad.style.removeProperty('left');pad.style.removeProperty('top');
+    $('touch-knob').style.transform='translate(0,0)';pad.hidden=!touchMode();
+  }
   function clearInput(){
-    keys.clear();stick={active:false,id:null,x:0,y:0,ox:0,oy:0};$('touch-stick').hidden=true;game?.setInput(0,0);
+    keys.clear();stick={active:false,id:null,x:0,y:0,ox:0,oy:0};resetPad();game?.setInput(0,0);
   }
   function controls(){
     let x=(keys.has('KeyD')||keys.has('ArrowRight')?1:0)-(keys.has('KeyA')||keys.has('ArrowLeft')?1:0);
@@ -116,15 +122,35 @@
       <article class="dialogue-paper"><span class="micro">CHAPTER ${ch.no} / ${ch.tag}</span><h2 id="dialog-title">${self?c.name:line.name}</h2><p class="dialogue-text">${text}</p><div class="dialogue-controls"><span class="dialogue-dots">${ch.intro.map((_,i)=>`<i class="${i<=introPage?'on':''}"></i>`).join('')}</span><button class="text-button" data-action="skip-intro">브리핑 건너뛰기</button><button class="primary" data-action="next-intro">${introPage===ch.intro.length-1?'작전 시작':'다음'} ${icon('arrow')}</button></div></article>
     </div><button class="tool-button overlay-close" data-action="cancel-intro" aria-label="준비 화면으로 돌아가기">${icon('close')}</button>`,'intro');
   }
-  function startGame(){
+  function startGame(skipTutorial=false){
     hideOverlay();clearInput();document.body.classList.add('in-game');$('menu').hidden=true;$('play-view').hidden=false;$('footer').hidden=true;
     $('play-view').style.setProperty('--accent',char().color);game.motion=S.data.settings.motion;game.start(char(),chapter());
-    $('game').focus({preventScroll:true});AG.Audio.init();showCut('CHAPTER '+chapter().no,chapter().name,chapter().tag);updateHud();updateModules();
+    $('game').focus({preventScroll:true});AG.Audio.init();resetPad();updateHud();updateModules();
+    if(!skipTutorial&&!S.data.settings.tutorialSeen)showTutorial();
+    else showCut('CHAPTER '+chapter().no,chapter().name,chapter().tag);
   }
   function showCut(kicker,title,desc){
     $('chapter-cut').hidden=false;$('chapter-cut').innerHTML=`<span class="micro">${kicker}</span><h2>${title}</h2><p>${desc}</p>`;
     $('chapter-cut').style.animation='none';void $('chapter-cut').offsetWidth;$('chapter-cut').style.animation='';
     clearTimeout(cutTimer);cutTimer=setTimeout(()=>$('chapter-cut').hidden=true,3000);
+  }
+  const tutorialSteps=[
+    {label:'01 / MOVE',icon:'wind',title:'먼저, 안전한 자리로 이동!',text:'적은 쫓아오고 공격은 자동으로 나갑니다. 멈춰 서지 말고 책상 사이를 움직이세요.',hint:'PC: WASD 또는 방향키 · 모바일: 화면 왼쪽을 드래그하고 원형 패드로 이동'},
+    {label:'02 / ACTION',icon:'bolt',title:'돌진과 직장인 필살기',text:'위험할 땐 돌진으로 피하고, 직장인별 전용 스킬로 적 무리를 정리하세요.',hint:'PC: Space 돌진 · E 필살기 / 모바일: 오른쪽 아래 두 버튼 터치'},
+    {label:'03 / SURVIVE',icon:'coffee',title:'커피를 마시고 퇴근까지 버티기!',text:'커피 머신 원 안에서 2초 머물면 회복됩니다. 업무 경험치를 모으면 새로운 장비를 선택할 수 있어요.',hint:'3분 생존 + 2분 25초에 등장하는 보스 처치 = 퇴근 성공'}
+  ];
+  function showTutorial(page=0){
+    if(!game?.player)return;
+    tutorialPage=Math.max(0,Math.min(tutorialSteps.length-1,page));
+    if(game.state==='playing')game.state='paused';
+    const step=tutorialSteps[tutorialPage];
+    setOverlay(`<section class="tutorial-modal" data-training-step="${tutorialPage}"><span class="tutorial-kicker">EMPLOYEE ONBOARDING · ${step.label}</span><div class="tutorial-symbol">${icon(step.icon)}</div><h2 id="dialog-title">${step.title}</h2><p class="tutorial-description">${step.text}</p><p class="tutorial-hint">${step.hint}</p><div class="tutorial-progress" aria-label="안내 ${tutorialPage+1} / ${tutorialSteps.length}">${tutorialSteps.map((_,i)=>`<i class="${i<=tutorialPage?'on':''}"></i>`).join('')}</div><div class="tutorial-buttons"><button class="text-button" data-action="tutorial-skip">건너뛰기</button><div class="tutorial-forward">${tutorialPage>0?'<button class="secondary" data-action="tutorial-back">이전</button>':''}<button class="primary" data-action="tutorial-next">${tutorialPage===tutorialSteps.length-1?'퇴근 전쟁 시작':'다음 안내'} ${icon('arrow')}</button></div></div></section>`,'tutorial');
+  }
+  function finishTutorial(){
+    S.data.settings.tutorialSeen=true;S.save();
+    if(game?.state==='paused')game.resume();
+    hideOverlay();
+    if(game?.state==='playing'&&game.time<1)showCut('CHAPTER '+chapter().no,chapter().name,chapter().tag);
   }
   function showUpgrade(){
     const p=game.player;
@@ -136,7 +162,7 @@
       ${reply?`<p class="story-reply">${game.choice.reply}</p><div class="button-row"><button class="primary" data-action="story-continue">선택 완료, 다시 전진 ${icon('arrow')}</button></div>`:`<div class="story-options">${e.choices.map((c,i)=>`<button class="story-option" data-action="story-choice" data-id="${i}"><strong>${c.label} ${icon('arrow')}</strong><small>${c.description}</small></button>`).join('')}</div><div class="modal-foot">당신의 선택은 이번 작전의 능력과 결말에 남습니다.</div>`}</section>`,reply?'story-reply':'story');
   }
   function showPause(){
-    setOverlay(`<section class="compact-modal"><div class="eyebrow">PAUSED / TAKE FIVE</div><h2 id="dialog-title">커피 브레이크.</h2><p>잠깐 쉬어도 됩니다.<br>회사는 도망가지 않아요.</p><div class="micro">${game.character.name} · ${game.chapter.name} · ${fmt(game.time)}</div><button class="primary" data-action="resume">업무 재개 ${icon('arrow')}</button><button class="secondary" data-action="help">조작법 보기</button><label class="motion-control"><input type="checkbox" id="motion-toggle" ${S.data.settings.motion?'checked':''}> 배경 움직임과 화면 흔들림</label><button class="text-button" data-action="abandon">작전 포기하고 귀가하기</button></section>`,'pause');
+    setOverlay(`<section class="compact-modal"><div class="eyebrow">PAUSED / TAKE FIVE</div><h2 id="dialog-title">커피 브레이크.</h2><p>잠깐 쉬어도 됩니다.<br>회사는 도망가지 않아요.</p><div class="micro">${game.character.name} · ${game.chapter.name} · ${fmt(game.time)}</div><button class="primary" data-action="resume">업무 재개 ${icon('arrow')}</button><button class="secondary" data-action="help">조작법 보기</button><button class="text-button" data-action="tutorial-replay">첫 출근 안내 다시 보기</button><label class="motion-control"><input type="checkbox" id="motion-toggle" ${S.data.settings.motion?'checked':''}> 배경 움직임과 화면 흔들림</label><button class="text-button" data-action="abandon">작전 포기하고 귀가하기</button></section>`,'pause');
   }
   function showResult(result){
     const reward=S.finish(result);tools();
@@ -223,6 +249,10 @@
       case 'story-choice':if(game.applyStory(Number(id)))showStory(true);break;
       case 'story-continue':game.resume();hideOverlay();break;
       case 'resume':game.resume();hideOverlay();break;
+      case 'tutorial-next':if(tutorialPage===tutorialSteps.length-1)finishTutorial();else showTutorial(tutorialPage+1);break;
+      case 'tutorial-back':showTutorial(tutorialPage-1);break;
+      case 'tutorial-skip':finishTutorial();break;
+      case 'tutorial-replay':helpReturn=null;showTutorial();break;
       case 'help':openHelp();break;
       case 'close-help':closeHelp();break;
       case 'abandon':game.state='playing';game.finish(false);break;
@@ -260,6 +290,7 @@
         if(overlayKind==='help')closeHelp();
         else if(overlayKind==='pause'){game.resume();hideOverlay();}
         else if(overlayKind==='intro'){hideOverlay();if(game)game.state='idle';go('map');}
+        else if(overlayKind==='tutorial')finishTutorial();
         else if(game?.state==='playing')game.pause();
       }
       if(overlayKind==='upgrade'&&performance.now()>inputGuard&&/^Digit[123]$/.test(e.code)){if(game.choose(Number(e.code.slice(-1))-1)){hideOverlay();updateHud();}}
@@ -271,19 +302,25 @@
   });
   document.addEventListener('keyup',e=>{keys.delete(e.code);controls();});
   $('game').addEventListener('pointerdown',e=>{
-    if(game?.state!=='playing'||stick.active||e.button>0)return;e.preventDefault();
-    const r=$('game').getBoundingClientRect();stick={active:true,id:e.pointerId,x:0,y:0,ox:e.clientX-r.left,oy:e.clientY-r.top};
-    $('game').setPointerCapture(e.pointerId);$('touch-stick').hidden=false;$('touch-stick').style.left=(stick.ox-47)+'px';$('touch-stick').style.top=(stick.oy-47)+'px';$('touch-knob').style.transform='translate(0,0)';
+    if(game?.state!=='playing'||stick.active||e.button>0)return;
+    const r=$('game').getBoundingClientRect();
+    if(touchMode()&&e.pointerType==='touch'&&(e.clientX-r.left>r.width*.65||!e.isPrimary))return;
+    e.preventDefault();
+    stick={active:true,id:e.pointerId,x:0,y:0,ox:e.clientX-r.left,oy:e.clientY-r.top};
+    $('game').setPointerCapture(e.pointerId);
+    const pad=$('touch-stick');pad.hidden=false;pad.classList.add('active');
+    pad.style.left=(stick.ox-58)+'px';pad.style.top=(stick.oy-58)+'px';$('touch-knob').style.transform='translate(0,0)';
   });
   $('game').addEventListener('pointermove',e=>{
     if(!stick.active||e.pointerId!==stick.id)return;e.preventDefault();
-    const r=$('game').getBoundingClientRect(),dx=e.clientX-r.left-stick.ox,dy=e.clientY-r.top-stick.oy,len=Math.hypot(dx,dy),factor=len>34?34/len:1;
-    stick.x=dx*factor/34;stick.y=dy*factor/34;$('touch-knob').style.transform=`translate(${dx*factor}px,${dy*factor}px)`;controls();
+    const r=$('game').getBoundingClientRect(),dx=e.clientX-r.left-stick.ox,dy=e.clientY-r.top-stick.oy,len=Math.hypot(dx,dy),factor=len>42?42/len:1;
+    stick.x=dx*factor/42;stick.y=dy*factor/42;$('touch-knob').style.transform=`translate(${dx*factor}px,${dy*factor}px)`;controls();
   });
-  const release=e=>{if(stick.id===e.pointerId){stick.active=false;stick.id=null;stick.x=stick.y=0;$('touch-stick').hidden=true;controls();}};
+  const release=e=>{if(stick.id===e.pointerId){stick.active=false;stick.id=null;stick.x=stick.y=0;resetPad();controls();}};
   for(const event of ['pointerup','pointercancel','lostpointercapture'])$('game').addEventListener(event,release);
   $('game').addEventListener('contextmenu',e=>e.preventDefault());
   window.addEventListener('blur',()=>{clearInput();if(game?.state==='playing')game.pause();});
+  window.addEventListener('resize',()=>{if(!stick.active)resetPad();});
   document.addEventListener('visibilitychange',()=>{if(document.hidden){clearInput();if(game?.state==='playing')game.pause();}if(game)game.last=performance.now();});
   async function init(){
     $('brand-icon').innerHTML=icon('sprout');$('help-btn').innerHTML=icon('help');tools();
@@ -295,7 +332,7 @@
       if(new URLSearchParams(location.search).has('debug')){
         window.__AG_TEST__={game,store:S,get route(){return route;},get overlay(){return overlayKind;},
           snapshot:()=>game.snapshot(),
-          start:(id='rook',index=0)=>{S.data.selected=id;S.data.chapter=index;startGame();},
+          start:(id='rook',index=0)=>{S.data.selected=id;S.data.chapter=index;startGame(true);},
           grant:(id,n=1)=>{const m=C.modules.find(m=>m.id===id);if(!m)throw new Error('Unknown module');
             for(let i=0;i<n&&game.levels[id]<m.max;i++){game.levels[id]++;if(id==='hull'){game.player.maxHp+=20;game.heal(30);}}updateModules();},
           xp:n=>{game.gainXp(n);game.checkLevel();},
