@@ -87,7 +87,7 @@ with sync_playwright() as playwright:
     def routes():
         for route in ["roster","map","archive","workshop","home"]:
             js(f"__AG_TEST__.go('{route}')")
-            expect(js("document.documentElement.scrollWidth <= innerWidth+1"),route+" overflows")
+            expect(js("document.documentElement.scrollWidth <= document.documentElement.clientWidth+1"),route+" overflows")
         return "Five routes, 1440 px"
     check("02. All desktop menu routes render without horizontal overflow",routes)
     def roster():
@@ -297,7 +297,7 @@ with sync_playwright() as playwright:
         screen("08-home-mobile.png",mobile,True)
         for route in ["roster","map","archive","workshop"]:
             mobile.evaluate(f"__AG_TEST__.go('{route}')")
-            expect(mobile.evaluate("document.documentElement.scrollWidth<=innerWidth+1"),route+" mobile overflow")
+            expect(mobile.evaluate("document.documentElement.scrollWidth<=document.documentElement.clientWidth+1"),route+" mobile overflow")
         mobile.evaluate("__AG_TEST__.go('roster')")
         mobile.click('[data-action="select-char"][data-id="briar"]')
         screen("09-roster-mobile.png",mobile,True)
@@ -335,7 +335,7 @@ with sync_playwright() as playwright:
         small=small_context.new_page();load(small)
         for route in ["home","roster","map","archive","workshop"]:
             small.evaluate(f"__AG_TEST__.go('{route}')")
-            expect(small.evaluate("document.documentElement.scrollWidth<=innerWidth+1"),route+" small overflow")
+            expect(small.evaluate("document.documentElement.scrollWidth<=document.documentElement.clientWidth+1"),route+" small overflow")
         small.evaluate("__AG_TEST__.start();__AG_TEST__.game.manual=true;")
         expect(small.locator('#touch-stick').is_visible(),"Small screen touch pad hidden")
         expect(small.locator('#pause-btn').bounding_box()['width']>=44)
@@ -358,7 +358,7 @@ with sync_playwright() as playwright:
             box=wide.locator(k).bounding_box()
             expect(box['x']>=0 and box['y']>=0 and box['x']+box['width']<=844 and box['y']+box['height']<=390,k+' off screen')
         expect(wide.locator('#pause-btn').bounding_box()['width']>=44)
-        expect(wide.evaluate("document.documentElement.scrollWidth<=innerWidth+1"),"Landscape horizontal overflow")
+        expect(wide.evaluate("document.documentElement.scrollWidth<=document.documentElement.clientWidth+1"),"Landscape horizontal overflow")
         wide_context.close()
     check("26b. Landscape touch buttons remain separated and visible",phone_landscape)
 

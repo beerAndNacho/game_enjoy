@@ -587,3 +587,16 @@ body:not(.in-game) .brand,body:not(.in-game) .brand *,.toon-hero h1 em{color:inh
 body:not(.in-game) .brand{color:#173a28}
 .toon-hero h1 em{color:#0ca96b}
 body:not(.in-game) #footer{background:transparent!important;box-shadow:none!important}
+
+/* Phone widths down to 320px: the header must never widen the layout viewport. */
+@media(max-width:365px){
+ body:not(.in-game) .topbar{padding-left:12px;padding-right:12px;grid-template-columns:minmax(0,1fr) auto;max-width:100vw}
+ body:not(.in-game) .topbar .brand{font-size:15px;gap:6px;letter-spacing:-.45px;min-width:0}
+ body:not(.in-game) .brand>span:first-child{width:28px;height:29px;flex-shrink:0}
+ body:not(.in-game) .brand small{font-size:6px;letter-spacing:.9px}
+ body:not(.in-game) .topbar .top-tools{gap:3px;min-width:0}
+ body:not(.in-game) .top-tools .tool-button{width:30px;height:30px;min-width:30px;min-height:30px}
+ body:not(.in-game) .top-tools .seed-wallet{padding:5px 6px;font-size:9px;margin:0}
+ body:not(.in-game) .topbar .main-nav{min-width:0;max-width:100%;width:100%;gap:19px}
+ body:not(.in-game) .nav-link{font-size:11px}
+}
