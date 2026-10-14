@@ -85,3 +85,9 @@ python aftergrow/tests/browser_checks.py --browser /usr/bin/chromium
 ## 라이선스
 
 원본 코드와 SVG 일러스트는 프로젝트 전용으로 제작되었습니다. 자세한 조건은 상위 저장소 정책을 확인하세요.
+
+## GitHub Pages / CI
+
+배포용 HTML은 `aftergrow/index.html`, 편집 소스는 `aftergrow/src/`입니다. `.github/workflows/clockout-pages.yml`에서 PR마다 빠른 회귀 테스트를 실행하고 `main`에 반영된 변경을 GitHub Pages로 배포하도록 구성했습니다. 최초 Pages 활성화와 문제 해결은 [배포 가이드](../docs/DEPLOYMENT.md)를 확인하세요.
+
+빠른 테스트: `python aftergrow/tests/browser_checks.py --smoke` (31개). 전체 테스트: `python aftergrow/tests/browser_checks.py` (32개, 장시간 시뮬레이션 포함). 실제 HTTP 저장 테스트: `python aftergrow/tests/http_smoke.py`.
