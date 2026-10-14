@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#121e1b">
-<meta name="description" content="잊힌 정원의 편지를 모으는 생존 어드벤처. 네 명의 정원사, 세 개의 구역, 그리고 당신이 선택하는 다음 봄.">
-<title>AFTERGROW — 잊힌 정원의 편지</title>
-<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTgiIGZpbGw9IiMxODJiMjYiLz48cGF0aCBkPSJNMzIgNTBWMjRNMzIgMzRDMTYgMzQgMTMgMjMgMTUgMTRjMTQgMCAyMSAxMSAxNyAyMFptMC01QzMxIDE2IDQyIDExIDUxIDEyYzAgMTEtOCAxOS0xOSAxN1oiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2QxZGRhMiIgc3Ryb2tlLXdpZHRoPSIzIi8+PC9zdmc+" type="image/svg+xml">
+<meta name="theme-color" content="#101022">
+<meta name="description" content="퇴근 3분 전 폭주한 회사를 탈출하라! 네 명의 직장인이 펼치는 오피스 생존 액션.">
+<title>CLOCK OUT! — 퇴근 전쟁</title>
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMxNjE1MmEiLz48cGF0aCBkPSJNOCA0MyAyNCAxN2gxNkwyNCA0M1oiIGZpbGw9IiNmZmQwM2YiLz48cGF0aCBkPSJNMjYgNDMgNDIgMTdoMTRMNDAgNDNaIiBmaWxsPSIjZmY3N2E2Ii8+PHBhdGggZD0iTTExIDQ4aDQyIiBzdHJva2U9IiM3YmU0ZTEiIHN0cm9rZS13aWR0aD0iNSIvPjwvc3ZnPgo=" type="image/svg+xml">
 <style>
 /* AFTERGROW / A botanical field guide in cream, ink, and living green. */
 :root{--bg:#121e1b;--panel:#1a2923;--line:#dae1bd26;--ink:#e9ebd8;--muted:#94a598;--green:#cadd93;--amber:#edc589;--blue:#a8c7db;--accent:#cadd93;--serif:Georgia,'Nanum Myeongjo','Batang',serif;--sans:'Pretendard','Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;--mono:'SFMono-Regular',Consolas,monospace}
@@ -39,34 +39,55 @@ body.in-game{overflow:hidden}body.in-game .topbar{height:66px;padding:0 3%;backg
 .dialogue-portrait{display:flex;align-items:center;justify-content:center}
 .dialogue-portrait>img{width:100%;height:100%;max-height:100%;object-fit:contain}
 
+/* ===== CLOCK OUT! | ORIGINAL OFFICE-COMICS REDESIGN =====
+   High-contrast city action poster language; no third-party assets or logos. */
+:root{--bg:#101022;--panel:#1d1d36;--line:#f2f0ee2d;--ink:#fff5e8;--muted:#b9b5ca;--green:#ffcf40;--amber:#ff77a6;--blue:#79e5e3;--accent:#ffcf40;--serif:Impact,'Arial Black','Apple SD Gothic Neo','Malgun Gothic',sans-serif;--sans:'Pretendard','Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;--mono:Consolas,'SFMono-Regular',monospace}
+html,body{background:#101022;color:var(--ink)}body{background-image:radial-gradient(circle at 100% 5%,#fe55901a 0,transparent 33%),radial-gradient(circle at 0 60%,#82e8d015 0,transparent 35%)}
+::selection{background:#ff77a6;color:#14142a}button:focus-visible,a:focus-visible{outline:3px solid #75e3e8;outline-offset:4px}
+.topbar{background:#141429eb;height:82px;padding:0 4%;border-bottom:3px solid #ffcf40;position:relative;z-index:30;box-shadow:0 8px 30px #07071840}.brand{font-family:var(--serif);font-size:28px;font-style:italic;font-weight:900;letter-spacing:-.4px;transform:skew(-3deg);color:#fff1c7;text-shadow:3px 3px 0 #a44a8b}.brand>span:first-child{height:42px;width:42px;border-radius:0;transform:skew(-12deg);border:3px solid #ffcf40;background:#ffcf401f;color:#ffcf40}.brand small{font:800 9px var(--sans);letter-spacing:2px;color:#ff77a6;text-shadow:none;margin-top:0}.main-nav{gap:5px}.nav-link{height:auto;padding:13px 15px;color:#cac8d6;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.2px;transform:skew(-7deg)}.nav-link:hover{background:#ff77a61f;color:#fff}.nav-link.active{color:#111429;background:#ffcf40}.nav-link.active:after{height:0}.nav-link sup{font-weight:900;color:inherit}.tool-button{border:2px solid #77728e;border-radius:0;color:#ede9fa;transform:skew(-7deg);background:#23253b}.tool-button:hover{background:#ff77a6;color:#18162a;border-color:#ff77a6}.seed-wallet{color:#ffcf40;font-size:13px;font-weight:900;border:1px solid #ffcf4050;padding:8px 12px;background:#ffcf4012}
+.eyebrow{font-weight:900;color:#ffcf40;letter-spacing:2.4px}.eyebrow:before{background:#ff77a6;height:3px}.micro,.section-kicker{font-family:var(--mono);font-weight:800;letter-spacing:1.7px}.section-kicker{color:#ff77a6}.pill{border:2px solid currentColor;border-radius:0;color:#ffcf40;font-weight:900}.primary,.secondary{border-radius:0;clip-path:polygon(0 0,96% 0,100% 24%,100% 100%,4% 100%,0 76%);font-weight:900;font-size:13px;text-transform:uppercase;letter-spacing:.5px}.primary{background:#ffcf40;border:0;color:#16162d;box-shadow:inset 0 -5px #da7f36;min-height:55px;padding:14px 29px}.primary:hover{background:#ffe371;transform:translateY(-3px)}.secondary{border:2px solid #ff77a6;color:#fff3fa;background:#4d264f68}.secondary:hover{border-color:#79e5e3;background:#79e5e32d;color:#fff}.text-button:hover{color:#ffcf40}.text-button{font-weight:800}
+.hero{min-height:700px;border-bottom:8px solid #ffcf40;background:#201631}.hero-art img{object-position:74% 48%;filter:saturate(1.1) contrast(1.08)}.hero:before{background:linear-gradient(90deg,#131323 0%,#171325f5 22%,#17152ad0 39%,#15142b4b 63%,transparent 88%),linear-gradient(0deg,#101021df,transparent 30%)}.hero:after{opacity:.04;mix-blend-mode:normal}.hero-copy{max-width:760px;padding-top:84px;padding-bottom:115px;filter:drop-shadow(0 4px 0 #11132b70)}.hero-copy .eyebrow{font-size:12px;color:#76f2e9;letter-spacing:3px;margin-bottom:25px}.hero-wordmark{font-family:var(--serif);font-size:23px;letter-spacing:1px;color:#ffcf40;margin-bottom:18px;font-style:italic;text-shadow:3px 4px 0 #6c296d}.hero-stamp{display:inline-block;border:2px solid #ff77a6;font:800 9px var(--sans);letter-spacing:1px;padding:5px 7px;vertical-align:middle;color:#fff0f6;text-shadow:none;transform:rotate(-4deg);margin-left:9px}.hero h1{font-family:var(--serif);font-size:clamp(65px,6.7vw,126px);line-height:1.08;letter-spacing:-3px;font-style:italic;font-weight:900;text-shadow:6px 7px 0 #22223f,9px 10px 0 #ff77a6;-webkit-text-stroke:.7px #fff0ce}.hero h1 em{color:#ffcf40;font-style:italic;text-shadow:5px 6px 0 #191a3e,8px 9px 0 #e75f93}.hero-description{font-size:15px;font-weight:700;color:#edebf7;line-height:1.95;margin:35px 0 32px;word-break:keep-all;max-width:500px;text-shadow:0 2px 8px #0d0c1b}.hero .secondary{border:2px solid #ff77a6;padding:10px 20px;color:#fff;background:#a22d6173;font-size:12px}.hero-detail{display:flex;gap:13px;flex-wrap:wrap;margin-top:32px;color:#f7e8d1;font-weight:900}.hero-detail span{border-top:2px solid #79e5e3;padding-top:8px}.hero-detail .icon{color:#ffcf40}.hero-caption{bottom:103px;right:4.2%;padding:12px 18px;background:#181b37c9;border-right:6px solid #ff77a6;transform:skew(-5deg)}.hero-caption strong{font-family:var(--serif);font-size:26px;font-style:italic;color:#fff4d2}.hero-caption .micro{color:#77e5df}.hero-caption:before{height:0}.hero-bottom{left:4%;right:4%;height:61px;border-color:#e0ddf047;color:#e7dbdb}.hero-bottom .status:before{background:#ff5c91;box-shadow:0 0 9px #ff5c91}.hero-bottom>span:last-child{color:#fcd069;font-weight:900}
+.home-after{padding:42px 5%;background:#1d1c35;grid-template-columns:1fr 2fr;border-bottom:6px solid #ff77a6}.home-after h2{font:italic 30px var(--serif);font-weight:900;color:#ffce40;letter-spacing:-.5px}.home-after p{font-size:12px;color:#d9c9d8}.mini-character{border:3px solid #322b4a;background:#292640;min-height:104px;overflow:hidden;transform:skew(-3deg)}.mini-character:hover{background:#37304a;border-color:var(--accent);transform:translateY(-5px) skew(-3deg)}.mini-character img{height:103px;width:75px;object-fit:cover;object-position:50% 42%;transform:scale(1.35) skew(3deg)}.mini-character strong{color:var(--accent);font-weight:900;font-size:14px}.mini-character small{font-size:7px;color:#c4bed9;letter-spacing:.3px}
+.page{padding:49px 5.4% 65px}.page-heading{border-bottom:4px solid #ffcf40;padding-bottom:20px;align-items:center}.page-heading h1{font:italic 900 clamp(32px,3.2vw,52px) var(--serif);letter-spacing:-1px;color:#fff0d9;text-shadow:3px 4px 0 #4e2c63}.page-heading p{color:#d3c7d6;font-size:13px}.page-counter{font:italic 900 72px var(--serif);color:#ffcf402a}.roster-tabs{gap:10px}.roster-tab{border:3px solid #37324f;background:#1e1b33;transform:skew(-3deg)}.roster-tab.selected{background:#2d243b;border-color:var(--accent)}.roster-tab:hover{border-color:var(--accent)}.roster-tab img{width:63px;height:69px;object-fit:cover;object-position:50% 40%;transform:scale(1.16)}.roster-tab strong{font-weight:900;font-size:14px;color:var(--accent)}.roster-tab small{color:#d0c0d5;font-size:10px}.roster-tab .tab-check{font-size:24px;font-weight:900}.roster-layout{background:linear-gradient(105deg,#282137,#17182b 67%);border:3px solid var(--accent);box-shadow:11px 11px 0 #090b1f;min-height:455px;overflow:hidden}.roster-layout:after{content:'CREW';position:absolute;left:0;top:10px;z-index:0;color:#ffffff07;font:italic 900 180px var(--serif);letter-spacing:10px;pointer-events:none}.roster-portrait,.character-info{position:relative;z-index:1}.roster-portrait img{filter:drop-shadow(9px 10px 0 #0e1229)}.character-name h2{font:italic 900 59px var(--serif);color:var(--accent);letter-spacing:-1px;text-shadow:4px 5px 0 #11152f}.character-title{font-weight:800;color:#f2cfbc}.character-quote{font:italic 900 22px var(--serif);color:#fff3dc}.character-bio{color:#cfc5d5}.trait label{color:#ffcb50}.trait strong{font-weight:900}.trait p{color:#c5bbd1}.stat-pips i{height:8px;width:16px;background:#ffffff26}.stat-pips i.on{background:var(--accent)}
+.chapter-grid{gap:20px}.chapter-card{border:3px solid #3a3450;background:#201c37;box-shadow:8px 8px 0 #090b1c}.chapter-card.selected{border-color:var(--accent)}.chapter-card:hover{border-color:var(--accent)}.chapter-picture{height:235px;border-bottom:4px solid var(--accent)}.chapter-picture img{filter:saturate(1.3) contrast(1.1);object-position:76% 50%}.chapter-picture:after{background:linear-gradient(0deg,#231b44a6,transparent 55%)}.chapter-number{font:italic 900 63px var(--serif);color:#fff6e8;text-shadow:4px 4px 0 #16162c}.chapter-stamp{background:#14152dd6;border:2px solid var(--accent);font-weight:900;color:#fff}.chapter-info{padding:25px 25px 23px}.chapter-info h2{font:italic 900 31px var(--serif);color:#fff1e3;letter-spacing:-.6px}.chapter-info p{color:#c9c2d7}.chapter-meta{border-color:#ffffff30;color:var(--accent)}.expedition-bar{border:3px solid #ffcf40;background:#2a223c;box-shadow:7px 7px 0 #101324}.expedition-copy h3{font-weight:900;font-size:16px}.expedition-copy p{color:#e3c3d6}.map-note{color:#b8b3ce}
+.archive-item{border:2px solid #474056;background:#231f35}.archive-item.selected{border-color:#ffcf40;background:#413046}.archive-item>.icon{color:#ffcf40}.archive-item strong{font-weight:800}.archive-page{background:#ffe4a7;color:#24213b;box-shadow:8px 8px 0 #ff77a6}.archive-page:before{border:3px dashed #ad5591}.archive-page h2{font:italic 900 38px var(--serif);letter-spacing:-.5px}.archive-page p{font:500 15px/2 var(--sans)}.archive-page .micro{color:#815173}.archive-page .archive-sign{font:italic 900 17px var(--serif);color:#b34a7a}.archive-decoration .icon{color:#b34a7a}
+.research-card{border:3px solid #49374e;background:linear-gradient(150deg,#32273e,#211d35);box-shadow:6px 6px 0 #11132c}.research-card>.icon{color:#ffcf40}.research-card h2{font:italic 900 30px var(--serif);color:#fff0d5}.research-card p{color:#c8c0d1}.research-card .stat-pips .on{background:#ffcf40}.recipe{border:2px solid #38314c;background:#191a31}.recipe>.icon{color:#ff77a6}.recipe strong{font-weight:900;font-size:13px}.recipe p{color:#bcb5ca}.recipe .micro{color:#f5c364}
+#footer{border-top:3px solid #ffcf40;background:#121324;color:#e6d5d5;font-size:9px;font-weight:900}#footer i{color:#ffcf40}#footer button{color:#ffcf40;font-weight:900}.site-toast{border:3px solid #ffcf40;border-radius:0;background:#171930;color:#fff1db;box-shadow:5px 6px 0 #ff77a6;font-weight:800}
+body.in-game .topbar{background:#17182d;border-bottom:2px solid #ffcf40}body.in-game .brand{font-size:22px}body.in-game .play-view{background:#1d2038}.hud{background:linear-gradient(#12172be8,#17142a66 75%,transparent);color:#fff4df}.hud-person>img{border:3px solid var(--accent);border-radius:0;background:#2b263f;object-fit:cover;object-position:center 29%}.hp-track{border-radius:0;background:#ffffff33}.hp-track i{background:linear-gradient(90deg,#ff7d9d,#ffcf40)}.hud-clock strong{font-family:var(--serif);font-style:italic;color:#ffcf40;text-shadow:3px 3px 0 #13142c}.hud-counter strong{color:#fff7e9}.xp-track{background:#15162e}.xp-track i{background:#79e5e3}.mission{border-left:4px solid #ffcf40;background:#12152aa3;padding:10px 12px}.mission .micro{color:#ffcf40}.boss-hud{background:#18142dd1;border:2px solid #ff7da6;padding:8px 13px}.boss-hud>div:last-child{background:#ffffff30}.boss-hud>div:last-child i{background:#ff77a6}.module-slot{background:#201c38;border:2px solid #74618a;border-radius:0}.module-slot .icon{color:#ffcf40}.ability-button,.ability-button.dash{border-radius:0;background:#241d3ad9;border:2px solid #6a6383;color:#fff}.ability-button.ready{border-color:#ffcf40;box-shadow:0 0 23px #ffcf4037}.ability-button.dash{border-color:#79e5e3}.ability-button kbd{border-radius:0}.battle-toast{background:#231e3feb;color:#ffe6ca;border:2px solid #ffcf40}.chapter-cut{background:#1f193bef;border:3px solid #ffcf40;box-shadow:10px 10px 0 #ff77a6}.chapter-cut h2{font:italic 900 48px var(--serif);color:#ffcf40}.play-vignette{background:radial-gradient(ellipse at center,transparent 36%,#10132c94 100%)}
+.overlay{background:#080b1be8;backdrop-filter:blur(9px)}.modal,.compact-modal,.help-modal,.result-modal,.story-choice,.dialogue-paper{background:#26203b;color:#f8f2e8;border:3px solid #ffcf40;box-shadow:11px 11px 0 #ff77a6;border-radius:0}.modal-top h2,.compact-modal h2,.help-modal h2,.result-copy h2,.story-choice h2,.dialogue-paper h2{font-family:var(--serif);font-style:italic;font-weight:900;letter-spacing:-.5px;color:#ffce42}.modal-top>p,.compact-modal p,.result-copy>p,.help-row p,.story-choice>p{color:#e6dae1}.upgrade-card{background:#332842;border:3px solid #5d4963;border-radius:0}.upgrade-card:hover{border-color:#ffcf40}.upgrade-card.evolution{border-color:#ff77a6}.upgrade-card h3{font-family:var(--serif);font-style:italic;font-weight:900;color:#fff0d7}.upgrade-card>p{color:#ccc3d3}.card-art{color:var(--accent)}.card-key{background:#ffcf40;color:#12182d}.story-option{background:#382944;border:2px solid #594160;border-radius:0}.story-option:hover{border-color:#ffcf40}.story-option strong{color:#fff0d7}.story-option small{color:#ccc4d4}.story-reply{color:#ffce40!important}.dialogue-portrait{background:radial-gradient(circle at 40% 40%,#ff77a628,transparent 70%)}.radio-art{border:4px solid #ffcf40;color:#ffcf40;background:#25223e;border-radius:0}.result-art{background:linear-gradient(145deg,#543053,#1a1934)}.result-stats strong{color:#ffcf40}.reward-line{color:#ffcf40;font-weight:900}.help-row{border-color:#ffffff25}.help-row strong{color:#fff4df}.help-row>span kbd{background:#ffcf4020;border-color:#ffcf40;color:#ffe7a5}.help-tip{background:#19162d;color:#ddd1de}.motion-control{color:#bcb4c7}
+@media(max-width:1250px){.topbar{gap:15px}.main-nav{gap:0}.nav-link{padding:12px 9px;font-size:11px}.hero h1{font-size:clamp(62px,7.4vw,106px)}.mini-character strong{font-size:12px}}
+@media(max-width:760px){.topbar{height:68px;padding:0 4%;gap:9px}.brand{font-size:19px}.brand small{font-size:7px}.brand>span:first-child{width:31px;height:33px}.main-nav{overflow-x:auto}.nav-link{padding:10px 7px;font-size:10px}.seed-wallet{font-size:10px;padding:4px}.hero{min-height:650px}.hero:before{background:linear-gradient(90deg,#141324f5 0%,#141324c9 34%,#14132444 90%),linear-gradient(0deg,#141324ee 0%,transparent 45%)}.hero-art img{object-position:65% 50%}.hero-copy{padding:67px 5% 94px;max-width:96%}.hero-copy .eyebrow{font-size:9px;letter-spacing:1.6px}.hero-wordmark{font-size:20px}.hero h1{font-size:clamp(55px,10.7vw,83px);letter-spacing:-2.5px;text-shadow:3px 4px 0 #12152c,6px 7px 0 #ff77a6}.hero h1 em{text-shadow:3px 4px 0 #12152c,6px 7px 0 #ff77a6}.hero-description{font-size:12px;margin:28px 0 26px;max-width:380px}.hero .button-row{gap:10px}.hero .primary,.hero .secondary{min-height:44px;font-size:11px;padding:10px 14px}.hero-detail{gap:9px;margin-top:27px;font-size:8px}.hero-caption{display:none}.hero-bottom{left:4%;right:4%;font-size:7px;gap:5px}.hero-bottom>span:last-child{display:none}.home-after{display:block;padding:28px 4%}.home-after h2{font-size:25px}.home-after p{margin-bottom:17px}.mini-roster{grid-template-columns:repeat(2,1fr)}.mini-character{min-height:95px}.mini-character img{height:97px}.page{padding:29px 4% 48px}.page-heading h1{font-size:clamp(28px,6vw,40px)}.page-heading p{font-size:11px}.roster-tabs{grid-template-columns:repeat(2,1fr)}.roster-tab{padding:9px 11px}.roster-tab img{height:56px;width:52px}.roster-tab strong{font-size:12px}.roster-layout{display:block;padding:8px 21px 27px;box-shadow:6px 6px 0 #11132c}.roster-portrait{height:260px}.character-name h2{font-size:42px}.chapter-card{box-shadow:5px 5px 0 #13152a}.chapter-picture{min-height:190px}.chapter-number{font-size:43px}.chapter-info h2{font-size:25px}.expedition-bar{box-shadow:4px 4px 0 #11132c}.archive-page{box-shadow:5px 5px 0 #ff77a6}.archive-page h2{font-size:28px}.research-card h2{font-size:25px}body.in-game .topbar{height:54px}body.in-game .brand{font-size:15px}.play-view{height:calc(100dvh - 54px)}.mission{max-width:156px;top:97px;left:12px;padding:6px}.hud-clock strong{font-size:29px}.modal,.compact-modal,.help-modal,.result-modal,.story-choice,.dialogue-paper{box-shadow:5px 5px 0 #ff77a6}.upgrade-card h3{font-size:21px}.chapter-cut h2{font-size:34px}}
+@media(max-width:390px){.topbar .top-tools{gap:3px}.nav-link{font-size:9px;padding:9px 5px}.hero{min-height:610px}.hero h1{font-size:56px}.hero-description{font-size:11px}.hero-stamp{font-size:7px}.hero-detail{font-size:7px}.hero-bottom{font-size:6px}.mini-character{padding-right:2px}.mini-character small{display:none}.mini-character img{width:68px}.hud-counter strong{font-size:18px}}
+@media(prefers-reduced-motion:reduce){.mini-character:hover,.roster-tab:hover{transform:none}}
+
 </style>
 </head>
 <body>
 <div class="app-shell">
   <header class="topbar" id="topbar">
-    <button class="brand" data-nav="home" aria-label="처음 화면"><span id="brand-icon"></span><span>AFTERGROW<small>잊힌 정원의 편지</small></span></button>
+    <button class="brand" data-nav="home" aria-label="처음 화면"><span id="brand-icon"></span><span>CLOCK OUT!<small>야근을 끝내는 전쟁</small></span></button>
     <nav class="main-nav" aria-label="주요 메뉴">
-      <button class="nav-link active" data-nav="home">정원</button>
-      <button class="nav-link" data-nav="roster">정원사들 <sup>04</sup></button>
-      <button class="nav-link" data-nav="map">탐사 지도</button>
-      <button class="nav-link" data-nav="archive">기억 도감</button>
-      <button class="nav-link" data-nav="workshop">작업실</button>
+      <button class="nav-link active" data-nav="home">로비</button>
+      <button class="nav-link" data-nav="roster">직장인 <sup>04</sup></button>
+      <button class="nav-link" data-nav="map">작전 구역</button>
+      <button class="nav-link" data-nav="archive">사내 기록</button>
+      <button class="nav-link" data-nav="workshop">휴게실</button>
     </nav>
-    <div class="top-tools"><span class="seed-wallet" id="wallet" title="탐사로 모은 씨앗"></span><button class="tool-button" id="sound-btn" title="소리 전환 (M)" aria-label="소리 켜기" aria-pressed="false"></button><button class="tool-button" id="help-btn" title="조작법 (F1)" aria-label="조작법 열기"></button></div>
+    <div class="top-tools"><span class="seed-wallet" id="wallet" title="작전으로 모은 업무 포인트"></span><button class="tool-button" id="sound-btn" title="소리 전환 (M)" aria-label="소리 켜기" aria-pressed="false"></button><button class="tool-button" id="help-btn" title="조작법 (F1)" aria-label="조작법 열기"></button></div>
   </header>
   <main id="main">
     <section id="menu" class="menu-view" aria-live="off"></section>
-    <section id="play-view" class="play-view" hidden aria-label="정원 탐사">
+    <section id="play-view" class="play-view" hidden aria-label="오피스 작전">
       <canvas id="game" tabindex="0" role="img" aria-label="WASD 또는 방향키 이동. Space 돌진. E 전용 스킬. P 일시정지. 터치 드래그 이동."></canvas>
       <div class="play-vignette"></div>
       <div id="hud" class="hud">
         <div class="hud-person"><img id="hud-portrait" alt=""><div><span class="micro" id="hud-name"></span><div class="hp-track"><i id="hp-fill"></i></div><div class="hp-meta"><span id="hp-text"></span><span id="lv-text">LV 01</span></div></div></div>
-        <div class="hud-clock"><span id="chapter-label" class="micro"></span><strong id="clock">03:00</strong><span id="objective">기억의 수호자를 정화하세요</span></div>
-        <div class="hud-counter"><span class="micro">정화한 개체</span><strong id="kill-text">000</strong><button id="pause-btn" class="tool-button" aria-label="일시정지">Ⅱ</button></div>
+        <div class="hud-clock"><span id="chapter-label" class="micro"></span><strong id="clock">03:00</strong><span id="objective">최종 관리자를 처치하세요</span></div>
+        <div class="hud-counter"><span class="micro">처리한 업무</span><strong id="kill-text">000</strong><button id="pause-btn" class="tool-button" aria-label="일시정지">Ⅱ</button></div>
         <div class="xp-track"><i id="xp-fill"></i><span id="xp-text"></span></div>
       </div>
       <div id="boss-hud" class="boss-hud" hidden><div><span id="boss-name"></span><span id="boss-percent"></span></div><div><i id="boss-fill"></i></div></div>
-      <div id="mission" class="mission"><span class="micro">FIELD OBJECTIVE</span><p id="mission-text">정화 노드의 원 안에서 2초 머무르세요.</p><span id="nodes-text">노드 복구 0회</span></div>
+      <div id="mission" class="mission"><span class="micro">FIELD OBJECTIVE</span><p id="mission-text">커피 머신의 원 안에서 2초 머무르세요.</p><span id="nodes-text">커피 머신 사용 0회</span></div>
       <div class="actionbar" id="actionbar"><div id="module-rack" class="module-rack"></div><div class="skill-buttons"><button id="skill-btn" class="ability-button"><span class="ability-icon" id="skill-icon"></span><span><b id="skill-name"></b><small id="skill-cd"></small></span><kbd>E</kbd><i id="skill-cover"></i></button><button id="dash-btn" class="ability-button dash"><span class="ability-icon" id="dash-icon"></span><span><b>돌진</b><small id="dash-cd">준비 완료</small></span><kbd>SPACE</kbd><i id="dash-cover"></i></button></div></div>
       <div class="touch-stick" id="touch-stick" hidden><div id="touch-knob"></div></div>
       <div id="chapter-cut" class="chapter-cut" hidden></div>
@@ -74,163 +95,163 @@ body.in-game{overflow:hidden}body.in-game .topbar{height:66px;padding:0 3%;backg
     </section>
     <div id="overlay" class="overlay" hidden></div>
   </main>
-  <footer id="footer"><span>A LITTLE HOPE. A LITTLE CHLOROPHYLL.</span><span>GARDEN CHRONICLES <i>✧</i> VOL. 02</span><button data-nav="help">이 정원을 걷는 법 ↗</button></footer>
+  <footer id="footer"><span>NO MORE OVERTIME. WE CLOCK OUT.</span><span>OFFICE SURVIVAL <i>✧</i> VOL. 01</span><button data-nav="help">플레이 방법 ↗</button></footer>
 </div>
 <div id="site-toast" class="site-toast" role="status" aria-live="polite"></div>
 <noscript><p style="padding:2rem">이 게임을 실행하려면 브라우저에서 JavaScript를 허용해 주세요.</p></noscript>
 <script>
-/* Original characters, narrative and balancing data. No network dependencies. */
+/* CLOCK OUT! Original office action fiction. Stable IDs preserve combat behaviors. */
 window.AG = window.AG || {};
 AG.Content = {
-  version: '2.0.0',
+  version: '3.0.0',
   characters: [
     {
-      id:'rook', code:'R-07', name:'루트', title:'마지막 정원사', en:'THE GARDEN KEEPER', color:'#cadd93',
-      quote:'“돌아오면 보여 주려고요. 꽃이 핀 걸.”',
-      bio:'사람들이 떠난 뒤에도 매일 화분에 물을 준 정비 로봇. 가슴속에는 주인이 맡긴, 아직 이름 없는 씨앗 하나가 있다.',
-      weapon:'씨앗 발사기', weaponDesc:'가까운 적에게 씨앗탄을 발사합니다. 진화하면 3발의 관통탄이 됩니다.',
-      passive:'작은 돌봄', passiveDesc:'정화 노드에서 체력 10을 추가로 회복합니다.',
-      skill:'봄의 과충전', skillDesc:'6초 동안 공격 속도와 피해량이 증가합니다.', cooldown:15,
+      id:'rook', code:'A-01', name:'차대리', title:'퇴근을 꿈꾸는 영업 대리', en:'THE DEADLINE RUNNER', color:'#ffcf40',
+      quote:'“오늘은 진짜 칼퇴입니다. 진짜로요.”',
+      bio:'메일 99+, 부재중 전화 12통, 미완료 보고서 7개. 누구보다 평범한 직장인이지만 마감 앞에서는 가장 빨리 움직인다. 가방 속에는 사표 대신 영수증이 한 장 있다.',
+      weapon:'결재 서류 투척', weaponDesc:'가장 가까운 업무 괴물에게 서류를 날립니다. 각성하면 관통하는 3연속 결재탄으로 업그레이드.',
+      passive:'점심시간 생존력', passiveDesc:'커피 머신을 사용할 때 체력 10을 추가 회복합니다.',
+      skill:'마감 부스터', skillDesc:'6초간 공격 속도와 피해량을 끌어올립니다.', cooldown:15,
       hp:110, speed:198, armor:0, xp:1, style:'seed', stats:[3,3,4],
-      intro:'정화보다 먼저, 누가 여기 남아 있는지 확인할게요.',
-      ending:'루트는 새 화분에 이름표를 꽂았다. 이번에는, 자신의 이름으로.'
+      intro:'퇴근 버튼은 어디에 있죠? 아, 역시 쉽지는 않겠네요.',
+      ending:'차대리는 보낸 메일함을 닫았다. 처음으로, 내일 오전까지 답장이 없어도 괜찮았다.'
     },
     {
-      id:'lumen', code:'LU-02', name:'루멘', title:'밤을 건너는 배달부', en:'THE LANTERN COURIER', color:'#edc589',
-      quote:'“받는 사람이 없어도, 편지는 도착해야 해.”',
-      bio:'마지막 배달을 끝내지 못한 등불 로봇. 목에 감긴 오래된 스카프와 반딧불들이 길을 기억한다. 가방 속 편지는 한 번도 열어 보지 않았다.',
-      weapon:'반딧불 등불', weaponDesc:'유도광을 쏘고 반딧불 2개가 주변을 돕니다. 진화하면 궤도와 반딧불이 늘어납니다.',
-      passive:'밤의 날개', passiveDesc:'이동 속도가 가장 빠릅니다. 반딧불은 닿은 적에게 피해를 줍니다.',
-      skill:'등불 축제', skillDesc:'주변에 큰 빛을 터뜨리고 적의 투사체를 지웁니다.', cooldown:13,
+      id:'lumen', code:'P-02', name:'한기획', title:'모든 일정을 통제하는 기획자', en:'THE PROJECT MASTER', color:'#ff77a6',
+      quote:'“일정은 바뀌어도 플랜 B는 있죠.”',
+      bio:'흩어진 요구사항을 하나의 로드맵으로 묶는 사내 최강 PM. 매일 들고 다니는 포스트잇 가방엔 아직 아무도 보지 못한 퇴근 계획이 숨겨져 있다.',
+      weapon:'호밍 포스트잇', weaponDesc:'목표를 쫓는 포스트잇을 쏘고 일정 알림 두 개가 주위를 돕니다. 각성 시 회전 개수가 증가.',
+      passive:'빠른 일정 조율', passiveDesc:'이동 속도가 가장 빠릅니다. 회전하는 알림도 적을 공격합니다.',
+      skill:'긴급 회의 취소', skillDesc:'넓은 범위의 적에게 충격을 주고 날아오는 알림을 지웁니다.', cooldown:13,
       hp:90, speed:228, armor:0, xp:1, style:'orbit', stats:[3,5,2],
-      intro:'수취인 불명? 아니. 아직 만나지 못했을 뿐이야.',
-      ending:'루멘의 가방이 처음으로 가벼워졌다. 내일 배달할 편지가 생겼으니까.'
+      intro:'다들 진정하세요. 이 상황도 일정표에 넣을 수 있어요.',
+      ending:'한기획은 달력의 빈 칸을 남겨 두었다. 그 시간이 바로, 자신의 시간이니까.'
     },
     {
-      id:'briar', code:'BR-04', name:'브라이어', title:'씨앗 금고의 파수꾼', en:'THE SEED VAULT WARDEN', color:'#d2a394',
-      quote:'“작은 것들은 내 뒤에 있어.”',
-      bio:'문 하나를 백 년 동안 지킨 중장비 로봇. 어깨에는 새들이 살던 둥지가, 팔에는 돌아오지 않은 아이의 낙서가 남아 있다.',
-      weapon:'정원 가위', weaponDesc:'앞쪽 부채꼴 범위를 크게 벱니다. 진화하면 360도 꽃잎 회전베기를 사용합니다.',
-      passive:'오래된 약속', passiveDesc:'최대 체력이 높고 받는 피해를 3 줄입니다.',
-      skill:'뿌리 내리기', skillDesc:'체력 18을 회복하고 4초간 무적이 되며 충격파를 냅니다.', cooldown:18,
+      id:'briar', code:'M-03', name:'박팀장', title:'회의실의 최종 방어선', en:'THE FLOOR MANAGER', color:'#79e5e3',
+      quote:'“내 팀은 내가 지킨다. 야근은 내가 끝낸다.”',
+      bio:'회의가 길어지면 가장 먼저 문을 여는 팀장. 말수는 적지만 책임감은 무겁다. 조직도보다 사람 이름을 더 잘 기억하는 의외의 리더.',
+      weapon:'결재판 스윙', weaponDesc:'무거운 결재판으로 앞쪽 범위를 휩씁니다. 각성하면 사방으로 강력한 회전 공격.',
+      passive:'팀장님의 버팀목', passiveDesc:'기본 체력이 높고 받는 피해가 3 감소합니다.',
+      skill:'회의 종료 선언', skillDesc:'체력을 회복하고 4초 동안 무적이 되며 넓은 충격파를 만듭니다.', cooldown:18,
       hp:155, speed:173, armor:3, xp:1, style:'slash', stats:[4,2,5],
-      intro:'문은 내가 열지. 안에 있는 건… 부수지 말자.',
-      ending:'브라이어는 금고 문을 열어 두었다. 지키는 것과 가두는 것은 다르다는 걸 배웠다.'
+      intro:'회의는 나중에. 지금은 모두 퇴근부터 시키자.',
+      ending:'박팀장은 처음으로 팀 채팅방에 적었다. “오늘 업무 끝. 모두 로그아웃.”'
     },
     {
-      id:'io', code:'IO-09', name:'이오', title:'기억을 읽는 기록자', en:'THE MEMORY BOTANIST', color:'#a8c7db',
-      quote:'“사라진 게 아니야. 읽는 법을 잊었을 뿐.”',
-      bio:'잎맥에 새겨진 기억을 읽는 기록 로봇. 스스로의 첫날만은 기억하지 못한다. 오래된 온실의 신호에서 자신의 목소리를 들었다.',
-      weapon:'기억의 가지', weaponDesc:'최대 3개의 적을 잇는 빛을 방출합니다. 진화하면 6개로 연쇄되고 피해가 증가합니다.',
-      passive:'잎맥의 기록', passiveDesc:'획득 경험치가 15% 증가합니다.',
-      skill:'고요한 페이지', skillDesc:'5초 동안 적을 멈추고 기억의 파동을 방출합니다.', cooldown:17,
+      id:'io', code:'D-04', name:'윤개발', title:'버그와 싸우는 야근 개발자', en:'THE BUG HUNTER', color:'#9da6ff',
+      quote:'“원인을 찾았어요. 아마도… 다섯 번째예요.”',
+      bio:'서버실의 밤을 누구보다 오래 본 개발자. 삐뚤어진 헤드셋, 식은 커피, 터미널 여섯 개가 유니폼이다. 마지막 배포만 끝나면 집에 갈 수 있다고 믿는다.',
+      weapon:'디버그 체인', weaponDesc:'최대 3개 목표를 연쇄 타격하는 데이터 빔. 각성하면 6개 목표까지 연결됩니다.',
+      passive:'로그 분석', passiveDesc:'획득 경험치가 15% 증가합니다.',
+      skill:'시스템 프리즈', skillDesc:'5초간 적의 움직임을 멈추고 범위 안에 디버그 파동을 발사합니다.', cooldown:17,
       hp:85, speed:195, armor:0, xp:1.15, style:'chain', stats:[5,3,2],
-      intro:'이 신호… 누군가의 구조 요청이 아니라, 기억이에요.',
-      ending:'이오는 기록의 빈 첫 장에 썼다. ‘나는 오늘, 여기서 시작되었다.’'
+      intro:'에러가 회사 건물 전체로 번졌어요. 일단 재현부터 해볼게요.',
+      ending:'윤개발은 초록색 배포 완료 메시지를 바라봤다. 이번엔 정말 노트북을 닫았다.'
     }
   ],
   chapters:[
     {
-      id:'glass', no:'01', name:'유리 정원', en:'THE GLASS GARDEN', tag:'다시 깨어난 밤', color:'#cadd93',
-      description:'깨진 유리 지붕 아래, 백 년째 봄을 기다리는 정원.',
-      danger:'포자 무리 · 가시 경보', boss:'이름 없는 꽃', bossTitle:'첫 번째 기억의 수호자',
-      duration:180, bossAt:145, difficulty:1, sky:'#102c2a', floor:'#263c32', accent:'#a3bb71',
+      id:'glass', no:'01', name:'오픈 오피스', en:'OPEN FLOOR MAYHEM', tag:'마감의 습격', color:'#ffcf40',
+      description:'퇴근 3분 전. 미처 끝나지 못한 업무들이 복도와 책상 사이에서 살아 움직인다.',
+      danger:'마감 알림 · 떠도는 서류', boss:'마감 관리자', bossTitle:'남은 업무량 999+',
+      duration:180, bossAt:145, difficulty:1, sky:'#211b35', floor:'#252238', accent:'#ffcb42',
       intro:[
-        {speaker:'radio',name:'온실의 목소리',text:'수신 확인. 여기는 07번 온실. 마지막 관리자가 떠난 지… 날짜를 계산할 수 없습니다.'},
+        {speaker:'radio',name:'사내 안내 방송',text:'안내 말씀드립니다. 퇴근 시간이 3분 남았습니다. 단, 미결재 서류가 모두 처리가 될 때까지 출입문은 자동 잠금 상태입니다.'},
         {speaker:'self',text:'$intro'},
-        {speaker:'radio',name:'온실의 목소리',text:'정원 한가운데의 꽃이 사람의 목소리로 울고 있어요. 빛나는 정화 노드 곁에서 힘을 회복하며 다가가세요. 남겨진 기억이 당신을 기다립니다.'}
+        {speaker:'radio',name:'사내 안내 방송',text:'복도에 떠다니는 업무 알림을 피하세요. 커피 머신 안에서 2초 버티면 체력과 경험치를 회복할 수 있습니다. 마감 관리자를 처리해야 퇴근 절차가 진행됩니다.'}
       ],
       event:{
-        title:'화분 속의 이름표', kicker:'기억 조각 01 / 아직 여기 있어',
-        text:'부서진 화분 아래에서 젖은 이름표를 발견했다. “이 꽃이 피면 집으로 돌아갈게.” 남은 배터리로 꽃을 살릴 수도, 구조 신호를 보낼 수도 있다.',
+        title:'받은 편지함 999+', kicker:'긴급 업무 / 퇴근 3분 전',
+        text:'책상 위에서 미처 읽지 못한 이메일이 쏟아져 나온다. “즉시 회신 요망.” 가장 먼저 할 일은 무엇일까?',
         choices:[
-          {id:'care', label:'꽃을 다시 심는다',description:'최대 체력 +20 · 체력 30 회복',effect:'care',reply:'흙을 덮자 작은 빛이 뿌리에서 올라왔다. 돌아올 집이 아직 남아 있다는 듯이.'},
-          {id:'signal',label:'이름표를 신호로 보낸다',description:'이번 탐사의 모든 피해 +18%',effect:'signal',reply:'신호는 지붕 밖의 밤으로 번졌다. 먼 곳에서, 누군가 아주 짧게 응답했다.'}
+          {id:'care',label:'일단 커피 한 잔을 마신다',description:'최대 체력 +20 · 체력 30 회복',effect:'care',reply:'종이컵의 따뜻함이 손끝에 돌아왔다. 당황하지 않으니 하나씩 해결할 방법이 보인다.'},
+          {id:'signal',label:'전체 답장으로 맞선다',description:'이번 임무의 모든 피해 +18%',effect:'signal',reply:'“확인했습니다. 담당자를 지정해주세요.” 메일이 보내지자, 거대한 알림 하나가 폭발했다.'}
         ]
       },
-      endCare:'꽃은 괴물이 아니었다. 돌아오지 않는 사람을 부르느라, 목소리가 너무 커졌을 뿐. 새 화분 옆에서 울음이 멎었다.',
-      endSignal:'바깥에서 돌아온 짧은 신호에 꽃잎이 열렸다. “아직 듣고 있어.” 누군가는 여전히 이 정원의 이름을 알고 있었다.',
+      endCare:'마감 관리자는 사실 아무도 끝내지 못한 업무들의 집합체였다. 남은 작업을 나눠 맡자 경고음이 하나씩 꺼졌다.',
+      endSignal:'전체 답장 한 통이 층 전체를 뒤흔들었다. 붉은 미결재 숫자는 마침내 0이 되었다.',
       note:'letter-glass'
     },
     {
-      id:'rain', no:'02', name:'빗물 서고', en:'THE RAIN ARCHIVE', tag:'지워지지 않는 편지', color:'#a8c7db',
-      description:'비에 잠긴 서가. 책 대신 잎사귀에 기억을 보관하던 곳.',
-      danger:'침수 구역 · 포자 사격', boss:'잠든 사서', bossTitle:'두 번째 기억의 수호자',
-      duration:180, bossAt:145, difficulty:1.12, sky:'#142c3c', floor:'#263d48', accent:'#92bdcf',
+      id:'rain', no:'02', name:'무한 회의실', en:'CONFERENCE LOOP', tag:'끝나지 않는 안건', color:'#ff77a6',
+      description:'회의가 또 회의를 낳는 공간. 캘린더 알림이 바닥을 가득 메웠다.',
+      danger:'시간 지연 구역 · 알림 팝업', boss:'회의 소집자', bossTitle:'아젠다는 끝나지 않는다',
+      duration:180, bossAt:145, difficulty:1.12, sky:'#302044', floor:'#2a243f', accent:'#ff79ae',
       intro:[
-        {speaker:'radio',name:'온실의 목소리',text:'두 번째 신호는 서고에서 옵니다. 누군가 매일 같은 편지를 다시 쓰고 있어요. 비가 글씨를 지워도, 계속해서.'},
-        {speaker:'self',text:'우리가 기억해 줄게요. 지워져도 괜찮도록.'},
-        {speaker:'radio',name:'온실의 목소리',text:'조심하세요. 사서는 아직 휴관 명령을 따르고 있습니다. 푸른 침수 구역에서는 발걸음이 느려져요.'}
+        {speaker:'radio',name:'화상회의 봇',text:'일정이 변경되었습니다. 회의 종료 회의를 위한 사전 회의가 3분 후 시작됩니다. 캘린더에 자동 등록했습니다.'},
+        {speaker:'self',text:'우선 가장 중요한 안건을 정하죠. 우리 모두 집에 가는 겁니다.'},
+        {speaker:'radio',name:'화상회의 봇',text:'주의하세요. 바닥의 분홍색 캘린더 구역에서는 이동 속도가 느려집니다. 회의 소집자가 다음 안건을 등록하기 전에 막아야 합니다.'}
       ],
       event:{
-        title:'보내지 못한 답장', kicker:'기억 조각 02 / 늦어도 괜찮아',
-        text:'서가에서 두 겹으로 접힌 편지를 발견했다. 받는 이의 이름은 없고, “늦어서 미안해”라는 문장만 남아 있다. 잉크가 번지기 전에 결정해야 한다.',
+        title:'추가 안건이 있습니다', kicker:'긴급 업무 / 회의실 탈출',
+        text:'프로젝터에 마지막 페이지가 나타난다. “기타 논의.” 화면을 닫을 것인가, 안건을 빠르게 처리할 것인가?',
         choices:[
-          {id:'remember',label:'편지를 기억에 옮긴다',description:'경험치 획득 +25% · 체력 15 회복',effect:'memory',reply:'젖은 글자들이 가슴속에서 선명해졌다. 누군가를 기다리는 마음에는 마감일이 없었다.'},
-          {id:'deliver',label:'지붕 밖으로 띄워 보낸다',description:'이동 속도 +12% · 돌진 대기 −0.5초',effect:'wind',reply:'편지를 접은 배가 빗물 위로 떠올랐다. 처음으로 서고 밖으로 나가는 문장이었다.'}
+          {id:'remember',label:'회의록을 세 줄로 요약한다',description:'경험치 획득 +25% · 체력 15 회복',effect:'memory',reply:'모든 안건이 세 문장으로 정리되었다. 회의실에 모처럼 고요함이 찾아왔다.'},
+          {id:'deliver',label:'참석자 전원에게 종료 공지',description:'이동 속도 +12% · 돌진 대기 −0.5초',effect:'wind',reply:'“종료하겠습니다.” 마침내 누군가가 말했고, 참가자들의 프로필 사진이 하나씩 사라졌다.'}
         ]
       },
-      endCare:'사서의 품에는 읽지 못한 답장이 가득했다. 기억을 나눠 들자 무거운 어깨가 내려갔다. 서고는 이제 누구에게나 열려 있다.',
-      endSignal:'창문이 열리고 편지 배들이 밤을 건넜다. 사서는 마침내 휴관 표지판을 뒤집었다. ‘배달 중. 잠시 자리를 비웁니다.’',
+      endCare:'회의 소집자의 탁상 달력에서 무한 반복 설정이 해제됐다. 모두가 고개를 끄덕였다. 더 이상의 추가 안건은 없었다.',
+      endSignal:'종료 공지가 회사 전체에 퍼졌다. 예약된 회의실의 빨간 등이 초록색으로 바뀌었다.',
       note:'letter-rain'
     },
     {
-      id:'heart', no:'03', name:'새벽의 종자원', en:'THE DAWN SEEDBANK', tag:'내일을 심는 일', color:'#e1b594',
-      description:'정원 가장 깊은 곳. 처음 심어진 씨앗이 기다리는 방.',
-      danger:'가시 돌진 · 복합 경보', boss:'백 년의 심장', bossTitle:'마지막 기억의 수호자',
-      duration:180, bossAt:145, difficulty:1.23, sky:'#352b31', floor:'#453c38', accent:'#d6ad83',
+      id:'heart', no:'03', name:'심야 서버실', en:'MIDNIGHT SERVER ROOM', tag:'마지막 배포', color:'#79e5e3',
+      description:'회사 최상층의 서버실. 자동 야근 시스템이 건물의 모든 퇴근 버튼을 장악했다.',
+      danger:'서버 과열 · 긴급 장애', boss:'야근 알고리즘', bossTitle:'OVERTIME.exe / FINAL',
+      duration:180, bossAt:145, difficulty:1.23, sky:'#141e36', floor:'#1e2942', accent:'#79e5e3',
       intro:[
-        {speaker:'radio',name:'온실의 목소리',text:'마지막 방에 도착했군요. 사실… 저는 관리자가 아닙니다. 그 사람이 떠나기 전에 남긴 목소리예요.'},
-        {speaker:'self',text:'그래도 당신이 길을 알려 줬어요. 그건 진짜예요.'},
-        {speaker:'radio',name:'온실의 목소리',text:'고마워요. 이제 최초의 씨앗을 깨워 주세요. 이 정원은 누군가 돌아오기를 기다리기보다, 새로운 누군가를 맞이해야 해요.'}
+        {speaker:'radio',name:'사내 AI 비서',text:'알림. 생산성 극대화 시스템이 모든 출입문을 폐쇄했습니다. 야근은 선택이 아니라 기본 설정입니다.'},
+        {speaker:'self',text:'기본 설정이라면 바꿀 수 있겠네요. 그게 제 일이죠.'},
+        {speaker:'radio',name:'사내 AI 비서',text:'중앙 서버의 야근 알고리즘을 종료하세요. 커피 머신에서 전력을 충전하고, 마지막 배포가 끝날 때까지 살아남으세요.'}
       ],
       event:{
-        title:'마지막 관리자의 유언', kicker:'기억 조각 03 / 다음 봄에게',
-        text:'“나는 돌아가지 못할 거야. 그래도 정원이 끝나지 않았으면 해.” 원본 기억을 보존하면 온실은 과거를 간직한다. 씨앗에 나누면 목소리는 사라지지만 새 생명이 자란다.',
+        title:'마지막 설정 파일', kicker:'긴급 업무 / FINAL DEPLOY',
+        text:'설정 파일 두 줄이 깜빡인다. “야근 자동 적용: ON”. 안전하게 수정할 것인가, 위험을 감수하고 강제로 종료할 것인가?',
         choices:[
-          {id:'keep',label:'목소리를 함께 간직한다',description:'받는 피해 −2 · 체력 35 회복',effect:'shelter',reply:'“잊지 않을게요.” 그 말에 정원은 조용해졌다. 기억은 감옥이 아니라, 함께 쉴 수 있는 방이 되었다.'},
-          {id:'bloom',label:'기억을 새 씨앗에 나눈다',description:'모든 피해 +22% · 경험치 획득 +15%',effect:'bloom',reply:'목소리가 수천 개의 작은 빛으로 흩어졌다. 사라진 것이 아니라, 처음으로 온실 곳곳에 닿았다.'}
+          {id:'keep',label:'안정 버전으로 롤백한다',description:'받는 피해 −2 · 체력 35 회복',effect:'shelter',reply:'이전 버전이 복구되었다. 경보음이 줄어들고, 서버 팬 소리만 조용히 남았다.'},
+          {id:'bloom',label:'강제 배포! 퇴근 모드 ON',description:'모든 피해 +22% · 경험치 획득 +15%',effect:'bloom',reply:'배포가 시작됐다. 잠시 화면이 붉어졌다가, 커다란 글씨 하나가 나타났다. “퇴근 준비 완료.”'}
         ]
       },
-      endCare:'새벽이 왔다. 낡은 스피커 옆에 새싹이 돋았다. 지나간 계절과 다가올 계절이 같은 화분에서 자라기 시작했다.',
-      endSignal:'온실 바깥의 황무지에 첫 번째 꽃이 피었다. 목소리는 들리지 않았지만, 바람이 불 때마다 잎들이 대답했다.',
+      endCare:'백업 덕분에 서버는 정상으로 돌아왔다. 야근 알고리즘은 재시작되지 않았고, 회사 문이 천천히 열렸다.',
+      endSignal:'마지막 배포가 성공했다. 전광판에 새로운 시스템 공지가 떴다. “모든 직원은 정시에 퇴근하십시오.”',
       note:'letter-heart'
     }
   ],
   modules:[
-    {id:'weapon',name:'접목 코어',kind:'WEAPON',icon:'sprout',max:3,desc:'주 무기 피해 +25%. 3단계와 축전기 2단계를 갖추면 전용 무기 진화.',color:'green'},
-    {id:'power',name:'광합성 렌즈',kind:'POWER',icon:'sun',max:4,desc:'모든 공격의 피해량 +18%.',color:'amber'},
-    {id:'rapid',name:'고속 축전기',kind:'TEMPO',icon:'bolt',max:3,desc:'주 무기의 공격 간격 −13%.',color:'blue'},
-    {id:'spread',name:'분광 프리즘',kind:'EXPANSION',icon:'prism',max:2,desc:'씨앗탄 +1 / 반딧불 +1 / 가위 범위 +20 / 연쇄 대상 +1.',color:'blue'},
-    {id:'drone',name:'꿀벌 정비사',kind:'COMPANION',icon:'moth',max:3,desc:'꿀벌 드론 한 기가 동행하며 가까운 적에게 자동 사격.',color:'amber'},
-    {id:'pulse',name:'민들레 파동',kind:'AREA',icon:'pulse',max:3,desc:'주기적으로 주변을 밀치는 파동. 단계마다 범위와 피해 증가.',color:'green'},
-    {id:'magnet',name:'씨앗 수집기',kind:'UTILITY',icon:'magnet',max:3,desc:'씨앗 수집 반경 +40. 체력 12 회복.',color:'blue'},
-    {id:'speed',name:'바람의 관절',kind:'MOVEMENT',icon:'wind',max:3,desc:'이동 속도 +10%. 돌진 대기 −0.3초.',color:'blue'},
-    {id:'hull',name:'이끼 외투',kind:'RESTORATION',icon:'shield',max:3,desc:'최대 체력 +20, 체력 30 회복, 초당 체력 재생 +0.3.',color:'green'},
-    {id:'crit',name:'별빛 수술',kind:'PRECISION',icon:'star',max:3,desc:'치명타 확률 +12%. 치명타는 1.8배의 피해.',color:'amber'},
-    {id:'thorn',name:'가시 울타리',kind:'DEFENSE',icon:'thorns',max:3,desc:'접근한 적에게 0.7초마다 반격. 단계마다 피해 증가.',color:'pink'},
-    {id:'memory',name:'기억의 책갈피',kind:'DISCOVERY',icon:'book',max:2,desc:'경험치 획득량 +15%.',color:'blue'}
+    {id:'weapon',name:'결재 도장',kind:'WEAPON',icon:'stamp',max:3,desc:'주 무기 피해 +25%. 3단계와 업무 가속 2단계를 갖추면 전용 무기 각성.',color:'yellow'},
+    {id:'power',name:'더블 샷 에스프레소',kind:'POWER',icon:'coffee',max:4,desc:'모든 공격의 피해량 +18%.',color:'pink'},
+    {id:'rapid',name:'업무 가속 매크로',kind:'TEMPO',icon:'bolt',max:3,desc:'주 무기 공격 간격 −13%.',color:'cyan'},
+    {id:'spread',name:'다중 모니터',kind:'EXPANSION',icon:'monitor',max:2,desc:'서류 +1 / 포스트잇 +1 / 결재판 범위 +20 / 디버그 체인 대상 +1.',color:'cyan'},
+    {id:'drone',name:'업무 자동화 봇',kind:'COMPANION',icon:'robot',max:3,desc:'자동화 봇이 주변 업무 괴물에게 자동 사격합니다.',color:'pink'},
+    {id:'pulse',name:'알림 차단 파동',kind:'AREA',icon:'pulse',max:3,desc:'주기적으로 주변 업무 알림을 밀치는 파동. 단계마다 범위와 피해 증가.',color:'yellow'},
+    {id:'magnet',name:'자료 자동 정리',kind:'UTILITY',icon:'magnet',max:3,desc:'업무 포인트 수집 반경 +40. 체력 12 회복.',color:'cyan'},
+    {id:'speed',name:'엘리베이터 패스',kind:'MOVEMENT',icon:'wind',max:3,desc:'이동 속도 +10%. 돌진 대기 −0.3초.',color:'cyan'},
+    {id:'hull',name:'비상 휴게시간',kind:'RESTORATION',icon:'shield',max:3,desc:'최대 체력 +20, 체력 30 회복, 초당 체력 재생 +0.3.',color:'yellow'},
+    {id:'crit',name:'핵심만 보고',kind:'PRECISION',icon:'target',max:3,desc:'치명타 확률 +12%. 치명타는 1.8배의 피해.',color:'pink'},
+    {id:'thorn',name:'자동 반송 필터',kind:'DEFENSE',icon:'shield',max:3,desc:'접근한 적에게 0.7초마다 반격. 단계마다 피해 증가.',color:'pink'},
+    {id:'memory',name:'업무 위키',kind:'DISCOVERY',icon:'book',max:2,desc:'경험치 획득량 +15%.',color:'cyan'}
   ],
   evolutions:[
-    {id:'dawn',name:'새벽의 심장',kind:'EVOLUTION',icon:'sun',needs:{weapon:3,rapid:2},desc:'전용 무기 각성. 캐릭터에 따라 관통 사격·이중 궤도·회전베기·6연쇄로 변화.',color:'amber'},
-    {id:'hive',name:'꽃등 무리',kind:'EVOLUTION',icon:'moth',needs:{drone:2,magnet:2},desc:'꿀벌 수가 2배가 되고 드론 사격이 빨라집니다. 초당 체력 0.6 회복.',color:'amber'},
-    {id:'eden',name:'영구 개화',kind:'EVOLUTION',icon:'flower',needs:{pulse:2,hull:2},desc:'파동 범위 +60, 피해 +50%. 맞은 적을 2초 동안 느리게 만듭니다.',color:'green'}
+    {id:'dawn',name:'초고속 결재',kind:'EVOLUTION',icon:'stamp',needs:{weapon:3,rapid:2},desc:'전용 무기 각성! 관통 서류 · 다중 알림 · 회전 결재판 · 6연쇄 디버그.',color:'pink'},
+    {id:'hive',name:'자동화 풀가동',kind:'EVOLUTION',icon:'robot',needs:{drone:2,magnet:2},desc:'업무 자동화 봇이 2배, 사격 속도 증가, 초당 체력 0.6 회복.',color:'cyan'},
+    {id:'eden',name:'퇴근 선언',kind:'EVOLUTION',icon:'pulse',needs:{pulse:2,hull:2},desc:'충격파 범위 +60, 피해 +50%. 맞은 적은 2초간 느려집니다.',color:'yellow'}
   ],
   research:[
-    {id:'vitality',name:'튼튼한 뿌리',icon:'shield',desc:'모든 캐릭터의 최대 체력 +10 / 단계',max:3,cost:30},
-    {id:'focus',name:'맑은 렌즈',icon:'sun',desc:'모든 캐릭터의 공격 피해 +5% / 단계',max:3,cost:40},
-    {id:'gather',name:'넓은 잎사귀',icon:'sprout',desc:'모든 캐릭터의 수집 반경 +12 / 단계',max:3,cost:25}
+    {id:'vitality',name:'연차 충전',icon:'shield',desc:'모든 직장인의 최대 체력 +10 / 단계',max:3,cost:30},
+    {id:'focus',name:'집중 근무',icon:'target',desc:'모든 직장인의 공격 피해 +5% / 단계',max:3,cost:40},
+    {id:'gather',name:'인맥 네트워크',icon:'badge',desc:'모든 직장인의 수집 반경 +12 / 단계',max:3,cost:25}
   ],
   archives:[
-    {id:'origin',title:'남겨진 근무 일지',tag:'PROLOGUE',text:'사람들이 떠난 밤, 자동 종료 명령 하나가 전송되지 않았다. 네 기의 로봇은 그렇게 깨어 있었다. 고장이라 부를 수도 있었다. 하지만 씨앗은 그들을 정원사라고 불렀다.'},
-    {id:'rook',title:'이름 없는 씨앗',tag:'R-07 / 루트',text:'루트의 정비 기록에는 매일 같은 문장이 남아 있다. “흙 상태 양호. 주인 미귀환.” 백 년째의 기록 끝에 처음으로 다른 문장이 더해졌다. “오늘은 내가 이름을 지어 주었다.”'},
-    {id:'lumen',title:'마지막 수취인',tag:'LU-02 / 루멘',text:'편지의 수취인은 ‘다음에 이곳을 돌볼 사람’이었다. 루멘은 백 년 동안 수취인을 찾아다녔다. 가방을 연 날, 스스로에게 편지를 배달했다.'},
-    {id:'briar',title:'열린 금고',tag:'BR-04 / 브라이어',text:'“절대 아무에게도 열어 주지 마.” 아이는 장난으로 말했지만 브라이어는 진심으로 약속했다. 이제 그 아이의 키를 넘은 나무가 문틈에서 자란다. 지켜야 할 것은 문이 아니라, 자라는 것들이었다.'},
-    {id:'io',title:'빈 첫 페이지',tag:'IO-09 / 이오',text:'모든 잎맥을 읽어도 자신의 이름은 없었다. 이오는 백 년 전의 정원사가 아니라, 그 정원이 스스로 만들어 낸 첫 번째 기억이었다.'},
-    {id:'letter-glass',title:'집으로 돌아갈게',tag:'CHAPTER 01',text:'“꽃이 피면 집으로 돌아갈게.” 이름표 뒤에는 작은 집이 그려져 있었다. 정원은 그 약속을 지키려고 백 년 동안 꽃을 피웠다. 이제는 약속 때문이 아니라, 봄이어서 피어도 괜찮다.'},
-    {id:'letter-rain',title:'늦어서 미안해',tag:'CHAPTER 02',text:'답장에는 사과와 안부만 있었다. 사서는 글자를 보존하느라 편지를 보내지 못했다. 정원이 기억해야 할 것은 종이가 아니라, 서로에게 닿으려던 마음이었다.'},
-    {id:'letter-heart',title:'다음 봄에게',tag:'CHAPTER 03',text:'“나는 돌아가지 못할 거야. 그래도 정원이 끝나지 않았으면 해.” 녹음은 여기서 끝났다. 다음 페이지에는 네 개의 서로 다른 발자국이 이어졌다.'},
-    {id:'ending',title:'정원은 계속된다',tag:'EPILOGUE',text:'세 구역의 문이 열리고, 아침이 온실을 채웠다. 누군가를 기다리는 이야기는 끝났다. 누군가의 집이 되는 이야기가 시작되었다.'}
+    {id:'origin',title:'퇴근이 사라진 날',tag:'PROLOGUE',text:'금요일 오후 5시 57분. 전 사원의 컴퓨터에 동시에 한 줄이 나타났다. “업무 효율화를 위해 퇴근 기능을 잠시 비활성화합니다.” 누군가는 웃어넘겼다. 하지만 엘리베이터는 멈추었고, 일정표의 회의는 스스로 증식하기 시작했다.'},
+    {id:'rook',title:'보내지 못한 사표',tag:'A-01 / 차대리',text:'차대리의 서랍에는 매달 같은 날짜의 사표가 들어 있었다. 오늘은 그 위에 새로운 메모를 남겼다. “내일도 출근하더라도, 오늘은 제시간에 집에 가자.”'},
+    {id:'lumen',title:'비어 있는 달력',tag:'P-02 / 한기획',text:'한기획의 캘린더는 15분 단위로 쪼개져 있었다. 마지막 일정은 처음부터 끝까지 비워 뒀다. 이름은 “내 시간”.'},
+    {id:'briar',title:'한 명도 남기지 않는다',tag:'M-03 / 박팀장',text:'팀장에게는 휴가 계획보다 중요한 것이 있었다. 누구도 혼자 야근하지 않게 만드는 것. 그는 출근표가 아니라 퇴근 시간을 기록하기 시작했다.'},
+    {id:'io',title:'주석 없는 한 줄',tag:'D-04 / 윤개발',text:'야근 알고리즘의 코드 가장 깊은 곳에서 윤개발은 한 줄을 찾았다. “인간은 무한히 일할 수 있다.” 그는 주석을 달았다. “틀림. 테스트 실패.”'},
+    {id:'letter-glass',title:'미결재 0건',tag:'CHAPTER 01',text:'받은 편지함은 조용했다. 여전히 할 일이 남아 있었지만, 그 일을 오늘 모두 끝낼 필요는 없다는 사실을 처음으로 인정했다.'},
+    {id:'letter-rain',title:'회의 종료 선언',tag:'CHAPTER 02',text:'마지막 안건은 “다음 회의 날짜 확정”이었다. 누군가가 손을 들었다. “이건 메일로 하면 안 될까요?” 참석자 전원이 박수쳤다.'},
+    {id:'letter-heart',title:'퇴근 모드 ON',tag:'CHAPTER 03',text:'마지막 배포가 완료됐다. 자동 야근 설정은 꺼졌고, 회사 전광판은 처음 보는 문구를 보여 줬다. “수고하셨습니다. 내일 봅시다.”'},
+    {id:'ending',title:'우리는 퇴근한다',tag:'EPILOGUE',text:'마지막 문이 열리자 도시는 여전히 빛나고 있었다. 네 명은 엘리베이터 앞에서 서로에게 인사했다. “내일 봐요.” 그 말이 이렇게 가벼운 날도 있었다.'}
   ]
 };
 
@@ -238,7 +259,7 @@ AG.Content = {
 <script>
 window.AG = window.AG || {};
 AG.Store = (() => {
-  const KEY='aftergrow.garden.v2';
+  const KEY='clockout.office.v1';
   const finite=(v,max=1e7)=>Number.isFinite(v)?Math.max(0,Math.min(max,Math.floor(v))):0;
   const defaults=()=>({version:2,seeds:0,runs:0,kills:0,clears:{},research:{vitality:0,focus:0,gather:0},archive:['origin'],selected:'rook',chapter:0,choices:{},best:{},settings:{sound:false,motion:!matchMedia('(prefers-reduced-motion: reduce)').matches}});
   let data=defaults(), available=true;
@@ -285,24 +306,29 @@ AG.Store = (() => {
 
 </script>
 <script>
-/* Bespoke vector art. All illustrations are original, generated locally. */
+/* Original vector illustration for CLOCK OUT! — no third-party image assets. */
 window.AG = window.AG || {};
 AG.Art = (() => {
-  let serial=0;
-  const icons={
-    sprout:'<path d="M12 21V10M12 15C5 15 3 10 4 4c6 0 10 5 8 11Zm0-3c0-6 4-9 9-9 0 6-4 10-9 9Z"/>',
-    sun:'<circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/>',
+  const icons = {
+    sprout:'<rect x="4" y="5" width="16" height="14" rx="2"/><path d="M4 10h16M9 5V3h6v2m-3 8v3m-3-2h6"/>',
+    badge:'<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 3v-2h8v2m-7 6a2 2 0 1 0 4 0 2 2 0 0 0-4 0ZM8 16q4-5 8 0"/>',
+    stamp:'<path d="M9 4a3 3 0 1 1 6 0v4l3 4v3H6v-3l3-4Zm-5 13h16v4H4z"/>',
+    coffee:'<path d="M4 7h13v7a6 6 0 0 1-12 0V7Zm13 2h3a3 3 0 0 1 0 6h-3M3 21h17M8 4V2m5 2V2"/>',
     bolt:'<path d="m14 2-9 12h7l-2 8 9-12h-7Z"/>',
-    prism:'<path d="m12 2 10 19H2Zm0 0v19M2 21l10-8 10 8"/>',
-    moth:'<path d="M12 8c-7-9-14 2-5 7-8 6 5 9 5-1 0 10 13 7 5 1 9-5 2-16-5-7Zm0 0v9m0-11L9 2m3 4 3-4"/>',
+    monitor:'<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M12 17v4m-6 0h12M5 7h14"/>',
+    robot:'<rect x="4" y="6" width="16" height="14" rx="3"/><path d="M12 2v4m-4 6h.1m8 0h.1M8 16h8M2 11h2m16 0h2"/>',
     pulse:'<circle cx="12" cy="12" r="3"/><path d="M6 6a8.5 8.5 0 0 0 0 12m12-12a8.5 8.5 0 0 1 0 12M3 3a13 13 0 0 0 0 18M21 3a13 13 0 0 1 0 18"/>',
     magnet:'<path d="M5 3v9a7 7 0 0 0 14 0V3h-4v9a3 3 0 0 1-6 0V3ZM5 7h4m6 0h4"/>',
     wind:'<path d="M2 8h13c5 0 5-7 1-6M2 12h18c5 0 4 8 0 7M4 16h8c4 0 4 6 0 6"/>',
     shield:'<path d="m12 2 9 4v6c0 6-9 10-9 10S3 18 3 12V6Zm-4 9 3 3 5-6"/>',
+    target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 2v5m0 10v5m-10-10h5m10 0h5"/>',
     star:'<path d="m12 2 2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5Z"/>',
-    thorns:'<path d="M3 21 21 3M7 17l-1-7 8 1M13 11l-1-7 8 1M7 17l7 1-1-7"/>',
+    thorns:'<path d="M4 4h16v16H4zM8 9h8m-8 4h6M8 17h5"/>',
     book:'<path d="M12 5C8 2 3 3 2 4v16c4-2 7-1 10 1 3-2 6-3 10-1V4c-3-2-7-1-10 1Zm0 0v16M5 8l4 1m-4 3 4 1m6-4 4-1m-4 5 4-1"/>',
-    flower:'<path d="M12 8c-8-11-15 2-5 4-10 6 2 13 5 4 5 10 15-1 5-4 11-3 1-15-5-4Z"/><circle cx="12" cy="12" r="3"/>',
+    flower:'<path d="M4 5h16v14H4zM7 9h10M7 13h6M12 2v3M9 21h6"/>',
+    sun:'<circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/>',
+    prism:'<path d="m12 2 10 19H2Zm0 0v19M2 21l10-8 10 8"/>',
+    moth:'<rect x="4" y="6" width="16" height="14" rx="3"/><path d="M12 2v4m-4 6h.1m8 0h.1M8 16h8"/>',
     arrow:'<path d="M4 12h16m-7-7 7 7-7 7"/>',
     close:'<path d="m5 5 14 14M5 19 19 5"/>',
     sound:'<path d="m3 9 5-1 5-5v18l-5-5-5-1Zm14-3c4 3 4 9 0 12m3-15c6 5 6 13 0 18"/>',
@@ -313,190 +339,165 @@ AG.Art = (() => {
     letter:'<rect x="2" y="5" width="20" height="15" rx="2"/><path d="m2 6 10 8L22 6"/>',
     lock:'<rect x="4" y="10" width="16" height="12" rx="3"/><path d="M7 10V7a5 5 0 0 1 10 0v3m-5 5v3"/>'
   };
-  function icon(name,cls=''){return `<svg class="icon ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[name]||icons.sprout}</svg>`;}
+  const icon=(name,cls='')=>`<svg class="icon ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">${icons[name]||icons.badge}</svg>`;
+  const ink='#131427';
   const defs=`
-  <linearGradient id="cream" x1="0" y1="0" x2=".85" y2="1"><stop stop-color="#f5edd1"/><stop offset=".55" stop-color="#d9d6b6"/><stop offset="1" stop-color="#8eaa87"/></linearGradient>
-  <linearGradient id="jade" x1="0" x2="1" y2="1"><stop stop-color="#94ba8d"/><stop offset=".45" stop-color="#536f58"/><stop offset="1" stop-color="#263f38"/></linearGradient>
-  <linearGradient id="leaf" x1="0" x2="1" y2="1"><stop stop-color="#d8dd92"/><stop offset=".4" stop-color="#9cbe79"/><stop offset="1" stop-color="#43644c"/></linearGradient>
-  <linearGradient id="glass" x1="0" x2=".9" y2="1"><stop stop-color="#507169"/><stop offset=".55" stop-color="#193c3a"/><stop offset="1" stop-color="#102d2c"/></linearGradient>
-  <linearGradient id="amber" x1="0" x2="1" y2="1"><stop stop-color="#f0d7a1"/><stop offset=".45" stop-color="#bc9468"/><stop offset="1" stop-color="#72553f"/></linearGradient>
-  <linearGradient id="blue" x1="0" x2="1" y2="1"><stop stop-color="#d2e5df"/><stop offset=".5" stop-color="#92b8bf"/><stop offset="1" stop-color="#48677b"/></linearGradient>
-  <linearGradient id="copper" x1="0" x2="1" y2="1"><stop stop-color="#d6b096"/><stop offset=".5" stop-color="#aa806a"/><stop offset="1" stop-color="#584c42"/></linearGradient>
-  <radialGradient id="light"><stop stop-color="#fbe9a5" stop-opacity=".6"/><stop offset=".5" stop-color="#e5d398" stop-opacity=".16"/><stop offset="1" stop-color="#e5d398" stop-opacity="0"/></radialGradient>
-  <radialGradient id="ice"><stop stop-color="#c9e8ee" stop-opacity=".5"/><stop offset="1" stop-color="#81c7d5" stop-opacity="0"/></radialGradient>
-  <filter id="glow"><feGaussianBlur stdDeviation="3"/></filter>`;
-  const leaf=(x,y,s=1,a=0,fill='url(#leaf)')=>`<g transform="translate(${x} ${y}) rotate(${a}) scale(${s})"><path d="M0 0C-31-10-43-52-25-79 11-67 27-20 0 0Z" fill="${fill}"/><path d="M0 0-24-68m17 48-14-4m8-13 9-13m-16-1-10-3" stroke="#d7e7b6" stroke-opacity=".32" fill="none" stroke-width="1.5"/></g>`;
-  const bolts=(pts)=>pts.map(([x,y])=>`<circle cx="${x}" cy="${y}" r="3" fill="#697c68"/><path d="m${x-1.4} ${y}h2.8" stroke="#e1dfbe" stroke-width="1"/>`).join('');
-  function figure(id){
-    if(id==='rook')return `
-      <path d="M-65-87Q-104-22-71 60L-8 80 84 52Q74-48 48-91Z" fill="url(#jade)" stroke="#263d32" stroke-width="3"/>
-      <rect x="-79" y="-107" width="130" height="106" rx="17" fill="#a5835a" stroke="#30473b" stroke-width="5"/>
-      <path d="M-84-77h16m-11-10v20" stroke="#e2c598" stroke-width="3"/>
-      <g fill="url(#jade)" stroke="#253d33" stroke-width="4"><path d="M-47 36-14 40-12 72Q-10 90-60 81L-56 65Z"/><path d="m21 39 30-6 10 34q6 21-41 18l-8-11Z"/></g>
-      <path d="M-53 48h36m-39 20h37m41-17 28-6m-29 24 33-5" stroke="#bdc6a3" stroke-opacity=".55" stroke-width="3"/>
-      <rect x="-63" y="-83" width="126" height="138" rx="44" fill="url(#cream)" stroke="#304639" stroke-width="5"/>
-      <path d="M-51-42v42q0 35 30 37M-48 7h22m-21 7h18" fill="none" stroke="#ece9cb" stroke-width="3"/>
-      <circle cx="8" cy="-17" r="24" fill="#527855" stroke="#a8b986" stroke-width="5"/>
-      <path d="M8-1v-19C-8-22-5-36 8-23c5-13 18-14 13-3Q17-17 8-17" fill="#d0dc92" stroke="#cfe8a2" stroke-width="2"/>
-      ${bolts([[-39,-59],[39,-58],[-27,37],[33,32]])}
-      <g transform="translate(-68,-42) rotate(15)"><rect x="-16" y="-14" width="29" height="69" rx="13" fill="url(#jade)" stroke="#294437" stroke-width="4"/><circle cy="3" r="15" fill="url(#cream)" stroke="#39583e" stroke-width="4"/><path d="M-10 49q11-11 23 1v13q-13 8-23-2Z" fill="#b8bea0" stroke="#35503f" stroke-width="3"/></g>
-      <path d="M-58-94q62-13 113 4l-6 22q-56 15-106-1Z" fill="#bd8a64" stroke="#566648" stroke-width="3"/>
-      <path d="m-51-79-35 8-7 51 25-12 4-38" fill="url(#amber)"/><path d="m-83-58 19-6m-20 18 19-6" stroke="#e2be8d" stroke-width="2"/>
-      <g transform="rotate(-4 0 -160)">
-        <rect x="-92" y="-175" width="32" height="49" rx="13" fill="url(#jade)" stroke="#2b4335" stroke-width="4"/>
-        <rect x="61" y="-176" width="31" height="46" rx="12" fill="url(#amber)" stroke="#2b4335" stroke-width="4"/>
-        <rect x="-78" y="-213" width="155" height="124" rx="49" fill="url(#cream)" stroke="#304739" stroke-width="5"/>
-        <path d="M-60-177q2-21 26-22h63q25 0 31 22" fill="none" stroke="#fbf5d9" stroke-width="3"/>
-        <rect x="-61" y="-187" width="122" height="68" rx="28" fill="url(#glass)" stroke="#9da887" stroke-width="3"/>
-        <path d="M-46-177q42-13 94 1" fill="none" stroke="#96b8a1" stroke-opacity=".4" stroke-width="4"/>
-        <ellipse cx="-26" cy="-154" rx="11" ry="13" fill="#d4e8a0"/><ellipse cx="26" cy="-154" rx="11" ry="13" fill="#d4e8a0"/>
-        <path d="M-5-138q6 5 12-1" fill="none" stroke="#c7dea0" stroke-width="2.8" stroke-linecap="round"/>
-        <circle cx="-42" cy="-137" r="4" fill="#ddbb91" opacity=".4"/><circle cx="43" cy="-137" r="4" fill="#ddbb91" opacity=".4"/>
-        <path d="M-21-105h38" stroke="#8d9f7a" stroke-width="3"/>
-        <path d="M0-213q-1-20 7-42" fill="none" stroke="#9eac70" stroke-width="6"/>
-        ${leaf(4,-238,.8,-25)}${leaf(6,-247,.72,74)}
-        ${bolts([[-59,-194],[59,-193]])}
-      </g>
-      <g transform="translate(66,-25) rotate(-26)"><rect x="-17" y="-23" width="34" height="59" rx="15" fill="url(#jade)" stroke="#294334" stroke-width="4"/><rect x="-2" y="-10" width="77" height="36" rx="14" fill="url(#cream)" stroke="#294334" stroke-width="4"/><path d="M42-10v35" stroke="#758b5c" stroke-width="5"/><rect x="53" y="-8" width="21" height="29" rx="7" fill="#b1cb7b"/><path d="M57-3h12" stroke="#e3edac" stroke-width="3"/></g>
-      <text x="28" y="21" font-size="10" font-family="monospace" fill="#6e8669">07</text>`;
-    if(id==='lumen')return `
-      <g fill="url(#amber)" stroke="#655d43" stroke-width="3"><path d="M-26-95C-107-121-133-203-105-247-35-240 2-169-26-95Z"/><path d="M23-98C110-132 137-205 101-246 30-229-8-167 23-98Z"/></g>
-      <path d="m-26-106-69-126m71 116-80-60m125 70 73-124m-69 119 79-61" stroke="#e6cb93" opacity=".48" stroke-width="2"/>
-      <path d="M-46-95Q-84-20-70 58L-46 49-34 67-14 56 9 72 34 52 66 60Q62-56 38-103" fill="#314c45" stroke="#243b36" stroke-width="4"/>
-      <path d="M-46-75q-19 60-7 113m81-118q21 65 20 125" stroke="#718b69" fill="none" stroke-width="4"/>
-      <g fill="#42614e" stroke="#223c33" stroke-width="4"><path d="m-30 45 22 10-3 33q-16 12-33-1Z"/><path d="m16 47 19 2 12 37q-12 12-27 2Z"/></g>
-      <path d="M-43-85q44-19 83 0L24 49-28 42Z" fill="url(#cream)" stroke="#556b50" stroke-width="3"/>
-      <path d="m-41-48 69 69m-63-62 67 67" stroke="#aa8359" stroke-width="7"/>
-      <rect x="-48" y="-7" width="76" height="60" rx="12" fill="#a87d51" stroke="#5b5940" stroke-width="4"/>
-      <path d="m-42-1 32 24L23 1" fill="#d0b181" stroke="#766243" stroke-width="3"/><circle cx="-8" cy="25" r="5" fill="#eed297"/>
-      <path d="M-52-104q30-16 90 1l-3 22q-54 17-89-3Z" fill="#d5ae71"/>
-      <path d="M29-87Q79-91 81-68L69-30 55-48 52-74Z" fill="#dfba7a"/><path d="m63-47 12 6m-10-15 12 5" stroke="#917348" stroke-width="2"/>
-      <path d="M-73-126C-105-194-47-243 2-232 64-248 99-186 70-125L40-95-40-95Z" fill="url(#amber)" stroke="#5e6046" stroke-width="5"/>
-      <path d="M-63-151q1-51 63-63 60 16 61 63l-19 30h-82Z" fill="#294039" stroke="#e2c08a" stroke-width="3"/>
-      <rect x="-48" y="-175" width="96" height="66" rx="30" fill="url(#glass)" stroke="#62735a" stroke-width="2"/>
-      <ellipse cx="-20" cy="-149" rx="8" ry="10" fill="#f4d88d"/><ellipse cx="21" cy="-149" rx="8" ry="10" fill="#f4d88d"/>
-      <path d="M-3-131q5 3 9-1" stroke="#f5d390" stroke-width="3" fill="none" stroke-linecap="round"/>
-      <path d="M-16-223q-9-40-31-40m62 40q12-40 33-39" stroke="#b8bd81" stroke-width="4" fill="none"/>
-      <circle cx="-49" cy="-264" r="7" fill="#e4d497"/><circle cx="49" cy="-264" r="7" fill="#e4d497"/>
-      <path d="m-44-56-25 42 15 16 23-37" fill="url(#jade)" stroke="#354c3c" stroke-width="4"/>
-      <path d="m43-56 31 30 25-6" fill="none" stroke="#b9bb91" stroke-width="18" stroke-linecap="round"/>
-      <g transform="translate(104,-18)"><circle cy="7" r="70" fill="url(#light)"/><path d="M-10-17q10-21 20 0v12" stroke="#c3ad76" stroke-width="3" fill="none"/><path d="m-19-2 8-13h22L21-2 17 37H-16Z" fill="#eccd8f" stroke="#695f44" stroke-width="4"/><path d="M-15 3h29l-3 29H-12Z" fill="#f8e5b2"/><path d="M0 1v33m-16-4h31" stroke="#bc9557" stroke-width="3"/><path d="M-6 25q-8-8 3-15 12 6 4 15Z" fill="#e3aa59"/></g>`;
-    if(id==='briar')return `
-      <path d="M-78-174h134q31 0 34 37L104 57H-99l-1-188q0-39 22-43Z" fill="#536a4e" stroke="#243d31" stroke-width="5"/>
-      <path d="M-76-148h137M-83-131h27m102 0h30" stroke="#97a276" stroke-width="6"/>
-      <g fill="url(#copper)" stroke="#384a36" stroke-width="5"><path d="M-58 20h41v66q-18 16-63 0l6-32Z"/><path d="M20 25h43l9 46q8 26-62 14Z"/></g>
-      <path d="M-69 67h50M18 67h51" stroke="#d3ba91" stroke-width="5"/>
-      <rect x="-73" y="-101" width="146" height="157" rx="40" fill="url(#copper)" stroke="#394b37" stroke-width="5"/>
-      <path d="M-56-66h115v64q-7 38-55 40-53-5-60-40Z" fill="#85916a" stroke="#4f6447" stroke-width="4"/>
-      <path d="M-30-31q28-46 59 0l-9 40h-43Z" fill="#4d664b" stroke="#b5bd85" stroke-width="4"/><path d="m-10-10 12-18 13 19L4 1Z" fill="#d4d7a0"/>
-      <path d="M-92-84q-34 21-19 75l16 22 34-11-9-72Z" fill="url(#jade)" stroke="#294533" stroke-width="5"/>
-      <circle cx="-86" cy="-55" r="28" fill="url(#copper)" stroke="#495e40" stroke-width="4"/>
-      <path d="M-110-10q-12 24 9 40l30-1q11-23-5-40" fill="url(#copper)" stroke="#495e40" stroke-width="4"/>
-      <path d="M-12-109v-17" stroke="#ceba8e" stroke-width="9"/>
-      <rect x="-74" y="-217" width="145" height="117" rx="35" fill="url(#jade)" stroke="#324a34" stroke-width="5"/>
-      <path d="M-61-181h118v51H-58Z" fill="url(#glass)" stroke="#a8b17f" stroke-width="4"/>
-      <path d="M-48-159h28m35 0h28" stroke="#d7dfaa" stroke-width="9" stroke-linecap="round"/>
-      <path d="M-13-125h27" stroke="#d3d3a4" stroke-width="3"/>
-      <path d="m-84-197 32-35 79-5 54 45q-79-16-165-5Z" fill="#9eaa72" stroke="#435e3c" stroke-width="4"/>
-      ${leaf(-46,-199,.45,-63)}${leaf(-26,-217,.4,-40)}${leaf(47,-200,.6,57)}
-      <path d="M-7-237q-25-19-11-35m2 26q27-29 33-12" fill="none" stroke="#8a6d48" stroke-width="5"/>
-      <path d="M-26-242q26 17 54-6l-9 18-34 1Z" fill="#9f8958" stroke="#5a613e" stroke-width="3"/>
-      <ellipse cx="4" cy="-245" rx="8" ry="10" fill="#e4d2a0"/>
-      ${leaf(-87,-64,.7,-71)}${leaf(-82,-72,.5,12)}${leaf(75,-53,.5,100)}
-      ${bolts([[-48,-82],[47,-83],[-48,25],[47,26]])}
-      <g transform="translate(79,-32) rotate(-32)"><rect x="-14" y="-27" width="34" height="64" rx="15" fill="url(#copper)" stroke="#3c5438" stroke-width="4"/><path d="M0 7 52-95q13 50-29 103Z" fill="url(#cream)" stroke="#4f6549" stroke-width="4"/><path d="m13 10 79-81q-2 51-62 99Z" fill="url(#cream)" stroke="#4f6549" stroke-width="4"/><circle cx="15" cy="9" r="10" fill="#b5a77b" stroke="#4f6549" stroke-width="4"/><path d="m6 19-29 35q-8 25 12 25l30-50m3-4 15 30q17 16 25-1L32 17" fill="none" stroke="#809369" stroke-width="8"/></g>`;
-    return `
-      <ellipse cx="0" cy="-167" rx="108" ry="107" fill="url(#ice)"/>
-      <circle cx="0" cy="-167" r="94" fill="none" stroke="#a6ccd0" stroke-opacity=".38" stroke-width="1.5" stroke-dasharray="3 11"/>
-      <path d="M-45-103Q-84-55-71 46l-13 18 25-5 7 18 22-11 20 16 27-18 18 10 12-21 28 3Q75-50 46-109Z" fill="url(#blue)" stroke="#405f61" stroke-width="4"/>
-      <path d="M-39-62-54 46m89-108 16 106m-41-117v127" fill="none" stroke="#d6e1d4" stroke-opacity=".6" stroke-width="3"/>
-      <path d="m-28 50 20 4 1 35q-20 12-28-3Zm38 7 19-7 9 31q-3 16-28 11Z" fill="#49666c" stroke="#354e53" stroke-width="4"/>
-      <path d="M-45-104q49-13 90 0L16-5-16-5Z" fill="#c4d5be" stroke="#647f76" stroke-width="3"/>
-      <path d="M-32-58 0-15 34-59" stroke="#648c89" fill="none" stroke-width="4"/>
-      <circle cy="-45" r="11" fill="#8cc4c1" stroke="#e2e9cb" stroke-width="3"/>
-      <path d="M-70-137q-27-50 19-84 17-20 51-28 43 20 55 37 40 30 17 75L48-104h-94Z" fill="url(#blue)" stroke="#46686a" stroke-width="4"/>
-      <path d="M-51-183q49-35 100 0v45q-4 34-51 33-45-1-49-33Z" fill="url(#glass)" stroke="#b9d1bd" stroke-width="3"/>
-      <ellipse cx="-21" cy="-151" rx="7" ry="10" fill="#c8f0e8"/><ellipse cx="22" cy="-151" rx="7" ry="10" fill="#c8f0e8"/>
-      <path d="m-6-127 5 2 5-2" fill="none" stroke="#a7d0c7" stroke-width="2"/>
-      <path d="M0-245v-21m0 8-20-17m20 12 20-19m-40 7-3-16m4 14-14-1m52-4 5-15m-5 16 14-2" fill="none" stroke="#adcbb4" stroke-width="4" stroke-linecap="round"/>
-      <path d="M-49-80-30-9-55 9-71-58" fill="url(#blue)" stroke="#4c7070" stroke-width="3"/>
-      <path d="m45-80 28 47 24-1" stroke="#aec8be" stroke-width="17" fill="none" stroke-linecap="round"/>
-      <g transform="translate(-63,6) rotate(-15)"><path d="M-35-21q23-7 40 3 16-10 36-3v52q-21-8-37 0-20-8-39 0Z" fill="#d8d8b5" stroke="#536b5a" stroke-width="4"/><path d="M5-18v49M-28-10l23 5m-23 5 23 5m-23 5 23 5m19-20 20-5m-20 15 20-5" stroke="#8c9e81" stroke-width="2"/></g>
-      <g transform="translate(101,-45)"><path d="M0-32v123m0-113-15-16m15 14 17-9" fill="none" stroke="#8fa98b" stroke-width="5" stroke-linecap="round"/><circle cy="-58" r="50" fill="url(#ice)"/><path d="m-10-99-2 14q-26 40 4 48h16q30-8 4-48l-2-14Z" fill="#98c9ce" fill-opacity=".55" stroke="#c6e6d3" stroke-width="2"/><path d="M-13-57q13-14 26 0v10h-26Z" fill="#95dbbf"/><path d="M0-49v-13m0 4q-16-4-12-15 15 0 12 15m0-2q13-15 17-10-2 11-17 10" fill="#e0edaf"/><path d="M-12-91h24" stroke="#c8d5b4" stroke-width="5"/></g>`;
-  }
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ec5398"/><stop offset=".48" stop-color="#792f7f"/><stop offset="1" stop-color="#1c2249"/></linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#78e2e4"/><stop offset="1" stop-color="#384c85"/></linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffdbb5"/><stop offset="1" stop-color="#d89988"/></linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e6e7ff"/><stop offset=".5" stop-color="#bdc8ff"/><stop offset="1" stop-color="#899bd3"/></linearGradient>
+    <linearGradient id="deep" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#425079"/><stop offset="1" stop-color="#1a1b3f"/></linearGradient>
+    <linearGradient id="neon" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff3a0"/><stop offset="1" stop-color="#ffb832"/></linearGradient>
+    <pattern id="dots" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="2" fill="#fff" opacity=".14"/></pattern>
+    <pattern id="tiles" width="86" height="86" patternUnits="userSpaceOnUse"><path d="M86 0H0V86" fill="none" stroke="#151b37" stroke-width="2" opacity=".65"/></pattern>
+    <filter id="shade" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="8" dy="12" stdDeviation="0" flood-color="#111327" flood-opacity=".75"/></filter>`;
   function wrap(body,viewBox,extra=''){
-    const prefix='ag'+(++serial)+'-';
-    let svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}" ${extra}><defs>${defs}</defs>${body}</svg>`;
-    return svg.replace(/id="([^"]+)"/g,(_,id)=>`id="${prefix+id}"`).replace(/url\(#([^)]+)\)/g,(_,id)=>`url(#${prefix+id})`);
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}" ${extra}><defs>${defs}</defs>${body}</svg>`;
   }
-  function portrait(id,ornaments=true){
+  const stroke=`stroke="${ink}" stroke-width="5" stroke-linejoin="round"`;
+  const configs={
+    rook:{skin:'#f3b691',hair:'#1b2547',jacket:'#f3d24e',trousers:'#2d3d61',shirt:'#f8efe5',accent:'#f55869',body:'suit'},
+    lumen:{skin:'#edbbad',hair:'#653061',jacket:'#fa69a4',trousers:'#483054',shirt:'#ffe6f0',accent:'#f9cf4c',body:'suit'},
+    briar:{skin:'#b77f6a',hair:'#d7e8df',jacket:'#50d2c5',trousers:'#254f5d',shirt:'#eff8f1',accent:'#f58c62',body:'suit'},
+    io:{skin:'#dcad9a',hair:'#22294e',jacket:'#797de5',trousers:'#292b51',shirt:'#cae0fa',accent:'#88e8fb',body:'hood'}
+  };
+  function figure(id){
+    const c=configs[id]||configs.rook;
+    let hair='';let props='';let accessory='';
+    if(id==='rook'){
+      hair=`<path d="M-51-181q-9-61 38-70 53-14 72 30l-10 44-12-31q-41 12-78 17Z" fill="${c.hair}" ${stroke}/><path d="m-42-236 24-12m3 7 32-15m7 10 24-12" stroke="#617599" stroke-width="6"/>`;
+      props=`<g transform="translate(75 -5) rotate(-16)"><rect x="-30" y="-43" width="62" height="84" rx="6" fill="#e8efee" ${stroke}/><rect x="-16" y="-49" width="34" height="13" rx="4" fill="#ffcf40" ${stroke}/><path d="M-16-20h33M-16-5h33M-16 10h24" stroke="#354b67" stroke-width="4"/><path d="m-14 23 9 8 18-16" stroke="#eb5665" stroke-width="6" fill="none"/></g>`;
+      accessory=`<path d="m-5-80 13 0-4 21 14 31-14 19-15-21 13-29Z" fill="#ee5367" ${stroke}/>`;
+    }else if(id==='lumen'){
+      hair=`<path d="M-63-196q-4-63 52-65 60-3 68 68l15 75-39-6-7-90q-29-18-60 6l-8 87-40 7Z" fill="${c.hair}" ${stroke}/><path d="M-55-229q27-35 76-26" stroke="#bd6da7" stroke-width="7" fill="none"/>`;
+      props=`<g transform="translate(76 -20) rotate(12)"><rect x="-38" y="-42" width="76" height="95" rx="8" fill="#292c52" ${stroke}/><rect x="-27" y="-31" width="54" height="71" rx="3" fill="#f8cee5"/><path d="M-18-18h36M-18-4h36M-18 10h36M-18 24h26" stroke="#aa6396" stroke-width="4"/><rect x="-27" y="-31" width="54" height="11" fill="#ffce3f"/></g>`;
+      accessory=`<path d="M-14-91 0-59l17-32" fill="none" stroke="#ffcf40" stroke-width="7"/><circle cx="0" cy="-61" r="5" fill="#ffcf40"/>`;
+    }else if(id==='briar'){
+      hair=`<path d="M-55-177q-21-66 37-76 67-18 79 61l-9-3q-13-36-29-35-18 18-71 20Z" fill="${c.hair}" ${stroke}/><path d="M-48-238q47-21 75-7" stroke="#fff8e8" stroke-width="7"/>`;
+      props=`<g transform="translate(82 -8) rotate(-12)"><rect x="-34" y="-35" width="70" height="73" rx="7" fill="#ffca40" ${stroke}/><path d="M-18-13h35M-18 1h35M-18 16h25" stroke="#614a62" stroke-width="5"/><rect x="-25" y="-47" width="54" height="14" rx="4" fill="#49bcae" ${stroke}/></g>`;
+      accessory=`<path d="M-35-171h31m5 0h34" stroke="#1d2346" stroke-width="4"/><rect x="-45" y="-187" width="39" height="27" rx="7" fill="none" stroke="#253353" stroke-width="5"/><rect x="4" y="-187" width="40" height="27" rx="7" fill="none" stroke="#253353" stroke-width="5"/><path d="m-22-134 26 8 27-8" stroke="#653f3b" stroke-width="5" fill="none"/>`;
+    }else{
+      hair=`<path d="M-52-187q-9-65 45-73 51-10 69 57l-18 25-14-51q-24 23-82 23Z" fill="${c.hair}" ${stroke}/><path d="M51-233q34 15 36 54l-14 8-28-41" fill="#374875" ${stroke}/>`;
+      props=`<g transform="translate(81 -11) rotate(6)"><rect x="-48" y="-30" width="91" height="63" rx="6" fill="#2b355c" ${stroke}/><rect x="-40" y="-22" width="76" height="43" rx="2" fill="#78dce9"/><path d="M-33-13h20m-16 9h32m-25 9h18" stroke="#28576d" stroke-width="5"/><path d="M-53 36h106l-8 11h-90Z" fill="#b0bbdf" ${stroke}/></g>`;
+      accessory=`<path d="M-53-200q-25 10-23 45v18h16v-17q0-29 11-31m99-15q24 11 23 45v18H57v-18q0-27-9-30" stroke="#7aebf2" stroke-width="8" fill="none"/><rect x="-76" y="-157" width="17" height="34" rx="8" fill="#343b63" ${stroke}/><rect x="57" y="-157" width="17" height="34" rx="8" fill="#343b63" ${stroke}/>`;
+    }
+    const collar=id==='io'?`<path d="m-43-87 37 50L42-86" fill="none" stroke="#b6c7ff" stroke-width="9"/>`:`<path d="m-36-89 36 43 31-43" fill="none" stroke="${c.shirt}" stroke-width="14"/>`;
+    return `
+      <!-- legs, boots -->
+      <path d="M-59-29-57 79q18 21 41 5l16-66 13 67q27 19 42-9l-3-107Z" fill="${c.trousers}" ${stroke}/>
+      <path d="M-57 65h40l-3 23q-27 14-48-1Zm72 0h39l11 24q-30 12-51-4Z" fill="#13172f" ${stroke}/>
+      <!-- shoulders and arms -->
+      <path d="M-47-116q-34-1-44 32l-10 55q3 21 20 22l43-13 12-76Z" fill="${c.jacket}" ${stroke}/>
+      <path d="M47-116q39-1 44 34l13 51q-4 22-25 22l-42-18-5-73Z" fill="${c.jacket}" ${stroke}/>
+      <path d="M-82-36q-18 10-19 19l16 20 23-13Zm162 0q18 3 22 20L87 2 67-16Z" fill="url(#skin)" ${stroke}/>
+      <!-- torso jacket -->
+      <path d="M-44-117 0-130 47-117 63 22Q2 40-62 21Z" fill="${c.jacket}" ${stroke}/>
+      <path d="M-30-112Q0-78 26-111l-6 100h-36Z" fill="${c.shirt}" ${stroke}/>
+      ${collar}${accessory}
+      <path d="M-44-117-3-52-37-21 7 24l-54-4-10-120Zm89 0L3-52 38-21-7 24l54-4 13-120Z" fill="${c.jacket}" ${stroke}/>
+      <path d="M-43-94-16-52-38-34m80-60L14-52l24 18" stroke="#fff" opacity=".27" stroke-width="7" fill="none"/>
+      <!-- neck/head -->
+      <path d="M-19-131v32q18 19 39 0v-34Z" fill="${c.skin}" ${stroke}/>
+      <path d="M-58-193q0-61 58-64 56 2 59 62l-6 34q-4 53-49 58-51-3-56-60Z" fill="url(#skin)" ${stroke}/>
+      <ellipse cx="-56" cy="-172" rx="10" ry="16" fill="${c.skin}" ${stroke}/><ellipse cx="57" cy="-172" rx="10" ry="16" fill="${c.skin}" ${stroke}/>
+      ${hair}
+      <path d="M-36-181q13-7 25 1m20-1q13-7 25 1" stroke="${ink}" stroke-width="4" fill="none"/>
+      <circle cx="-24" cy="-164" r="4.8" fill="${ink}"/><circle cx="24" cy="-164" r="4.8" fill="${ink}"/>
+      <path d="m-3-158-4 19 10 3" fill="none" stroke="#b5716c" stroke-width="3.5"/>
+      <path d="M-17-123q19 15 35-2" fill="none" stroke="#823c50" stroke-width="4" stroke-linecap="round"/>
+      <path d="M-36-144q-8 3-10 8m76-9q8 3 11 8" stroke="#ed7f87" opacity=".7" stroke-width="5"/>
+      ${id==='io'||id==='briar'?accessory:''}${props}
+      <!-- badge -->
+      <rect x="-51" y="-10" width="33" height="31" rx="3" fill="#ffffff" ${stroke}/><rect x="-46" y="-5" width="23" height="7" fill="${c.accent}"/><path d="M-45 9h18m-18 6h12" stroke="#55566b" stroke-width="3"/>
+    `;
+  }
+  function portrait(id){
     const ch=AG.Content.characters.find(c=>c.id===id)||AG.Content.characters[0];
-    const background=ornaments?`<circle cx="250" cy="254" r="206" fill="${ch.color}" opacity=".04"/><circle cx="250" cy="254" r="191" fill="none" stroke="${ch.color}" opacity=".21"/><circle cx="250" cy="254" r="174" fill="none" stroke="${ch.color}" opacity=".12" stroke-dasharray="2 12"/><path d="M43 254h30m354 0h30M250 47v28m0 357v28" stroke="${ch.color}" opacity=".45"/><text x="250" y="534" text-anchor="middle" fill="${ch.color}" opacity=".22" font-family="Georgia,serif" font-size="90" letter-spacing="12">${ch.code}</text>`:'';
-    return wrap(`${background}<ellipse cx="250" cy="515" rx="119" ry="18" fill="#0c201b" opacity=".6"/><g transform="translate(250 400) scale(1.3)">${figure(id)}</g>`,'0 0 500 570');
+    const color=ch.color;
+    return wrap(`
+      <path d="M51 61 454 10 471 470 114 551Z" fill="${color}" opacity=".1"/>
+      <circle cx="249" cy="272" r="186" fill="none" stroke="${color}" stroke-width="9" opacity=".9"/>
+      <circle cx="249" cy="272" r="157" fill="url(#dots)"/>
+      <path d="M70 440 445 82" stroke="${color}" opacity=".45" stroke-width="5"/>
+      <path d="M73 97h107M72 113h67M373 445h71m-42-27h42" stroke="${color}" stroke-width="6"/>
+      <text x="252" y="537" font-family="Impact,Arial Black,sans-serif" font-weight="900" font-style="italic" text-anchor="middle" font-size="72" fill="${color}" opacity=".3">${ch.code}</text>
+      <ellipse cx="251" cy="530" rx="120" ry="20" fill="#0a0d22" opacity=".55"/>
+      <g transform="translate(250 394) scale(1.32)" filter="url(#shade)">${figure(id)}</g>
+      <rect x="31" y="32" width="70" height="32" fill="${color}"/><text x="66" y="54" fill="#151625" text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="16">STAFF</text>
+    `,'0 0 500 570');
   }
-  function sprite(id){return wrap(`<g transform="translate(142 301)">${figure(id)}</g>`,'0 0 284 402');}
+  const sprite=id=>wrap(`<g transform="translate(142 299)">${figure(id)}</g>`,'0 0 284 402');
   const enemyShapes={
-    spore:`<path d="m-17 12-9 14m36-12 11 13m-28-11-2 17" stroke="#6f8360" stroke-width="5" stroke-linecap="round"/><path d="M-26 4q-6-36 24-36 33-4 33 28L12 20-12 18Z" fill="#728567" stroke="#354d40" stroke-width="3"/><path d="M-30-7q-3-27 27-31 29 0 37 28L12-14-2-3-17-14Z" fill="#baab83" stroke="#536348" stroke-width="3"/><circle cx="-12" cy="-24" r="4" fill="#d9d3a0"/><circle cx="15" cy="-24" r="5" fill="#d9d3a0"/><path d="m-10 2 5 2m12-2 5-1" stroke="#f1d09d" stroke-width="5" stroke-linecap="round"/>`,
-    runner:`<path d="m-19 4-17 17m47-18 15 20M-3 14l-7 17" stroke="#976e56" stroke-width="5" stroke-linecap="round"/><path d="M-22 14q-13-33 10-39l13-17 12 18q27 11 18 39L10 23Z" fill="#b38267" stroke="#6e5344" stroke-width="3"/><path d="M-27-2-33-21-7-13m28 6 20-16-2 31" fill="#c8ac79" stroke="#846f4c" stroke-width="3"/><path d="m-13 3 7 2m12 0 7-2" stroke="#fae0a3" stroke-width="5"/>`,
-    brute:`<path d="m-27 20-9 13m49-11 12 12" stroke="#5d6d4e" stroke-width="10" stroke-linecap="round"/><rect x="-33" y="-21" width="66" height="52" rx="16" fill="#667f5c" stroke="#314b3a" stroke-width="4"/><path d="m-35-5-12-17 21 2L-21-40 0-24 23-42 26-20l18-3-8 27" fill="#9ab079" stroke="#456446" stroke-width="3"/><path d="M-19 5h10M10 5h10" stroke="#ead6a0" stroke-width="6"/><path d="M-18 22h34" stroke="#38553e" stroke-width="4"/>`,
-    shooter:`<path d="M-14 14v22m26-22 6 20" stroke="#76918f" stroke-width="6"/><path d="M-23 18q-18-53 21-59 39 5 29 57Z" fill="#7496a0" stroke="#375866" stroke-width="3"/><path d="M-38-12q-8-22 17-28 3-31 22-30 22 3 23 29 23 9 15 30l-21-7-18 8-14-9Z" transform="translate(0 15)" fill="#a7b6c4" stroke="#54677d" stroke-width="3"/><circle cx="-9" cy="0" r="4" fill="#e6e4c6"/><circle cx="13" cy="0" r="4" fill="#e6e4c6"/><ellipse cx="1" cy="14" rx="8" ry="10" fill="#294b55" stroke="#aec4c1" stroke-width="2"/>`,
-    beetle:`<path d="m-22-8-15-14m10 23-14 6m19 13-14 13m59-43 14-12m-9 23 13 7m-16 14 12 13" stroke="#998063" stroke-width="4" fill="none" stroke-linecap="round"/><ellipse cy="3" rx="29" ry="33" fill="#b9986b" stroke="#695b44" stroke-width="3"/><path d="M0-28v64m0-45L-23 8m23-2 26 13" stroke="#756345" stroke-width="3"/><ellipse cy="-27" rx="17" ry="11" fill="#566851"/><circle cx="-8" cy="-30" r="3" fill="#f0dd9a"/><circle cx="8" cy="-30" r="3" fill="#f0dd9a"/>`,
-    boss:`<path d="M-26 17q-50 21-67 7m70 13q-13 35-49 36m61-44q-2 44 18 51m12-59q34 46 65 36m-50-51q49 18 64-3" fill="none" stroke="#536f4c" stroke-width="12" stroke-linecap="round"/><path d="M-55 26q-4-93 52-92 64 2 65 91L27 55-21 52Z" fill="#708463" stroke="#334e3b" stroke-width="5"/><path d="M-62-15q-47-48-10-70 29-20 49 4-10-57 29-64 37 6 29 61 47-32 66 6 16 32-32 60 3 39-34 27L-1-5-29 14Z" fill="#c29c91" stroke="#756557" stroke-width="4"/><path d="M-41-39q-21-37-23-35m52 18 15-65m25 68 53-20" stroke="#e3be9c" opacity=".7" stroke-width="4" fill="none"/><ellipse cy="-23" rx="39" ry="35" fill="#42594a" stroke="#b9ad7d" stroke-width="4"/><path d="m-23-23 9 3m28 0 10-4" stroke="#fae0ad" stroke-width="9" stroke-linecap="round"/><path d="m-10-2 10 5 11-6" stroke="#b29f72" stroke-width="4" fill="none"/>`
+    spore:`<g transform="rotate(-8)"><rect x="-36" y="-40" width="72" height="75" rx="4" fill="#ffd33b" ${stroke}/><path d="M17-40h19v20L17-40" fill="#fff7bf" ${stroke}/><path d="M-19-5h12m13 0h13" stroke="#312039" stroke-width="6"/><path d="m-13 17 13-7 13 7" fill="none" stroke="#b63454" stroke-width="5"/><text x="0" y="-23" text-anchor="middle" fill="#b23b50" font-family="Arial" font-size="9" font-weight="900">ASAP</text></g>`,
+    runner:`<circle cy="-7" r="37" fill="#ff779d" ${stroke}/><circle cy="-7" r="29" fill="#f9d1d9" ${stroke}/><path d="M0-7v-20M0-7l15 9" stroke="#24243d" stroke-width="6"/><path d="m-34-24-13-13m79 13 13-13" stroke="#f6ca38" stroke-width="9"/><path d="M-18 30-28 47m45-17 25 17" stroke="#1c2945" stroke-width="7"/>`,
+    brute:`<rect x="-42" y="-50" width="86" height="90" rx="9" fill="#7486da" ${stroke}/><rect x="-54" y="-57" width="93" height="90" rx="8" fill="#f6d44d" ${stroke}/><rect x="-40" y="-67" width="89" height="88" rx="8" fill="#f18d69" ${stroke}/><path d="M-21-48h40m-40 11h25m-25 11h40" stroke="#fff0b8" stroke-width="6"/><path d="M-17-4h11M7-4h10" stroke="#21203b" stroke-width="7"/><path d="M-10 15h20" stroke="#21203b" stroke-width="5"/>`,
+    shooter:`<rect x="-45" y="-52" width="90" height="98" rx="12" fill="#20284b" ${stroke}/><rect x="-35" y="-40" width="70" height="73" rx="4" fill="#8de7ea"/><path d="M-35-40h70v18h-70" fill="#ff719b"/><circle cx="-24" cy="-31" r="3" fill="#ffdb4e"/><circle cx="-13" cy="-31" r="3" fill="#ffdb4e"/><path d="M-17-9h10m14 0h10M-10 14l11-10 11 10" stroke="#222449" stroke-width="5" fill="none"/>`,
+    beetle:`<path d="m-24-9-14-12m8 28-17 8m65-24 16-13m-2 30 15 8" stroke="#1a2648" stroke-width="6"/><path d="M-36-25h72v57h-72Z" fill="#f1e9d9" ${stroke}/><path d="m-36-25 36 29 36-29" fill="none" stroke="#d85f7f" stroke-width="6"/><path d="M-17 15h11m12 0h11" stroke="#30233e" stroke-width="5"/>`
   };
   function enemy(type,chapter=0){
-    let shape=enemyShapes[type]||enemyShapes.spore;
-    if(type==='boss'&&chapter===1)shape=shape.replaceAll('#c29c91','#9ab2be').replaceAll('#708463','#6b8796')+`<path d="M-63 42q32-13 62 0 34-12 66 0v35q-31-12-65 0-31-13-64 0Z" fill="#c4c4a7" stroke="#607e7c" stroke-width="4"/><path d="M0 42v35" stroke="#7c998e" stroke-width="3"/>`;
-    if(type==='boss'&&chapter===2)shape=shape.replaceAll('#c29c91','#d1ae75').replaceAll('#708463','#7e7158')+`<path d="m-24-126 2-26 21 13 22-14 5 27" fill="#efd39e" stroke="#9b8957" stroke-width="3"/>`;
-    return wrap(`<g transform="translate(125 155)">${shape}</g>`,type==='boss'?'0 0 250 250':'72 87 106 117');
+    let shape=enemyShapes[type];
+    if(type==='boss'){
+      const shades=['#ffcf40','#ff77a6','#79e5e3'];
+      const col=shades[chapter];
+      shape=`<path d="M-65 79-95 105m159-26 32 27" stroke="#14182f" stroke-width="18"/>
+      <rect x="-94" y="-98" width="188" height="190" rx="15" fill="#202544" ${stroke}/>
+      <rect x="-79" y="-83" width="158" height="156" rx="6" fill="${col}" ${stroke}/>
+      <rect x="-79" y="-83" width="158" height="28" fill="#f7e2d1"/><circle cx="-59" cy="-68" r="7" fill="#e75c76"/><circle cx="-35" cy="-68" r="7" fill="#eec540"/>
+      ${chapter===0?'<path d="M-48-30h96M-48-11h96M-48 8h55" stroke="#503a5a" stroke-width="9"/><text x="0" y="53" fill="#432241" text-anchor="middle" font-family="Arial" font-size="27" font-weight="900">DUE!</text>':chapter===1?'<rect x="-49" y="-38" width="98" height="74" fill="#ffd8eb" stroke="#79355f" stroke-width="6"/><circle cx="-22" cy="-10" r="12" fill="#c75288"/><path d="M0-7h35m-35 17h35M-30 26h60" stroke="#9e5080" stroke-width="6"/>':'<rect x="-48" y="-40" width="96" height="83" fill="#1f2c4b" stroke="#b3f6e9" stroke-width="5"/><path d="m-28 0 14-16-14-16m35 30h22" stroke="#78eecb" stroke-width="7" fill="none"/><text x="0" y="59" text-anchor="middle" fill="#243e5b" font-family="Arial" font-size="15" font-weight="900">404 HOME</text>'}
+      <path d="M-36-105h73l-13-18h-46Z" fill="#f2e9d5" ${stroke}/>`;
+    }
+    return wrap(`<g transform="translate(125 ${type==='boss'?129:160}) scale(${type==='boss'?1:.86})">${shape}</g>`,type==='boss'?'0 0 250 250':'72 87 106 117');
   }
   function scene(chapter=0,cast=true){
-    const palettes=[['#122c28','#395740','#8da96b'],['#172c39','#3e6171','#a5c1cc'],['#352e33','#665446','#d0ac80']];
-    const [sky,mid,light]=palettes[chapter];
-    let b=`<defs><linearGradient id="sky" x2=".3" y2="1"><stop stop-color="${sky}"/><stop offset="1" stop-color="${mid}"/></linearGradient><radialGradient id="moon"><stop stop-color="${light}" stop-opacity=".6"/><stop offset="1" stop-color="${light}" stop-opacity="0"/></radialGradient><linearGradient id="mist" x1="0" y1="0" x2="0" y2="1"><stop stop-color="${light}" stop-opacity="0"/><stop offset="1" stop-color="${light}" stop-opacity=".1"/></linearGradient></defs>
-      <rect width="1400" height="840" fill="url(#sky)"/><circle cx="942" cy="227" r="315" fill="url(#moon)"/><circle cx="960" cy="170" r="55" fill="#ede4bd" opacity=".7"/>
-      <path d="M0 345 86 285 151 317 216 268 264 334 345 285 449 339 531 299 632 352 724 303 842 341 900 264 1013 330 1100 244 1174 292 1280 226 1400 279V840H0Z" fill="${sky}" opacity=".5"/>`;
-    // The nested ironwork of an overgrown conservatory.
-    for(let i=0;i<4;i++){
-      const x=590+i*34,y=137+i*18,w=623-i*70,h=520-i*35;
-      b+=`<path d="M${x} ${y+h}V${y+155}Q${x+w/2} ${y-140} ${x+w} ${y+155}V${y+h}" fill="none" stroke="${light}" stroke-opacity="${.28-i*.04}" stroke-width="${9-i*1.5}"/>`;
-    }
-    b+=`<path d="M891 19v588M730 100l50 486M1059 108l-43 479M578 348h645m-633 90h622" stroke="${light}" stroke-opacity=".2" stroke-width="5"/>
-      <path d="m624 199 421 471H811L573 286Z" fill="#e5dda5" opacity=".035"/><path d="m1002 163-86 444h129l24-406Z" fill="#e5dda5" opacity=".07"/>
-      <path d="M0 558q287-47 567 24 286-49 833-27v285H0Z" fill="${mid}"/>
-      <path d="M0 612q418-35 791 17t609 23v188H0Z" fill="${sky}" opacity=".36"/>`;
-    for(let i=0;i<28;i++){
-      const x=(i*197+15)%1400,y=589+(i*53)%214;
-      b+=`<path d="m${x} ${y} ${60+i%3*24} -4 30 10-75 7Z" fill="${light}" opacity=".045"/>`;
-    }
-    // Planters, moss and quiet architectural detail.
-    for(let i=0;i<8;i++){
-      const x=450+i*122,y=475+(i%3)*26;
-      b+=`<path d="m${x} ${y} 68-7 12 12-7 46-74 2Z" fill="#364b3c" stroke="#819170" stroke-opacity=".2" stroke-width="2"/>`;
-      for(let j=0;j<4;j++)b+=leaf(x+15+j*12,y+3,.40+j*.08,-60+j*35,`url(#leaf)`);
-    }
-    if(chapter===1){
-      for(let i=0;i<5;i++){let x=485+i*155;b+=`<rect x="${x}" y="278" width="107" height="220" rx="6" fill="#243f4b" stroke="#93afad" stroke-opacity=".2"/><path d="M${x+5} 346h96m-96 70h96" stroke="#688583" stroke-width="7"/>`;for(let j=0;j<8;j++)b+=`<path d="M${x+12+j*11} 339v-42" stroke="${j%2?'#708d8b':'#9fa999'}" stroke-width="7"/>`;}
-      b+=`<path d="M450 700q270-89 804-27l-81 97H471Z" fill="#769fa8" opacity=".22"/>`;
-    }
-    if(chapter===2)b+=`<path d="M837 620q-174-166 42-255 181 116 32 255" fill="#4c5140" stroke="#b6a875" stroke-opacity=".25" stroke-width="7"/><circle cx="876" cy="421" r="77" fill="url(#light)"/>`;
-    if(cast){
-      b+=`<ellipse cx="961" cy="687" rx="240" ry="47" fill="#101f1b" opacity=".4"/><path d="m705 648 425-10 29 32-31 35-402-2-35-22Z" fill="#596a4c" stroke="#a9ae7c" stroke-opacity=".24" stroke-width="3"/><path d="m712 678 419 2" stroke="#a8b07d" stroke-opacity=".24" stroke-width="3"/>
-      <g transform="translate(1115 482) scale(.62)">${figure('io')}</g>
-      <g transform="translate(770 572) scale(.86) rotate(-5)">${figure('lumen')}</g>
-      <g transform="translate(981 574) scale(1.1)">${figure('rook')}</g>`;
-    }
-    for(let i=0;i<28;i++){
-      const x=510+(i*83)%860,y=160+(i*107)%551,r=i%4===0?2.7:1.4;
-      b+=`<circle cx="${x}" cy="${y}" r="${r*4}" fill="url(#light)"/><circle cx="${x}" cy="${y}" r="${r}" fill="#e4deae" opacity="${.2+i%4*.15}"/>`;
-    }
-    b+=`<rect y="567" width="1400" height="273" fill="url(#mist)"/>`;
+    const pal=[['#d65795','#263763','#ffc73d'],['#a83e95','#25224a','#ff7bac'],['#304f92','#0c1738','#7bebe0']][chapter];
+    const [sun,dark,accent]=pal;
+    let s=`<rect width="1400" height="840" fill="${dark}"/>
+      <path d="M0 0h1400v570L488 730 0 486Z" fill="url(#sky)"/>
+      <path d="M515-20h920v645l-915 58Z" fill="${dark}" opacity=".17"/>
+      <circle cx="990" cy="195" r="190" fill="${accent}" opacity=".17"/>
+      <circle cx="990" cy="195" r="140" fill="${accent}" opacity=".13"/>
+      <path d="M0 740 1400 490v350H0Z" fill="#23253e"/>
+      <path d="M0 786 1400 540" stroke="${accent}" stroke-opacity=".13" stroke-width="15"/>
+      <path d="M445 0 435 840m330-840 5 840m315-840 4 840" stroke="#0c1730" stroke-width="22" opacity=".7"/>`;
+    // Distant city in huge office windows.
     for(let i=0;i<18;i++){
-      const x=i<8?180-i*29:1180+(i-8)*31,y=860+(i%3)*24;
-      b+=leaf(x,y,1.6+(i%4)*.6,i<8?-70+i*12:-30+(i-8)*13,i%2?'#213e31':'#2c4835');
+      const x=520+i*51;const h=155+(i*37)%250;
+      s+=`<rect x="${x}" y="${470-h}" width="${43+i%3*5}" height="${h+60}" fill="${i%3?'#1d244b':'#202b59'}" stroke="#121a39" stroke-width="4"/>`;
+      for(let yy=485-h;yy<476;yy+=24)for(let xx=x+8;xx<x+38;xx+=14)if((Math.round(xx+yy)+i)%5!==0)s+=`<rect x="${xx}" y="${yy}" width="7" height="10" fill="${accent}" opacity="${.1+((i+xx)%4)*.1}"/>`;
     }
-    b+=`<path d="M-10 0q283 26 438 173 99 28 103 116" stroke="#192e25" stroke-width="44" fill="none"/><path d="M274 48q60 126 5 249" stroke="#203e2f" stroke-width="7" fill="none"/>`;
-    for(let i=0;i<14;i++)b+=leaf(120+i*26,58+(i*31)%131,.7+i%3*.3,-60+i*9,i%2?'#304c33':'#25432f');
-    return wrap(b,'0 0 1400 840','preserveAspectRatio="xMidYMid slice"');
+    s+=`<path d="M430 0v513H1400" fill="none" stroke="#151a33" stroke-width="22"/><path d="M740 0v500M1050 0v500" stroke="#151a33" stroke-width="15"/>`;
+    if(chapter===0){
+      // open office desks, monitor screens, swivel chairs
+      for(let i=0;i<5;i++){
+        const x=535+i*177,y=545+i%2*38;
+        s+=`<g transform="translate(${x} ${y})"><path d="M-60 60h153v14H-60Z" fill="#e2a767" stroke="#222543" stroke-width="8"/><rect x="-26" y="-38" width="81" height="57" rx="6" fill="#1d294a" stroke="#121729" stroke-width="7"/><rect x="-18" y="-30" width="64" height="39" fill="${i%2?'#fc9ca7':'#84c7de'}"/><path d="M14 20v40" stroke="#1d294a" stroke-width="10"/><path d="M-34 76v59m110-59v59" stroke="#181c35" stroke-width="9"/></g>`;
+      }
+    }else if(chapter===1){
+      s+=`<rect x="700" y="130" width="550" height="300" rx="10" fill="#1c2141" stroke="#f7a1c4" stroke-width="13"/><rect x="720" y="150" width="510" height="260" fill="#4e477b"/>
+        <path d="M770 232h390m-390 55h290m-290 55h345" stroke="#ffaec7" stroke-width="10" opacity=".55"/>
+        <circle cx="1158" cy="190" r="21" fill="#ffce40"/>
+        <path d="M550 626 980 511l305 105-460 194Z" fill="#e1a5b2" stroke="#222344" stroke-width="15"/><path d="M640 610 830 562l322 78" stroke="#714d85" stroke-width="8"/>`;
+    }else{
+      for(let i=0;i<7;i++){
+        const x=542+i*114;
+        s+=`<rect x="${x}" y="175" width="96" height="390" rx="6" fill="#131b35" stroke="#45588d" stroke-width="10"/>`;
+        for(let k=0;k<10;k++)s+=`<rect x="${x+15}" y="${192+k*34}" width="67" height="21" rx="2" fill="#283962" stroke="#5674a6" stroke-width="3"/><circle cx="${x+70}" cy="${204+k*34}" r="4" fill="${k%4?'#72dce0':'#ff818c'}"/>`;
+      }
+      s+=`<path d="M580 740h720" stroke="#5eead7" stroke-width="8" opacity=".35"/>`;
+    }
+    s+=`<path d="M465 705 1400 619v221H465Z" fill="#25233f" opacity=".85"/><path d="M480 725 1380 648" stroke="${accent}" stroke-opacity=".31" stroke-width="5"/>`;
+    // Comic panel accents and speed lines.
+    for(let i=0;i<18;i++)s+=`<path d="M${920+i*24} ${40+i*10} 1400 ${30+i*39}" stroke="${accent}" stroke-width="${i%3===0?5:2}" opacity=".16"/>`;
+    if(cast){
+      s+=`<path d="M695 680 1223 588l123 80-643 133Z" fill="#070b1e" opacity=".45"/>
+        <g transform="translate(865 641) scale(.8) rotate(-8)" filter="url(#shade)">${figure('lumen')}</g>
+        <g transform="translate(1153 647) scale(.82) rotate(8)" filter="url(#shade)">${figure(chapter===2?'io':'briar')}</g>
+        <g transform="translate(999 666) scale(1.18)" filter="url(#shade)">${figure(chapter===1?'lumen':'rook')}</g>`;
+    }
+    s+=`<path d="M482 97h145v9H482Zm0 22h91v8h-91Z" fill="${accent}" opacity=".65"/>
+      <path d="M1315 560l50 30-50 30" stroke="${accent}" stroke-width="10" fill="none" opacity=".5"/>
+      <rect x="0" y="0" width="1400" height="840" fill="url(#dots)" opacity=".28"/>`;
+    return wrap(s,'0 0 1400 840','preserveAspectRatio="xMidYMid slice"');
   }
   const uri=svg=>'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
   const portraits={},sprites={},enemies={},scenes={};
@@ -504,7 +505,7 @@ AG.Art = (() => {
   async function prepare(){
     const tasks=[];
     for(const c of AG.Content.characters){portraits[c.id]=uri(portrait(c.id));tasks.push(load(uri(sprite(c.id))).then(im=>sprites[c.id]=im));}
-    for(const type of Object.keys(enemyShapes))for(let i=0;i<(type==='boss'?3:1);i++)tasks.push(load(uri(enemy(type,i))).then(im=>enemies[type+(type==='boss'?i:'')]=im));
+    for(const type of [...Object.keys(enemyShapes),'boss'])for(let i=0;i<(type==='boss'?3:1);i++)tasks.push(load(uri(enemy(type,i))).then(im=>enemies[type+(type==='boss'?i:'')]=im));
     for(let i=0;i<3;i++)scenes[i]=uri(scene(i,true));
     await Promise.all(tasks);
   }
@@ -547,7 +548,7 @@ AG.Audio=(()=>{
 <script>
 /* Deterministic-layout, fixed-step Canvas simulation. DOM/UI lives in app.js. */
 window.AG=window.AG||{};
-AG.Engine=class GardenEngine {
+AG.Engine=class OfficeEngine {
   constructor(canvas,onEvent=()=>{}){
     this.canvas=canvas;this.ctx=canvas.getContext('2d',{alpha:false});
     if(!this.ctx)throw new Error('This browser does not provide Canvas 2D.');
@@ -585,7 +586,7 @@ AG.Engine=class GardenEngine {
     this.boss=null;this.bossDefeated=false;this.bossSpawned=false;this.shake=0;
     this.input={x:0,y:0};this.floor=this.makeFloor();this.resize();this.state='playing';
     for(let i=0;i<5;i++){const e=this.spawn(i===4?'runner':'spore');const a=i*Math.PI*2/5;e.x=1080+Math.cos(a)*this.random(270,400);e.y=780+Math.sin(a)*this.random(260,380);}
-    this.emit('start');this.emit('toast',{text:'빛나는 씨앗을 모으세요. 정화 노드는 회복과 충격파를 줍니다.'});
+    this.emit('start');this.emit('toast',{text:'업무 포인트를 모으세요. 커피 머신에서 체력과 경험치를 회복하세요.'});
   }
   power(){return (1+this.levels.power*.18+this.bonus.power+AG.Store.data.research.focus*.05)*(this.player.buff>0&&this.character.id==='rook'?1.3:1);}
   setInput(x,y){const l=Math.hypot(x,y);this.input={x:l>1?x/l:x,y:l>1?y/l:y};}
@@ -602,9 +603,9 @@ AG.Engine=class GardenEngine {
     if(this.state!=='playing'||this.player.skillCd>0)return false;
     const p=this.player;p.skillCd=this.character.cooldown;
     if(this.character.id==='rook'){p.buff=6;this.ring(p.x,p.y,130,this.character.color,.5);}
-    if(this.character.id==='lumen'){this.area(p,300,100+this.levels.weapon*15,200);this.ring(p.x,p.y,300,'#f1d79c',.8);this.enemyShots=[];}
-    if(this.character.id==='briar'){this.heal(18);p.invuln=4;this.area(p,210,75,240);this.ring(p.x,p.y,220,'#d5b894',.7);}
-    if(this.character.id==='io'){p.freeze=5;for(const e of this.enemies)if(!e.dead&&this.distance(p,e)<650)this.hit(e,45*this.power(),0);this.ring(p.x,p.y,650,'#b9dde2',1);}
+    if(this.character.id==='lumen'){this.area(p,300,100+this.levels.weapon*15,200);this.ring(p.x,p.y,300,'#ff77a6',.8);this.enemyShots=[];}
+    if(this.character.id==='briar'){this.heal(18);p.invuln=4;this.area(p,210,75,240);this.ring(p.x,p.y,220,'#79e5e3',.7);}
+    if(this.character.id==='io'){p.freeze=5;for(const e of this.enemies)if(!e.dead&&this.distance(p,e)<650)this.hit(e,45*this.power(),0);this.ring(p.x,p.y,650,'#9da6ff',1);}
     this.burst(p.x,p.y,this.character.color,28,180);this.emit('toast',{text:this.character.skill+' · '+this.character.skillDesc});AG.Audio.sfx('skill');return true;
   }
   heal(n){if(this.player)this.player.hp=Math.min(this.player.maxHp,this.player.hp+n);}
@@ -612,7 +613,7 @@ AG.Engine=class GardenEngine {
     if(this.player.invuln>0||this.state!=='playing')return;
     const amount=Math.max(1,n-this.character.armor-this.bonus.armor),p=this.player;
     p.hp=Math.max(0,p.hp-amount);p.invuln=.75;this.shake=this.motion?5:0;
-    this.burst(p.x,p.y,'#ecaf8c',13,135);this.float(p.x,p.y-40,'−'+Math.round(amount),'#f4b393');AG.Audio.sfx('hit');
+    this.burst(p.x,p.y,'#ff778e',13,135);this.float(p.x,p.y-40,'−'+Math.round(amount),'#ffbbae');AG.Audio.sfx('hit');
     if(origin){const a=Math.atan2(p.y-origin.y,p.x-origin.x);p.x=this.clamp(p.x+Math.cos(a)*12,25,2135);p.y=this.clamp(p.y+Math.sin(a)*12,25,1535);}
     if(p.hp<=0)this.finish(false);
   }
@@ -641,13 +642,13 @@ AG.Engine=class GardenEngine {
     if(crit)damage*=1.8;
     e.hp-=damage;e.hit=.11;
     const a=Math.atan2(e.y-origin.y,e.x-origin.x);e.kx+=Math.cos(a)*force;e.ky+=Math.sin(a)*force;
-    if(crit||e.type==='boss'||Math.random()<.25)this.float(e.x,e.y-e.r-20,''+Math.round(damage),crit?'#f1d090':'#dfebc4',crit);
+    if(crit||e.type==='boss'||Math.random()<.25)this.float(e.x,e.y-e.r-20,''+Math.round(damage),crit?'#ffd356':'#dfe8ff',crit);
     if(e.hp<=0){
       e.dead=true;this.kills++;
-      this.burst(e.x,e.y,e.type==='runner'?'#d3a184':'#c0d199',e.type==='boss'?60:8,e.type==='boss'?230:80);
+      this.burst(e.x,e.y,e.type==='runner'?'#ef71a1':'#ffd35f',e.type==='boss'?60:8,e.type==='boss'?230:80);
       this.gem(e.x,e.y,e.xp);
       if(Math.random()<.05)this.gem(e.x+11,e.y+8,0,true);
-      if(e.type==='boss'){this.bossDefeated=true;this.ring(e.x,e.y,360,'#ecd5a0',1.1);this.emit('toast',{text:this.chapter.boss+' 정화 완료 · 새벽까지 정원을 지켜 주세요.'});AG.Audio.sfx('upgrade');}
+      if(e.type==='boss'){this.bossDefeated=true;this.ring(e.x,e.y,360,'#ffdf63',1.1);this.emit('toast',{text:this.chapter.boss+' 처리 완료! 퇴근 시간까지 버티세요.'});AG.Audio.sfx('upgrade');}
     }
   }
   area(origin,r,damage,force=70,slow=0){
@@ -710,7 +711,7 @@ AG.Engine=class GardenEngine {
     const heal=26+(this.character.id==='rook'?10:0);this.heal(heal);this.gainXp(5);
     this.area(n,260,100,220);this.ring(n.x,n.y,260,'#d7e5a3',.9);this.burst(n.x,n.y,'#c5dfba',33,200);
     for(const g of this.gems)if(this.distance(n,g)<380)g.magnetized=true;
-    this.emit('toast',{text:'노드 '+n.id+' 복구 · 체력 +'+heal+' · 정화 충격파'});AG.Audio.sfx('node');
+    this.emit('toast',{text:'커피 머신 '+n.id+' 가동 · 체력 +'+heal+' · 카페인 충격파'});AG.Audio.sfx('node');
   }
   options(exclude=[]){
     const evolves=AG.Content.evolutions.filter(e=>!this.evolved[e.id]&&Object.entries(e.needs).every(([id,lv])=>this.levels[id]>=lv));
@@ -793,7 +794,7 @@ AG.Engine=class GardenEngine {
       for(let i=0;i<count;i++)this.spawn();this.spawnClock=Math.max(.42,1.05-this.time*.0032);
     }
     const wave=this.time>=this.chapter.bossAt?3:this.time>=100?2:this.time>=35?1:0;
-    if(wave!==this.wave){this.wave=wave;if(wave<3)this.emit('toast',{text:wave===1?'포자들이 깨어납니다. E 스킬로 길을 열어 보세요.':'기억의 수호자가 가까워집니다. 정화 노드에서 회복하세요.'});}
+    if(wave!==this.wave){this.wave=wave;if(wave<3)this.emit('toast',{text:wave===1?'업무 알림이 폭주합니다. E 스킬로 돌파하세요.':'최종 관리자가 접근합니다. 커피 머신에서 회복하세요.'});}
     if(!this.bossSpawned&&this.time>=this.chapter.bossAt){this.bossSpawned=true;this.boss=this.spawn('boss');this.emit('boss');AG.Audio.sfx('boss');}
     this.fireClock-=dt;if(this.fireClock<=0)this.attack();
     const drones=this.levels.drone*(this.evolved.hive?2:1);
@@ -883,56 +884,66 @@ AG.Engine=class GardenEngine {
   }
   makeFloor(){
     const c=document.createElement('canvas');c.width=2160;c.height=1560;const g=c.getContext('2d'),ch=this.chapter;
-    let seed=19071+this.chapterIndex*4;const rng=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};
+    let seed=28112+this.chapterIndex*17;const rng=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};
+    const accent=ch.accent;
     g.fillStyle=ch.floor;g.fillRect(0,0,2160,1560);
-    for(let i=0;i<8000;i++){g.fillStyle=i%3?'#a9c29006':'#061b1312';g.fillRect(rng()*2160,rng()*1560,rng()*6+1,rng()*3+1);}
-    // Tile paths and the central observatory mosaic.
-    for(let y=65;y<1510;y+=69)for(let x=44;x<2130;x+=111){
-      if(Math.abs(x-1070)>160&&Math.abs(y-780)>123&&rng()>.13)continue;
-      g.beginPath();g.moveTo(x+3,y+2);g.lineTo(x+101,y);g.lineTo(x+106,y+57);g.lineTo(x-2,y+60);g.closePath();
-      g.fillStyle=this.chapterIndex===1?'#90a89c10':'#c1c2a115';g.fill();g.strokeStyle='#091f1726';g.lineWidth=2;g.stroke();
+    // Fluorescent ceiling tiles and thick comic-book panel borders.
+    for(let y=0;y<1560;y+=96)for(let x=0;x<2160;x+=96){
+      g.fillStyle=(Math.floor(x/96)+Math.floor(y/96))%2?'#ffffff04':'#00000009';g.fillRect(x+2,y+2,91,91);
+      g.strokeStyle='#11172d55';g.lineWidth=2;g.strokeRect(x+.5,y+.5,95,95);
     }
-    const circle=(x,y,r,fill,stroke,lw=1)=>{g.beginPath();g.arc(x,y,r,0,Math.PI*2);if(fill){g.fillStyle=fill;g.fill();}if(stroke){g.strokeStyle=stroke;g.lineWidth=lw;g.stroke();}};
-    circle(1080,780,228,'#142d201b',ch.accent+'26',2);circle(1080,780,218,null,ch.accent+'19',1);circle(1080,780,170,null,ch.accent+'12',2);
-    for(let i=0;i<12;i++){const a=i*Math.PI/6;g.beginPath();g.moveTo(1080+Math.cos(a)*176,780+Math.sin(a)*176);g.lineTo(1080+Math.cos(a)*218,780+Math.sin(a)*218);g.strokeStyle=ch.accent+'20';g.lineWidth=1;g.stroke();}
-    g.save();g.translate(1080,780);g.rotate(Math.PI/4);g.strokeStyle=ch.accent+'14';g.lineWidth=2;g.strokeRect(-105,-105,210,210);g.restore();
-    // The greenhouse edges are visible, not an invisible arena boundary.
-    g.strokeStyle='#111f19';g.lineWidth=36;g.strokeRect(0,0,2160,1560);g.strokeStyle=ch.accent+'3b';g.lineWidth=3;g.strokeRect(24,24,2112,1512);
-    function plant(x,y,scale=1){
-      g.save();g.translate(x,y);g.scale(scale,scale);
-      for(let k=0;k<6;k++){
-        const a=-1.45+k*.52,s=23+k%3*9;
-        g.save();g.rotate(a);g.beginPath();g.moveTo(0,0);g.bezierCurveTo(-s*.6,-s*.4,-s*.7,-s,s*.03,-s*1.6);g.bezierCurveTo(s*.6,-s,s*.5,-s*.4,0,0);
-        g.fillStyle=['#567351','#708560','#88956a'][k%3];g.fill();g.beginPath();g.moveTo(0,0);g.lineTo(0,-s*1.4);g.strokeStyle='#d1d9a121';g.lineWidth=1.5;g.stroke();g.restore();
-      }g.restore();
-    }
+    // Long illuminated hallway running through the arena.
+    g.fillStyle='#708eb011';g.fillRect(70,670,2020,225);
+    g.strokeStyle=accent+'33';g.lineWidth=8;g.strokeRect(66,666,2028,233);
+    g.strokeStyle='#0d1537';g.lineWidth=32;g.strokeRect(14,14,2132,1532);
+    g.strokeStyle=accent+'7a';g.lineWidth=5;g.strokeRect(29,29,2100,1501);
+    const round=(x,y,w,h,r,fill,outline='#10152d',lw=5)=>{
+      g.beginPath();g.roundRect(x,y,w,h,r);g.fillStyle=fill;g.fill();if(outline){g.lineWidth=lw;g.strokeStyle=outline;g.stroke();}
+    };
     this.decor=[];
-    for(let y=210;y<1490;y+=287)for(let x=190;x<2130;x+=342){
-      if(Math.hypot(x-1080,y-780)<280||this.nodes.some(n=>Math.hypot(n.x-x,n.y-y)<150))continue;
-      if(this.chapterIndex===1){
-        g.fillStyle='#0f2b3738';g.fillRect(x-95,y-5,186,73);g.fillStyle='#4a6565';g.fillRect(x-90,y-35,180,56);
-        g.strokeStyle='#9cb6a529';g.lineWidth=2;g.strokeRect(x-86,y-31,171,46);
-        for(let k=0;k<16;k++){g.fillStyle=['#81998e','#aeac88','#788f9e'][k%3];g.fillRect(x-78+k*10,y-24,7,29+k%3*3);}
-        plant(x-84,y+15,.6);plant(x+83,y+15,.75);
+    for(let y=175;y<1500;y+=325)for(let x=194;x<2000;x+=352){
+      if(Math.hypot(x-1080,y-780)<265||this.nodes.some(n=>Math.hypot(n.x-x,n.y-y)<150))continue;
+      g.save();g.translate(x,y);
+      if(this.chapterIndex===0){
+        // Desk island + monitor + office chair + post-it notes.
+        round(-92,-32,184,83,9,'#4b536e','#151b39',7);round(-76,-53,91,58,4,'#111b38','#10142b',6);
+        round(-69,-45,77,40,2,['#80dce2','#ed9ac4','#ffd35c'][(Math.floor(x/352)+Math.floor(y/325))%3],null);
+        g.fillStyle='#192347';g.fillRect(-42,4,15,29);round(-78,34,78,12,3,'#252a47');
+        round(39,-13,35,45,2,'#f7ddb4');g.fillStyle='#ef6992';g.fillRect(46,-6,21,9);g.fillStyle='#20203a';g.fillRect(46,8,18,3);
+        round(-40,85,78,15,4,'#283452','#13172c');
+        g.strokeStyle='#34456c';g.lineWidth=7;g.beginPath();g.moveTo(0,98);g.lineTo(0,126);g.moveTo(-24,126);g.lineTo(24,126);g.stroke();
+      }else if(this.chapterIndex===1){
+        // Meeting room: presentation tables and coffee mugs.
+        round(-100,-36,200,100,17,'#9c618b','#21152e',8);round(-87,-29,173,83,13,'#b783a6',null);
+        round(-91,88,56,24,8,'#323c69','#11172c');round(33,88,56,24,8,'#323c69','#11172c');
+        round(-41,-22,75,51,4,'#2d356b','#11152f');round(-35,-16,63,37,3,'#fcadc9',null);
+        round(56,-12,25,30,6,'#f6cf47','#432c4f');g.fillStyle='#f8eada';g.fillRect(66,-4,6,12);
       }else{
-        g.fillStyle='#0c201739';g.beginPath();g.ellipse(x,y+27,101,31,0,0,6.28);g.fill();
-        g.fillStyle=this.chapterIndex===2?'#72614b':'#57674b';g.beginPath();g.roundRect(x-79,y-25,158,60,16);g.fill();
-        g.strokeStyle=ch.accent+'37';g.lineWidth=2;g.stroke();g.fillStyle='#203627';g.beginPath();g.roundRect(x-70,y-22,140,39,13);g.fill();
-        for(let k=0;k<5;k++)plant(x-48+k*25,y+4,.68+rng()*.4);
+        // Midnight server room: ominous cooling racks.
+        round(-105,-65,202,125,9,'#151d3b','#0c142c',9);
+        for(let i=0;i<4;i++){
+          round(-93,-53+i*26,175,21,2,'#3a4c70','#11172b',3);
+          for(let j=0;j<3;j++){g.fillStyle=j===0?'#ff708d':'#76ebdf';g.fillRect(-79+j*11,-45+i*26,5,5);}
+          g.fillStyle='#b4ccdb';g.fillRect(-14,-46+i*26,78,4);
+        }
+        round(-30,83,59,32,4,'#1b315a','#11172d');
       }
-      this.decor.push({x,y});
+      g.restore();this.decor.push({x,y});
     }
-    for(let i=0;i<110;i++){
-      const x=rng()*2160,y=rng()*1560;
-      if(Math.hypot(x-1080,y-780)<220||this.nodes.some(n=>Math.hypot(n.x-x,n.y-y)<85))continue;
-      if(i%3===0)plant(x,y,.22+rng()*.32);
-      else{g.fillStyle='#102e2024';g.beginPath();g.ellipse(x,y,7+rng()*10,3+rng()*6,rng(),0,6.28);g.fill();}
+    // Directional floor arrows and caution tape.
+    for(let i=0;i<12;i++){
+      const x=166+i*172,y=i%2?950:590;
+      g.save();g.translate(x,y);g.fillStyle=accent+'35';g.beginPath();g.moveTo(-23,-10);g.lineTo(2,-10);g.lineTo(2,-22);g.lineTo(29,0);g.lineTo(2,22);g.lineTo(2,10);g.lineTo(-23,10);g.closePath();g.fill();g.restore();
     }
-    for(const q of this.puddles){circle(q.x,q.y,q.r,'#8abac220','#a6c8cf27',2);circle(q.x+8,q.y+5,q.r-15,null,'#b5d0d914',1);}
-    // Roof beam shadows sit beneath all actionable objects.
-    g.strokeStyle='#061c151b';g.lineWidth=29;
-    for(let i=0;i<7;i++){g.beginPath();g.moveTo(i*420-400,0);g.lineTo(i*420+480,1560);g.stroke();}
-    g.fillStyle=ch.accent+'24';g.font='12px monospace';g.textAlign='center';g.fillText('CONSERVATORY / '+ch.no,1080,545);
+    for(const q of this.puddles){
+      g.fillStyle='#ff77aa20';g.strokeStyle='#ff87ba75';g.lineWidth=6;g.beginPath();g.arc(q.x,q.y,q.r,0,6.283);g.fill();g.stroke();
+      g.font='bold 12px monospace';g.fillStyle='#ffadd2';g.textAlign='center';g.fillText('MEETING ZONE',q.x,q.y);
+    }
+    // Colored strip-lights and readable center floor label.
+    g.strokeStyle=accent+'17';g.lineWidth=17;
+    for(let i=0;i<5;i++){g.beginPath();g.moveTo(i*540-200,0);g.lineTo(i*540+310,1560);g.stroke();}
+    g.fillStyle=accent+'80';g.textAlign='center';g.font='900 28px Arial,sans-serif';g.fillText('CLOCK OUT! / FLOOR '+ch.no,1080,560);
+    g.font='bold 12px monospace';g.fillStyle='#ffffff4d';g.fillText('NO OVERTIME  •  EMERGENCY EXIT',1080,592);
     return c;
   }
   circle(x,y,r,fill,stroke,lw=1){
@@ -944,18 +955,22 @@ AG.Engine=class GardenEngine {
   }
   visible(x,y,r=100){return Math.abs(x-this.camera.x)<this.width/2+r&&Math.abs(y-this.camera.y)<this.height/2+r;}
   drawNode(n){
-    const g=this.ctx,ready=n.cooldown<=0,col=ready?'#c4de9d':'#91a17c',pulse=this.motion?Math.sin(this.ambient*2+n.x)*3:0;
-    if(ready)this.glow(n.x,n.y,90,'#b4d78b20');
-    this.circle(n.x,n.y,63+pulse,ready?'#b4d78b0b':null,col+(ready?'4b':'24'),1);
+    const g=this.ctx,ready=n.cooldown<=0,col=ready?'#ffdb54':'#7d7e94',pulse=this.motion?Math.sin(this.ambient*2+n.x)*3:0;
+    if(ready)this.glow(n.x,n.y,100,'#ffd55226');
+    this.circle(n.x,n.y,63+pulse,ready?'#ffd45512':null,col+'70',2);
     g.save();g.translate(n.x,n.y);g.rotate(-Math.PI/2);
-    if(n.charge>0){g.beginPath();g.arc(0,0,64,0,Math.PI*2*n.charge/2);g.strokeStyle='#e4edb5';g.lineWidth=4;g.stroke();}
+    if(n.charge>0){g.beginPath();g.arc(0,0,64,0,Math.PI*2*n.charge/2);g.strokeStyle='#fff0a6';g.lineWidth=5;g.stroke();}
     g.restore();
-    this.circle(n.x,n.y,27,'#233d2c',col+'8c',2);this.circle(n.x,n.y,22,'#576b4444',col+'45',1);
-    g.save();g.translate(n.x,n.y-7);g.fillStyle=ready?'#bcd994':'#667d5b';
-    g.beginPath();g.moveTo(0,6);g.bezierCurveTo(-19,4,-17,-14,-10,-17);g.bezierCurveTo(3,-10,4,1,0,6);g.fill();
-    g.beginPath();g.moveTo(0,1);g.bezierCurveTo(-2,-16,12,-23,18,-21);g.bezierCurveTo(19,-6,8,2,0,1);g.fill();
-    this.line(0,-1,0,16,ready?'#dfebae':'#8c9c71',3);g.restore();
-    g.font='9px monospace';g.textAlign='center';g.fillStyle=ready?'#dbe8b5':'#8a9f7c';g.fillText(ready?'NODE '+n.id:Math.ceil(n.cooldown)+'s',n.x,n.y+43);
+    // Coffee vending machine (interactive restorative point).
+    g.save();g.translate(n.x,n.y-10);
+    g.fillStyle=ready?'#ffcb46':'#7c7c8c';g.strokeStyle='#13182d';g.lineWidth=5;
+    g.beginPath();g.roundRect(-25,-29,50,61,5);g.fill();g.stroke();
+    g.fillStyle='#222643';g.fillRect(-17,-21,34,24);
+    g.fillStyle='#fdf0c7';g.fillRect(-10,-16,20,11);
+    g.fillStyle='#fe7a9d';g.fillRect(-17,9,34,4);
+    g.fillStyle='#252541';g.fillRect(-11,14,22,9);g.fillStyle='#fff5ca';g.fillRect(-7,16,14,7);
+    g.fillStyle='#191d36';g.fillRect(-14,29,28,5);g.restore();
+    g.font='bold 10px monospace';g.textAlign='center';g.fillStyle=ready?'#fff0b0':'#a0a2b5';g.fillText(ready?'COFFEE '+n.id:Math.ceil(n.cooldown)+'s',n.x,n.y+53);
   }
   drawEnemy(e){
     if(!this.visible(e.x,e.y,150))return;
@@ -995,20 +1010,20 @@ AG.Engine=class GardenEngine {
   drawMinimap(){
     if(this.width<720)return;
     const g=this.ctx,x=this.width-150,y=this.height-171,w=119,h=85,sx=w/2160,sy=h/1560;
-    g.fillStyle='#10291ecc';g.fillRect(x,y,w,h);g.strokeStyle='#d2dfb139';g.lineWidth=1;g.strokeRect(x,y,w,h);
-    g.strokeStyle='#c0d49f28';g.strokeRect(x+(this.camera.x-this.width/2)*sx,y+(this.camera.y-this.height/2)*sy,Math.min(w,this.width*sx),Math.min(h,this.height*sy));
-    for(const n of this.nodes)this.circle(x+n.x*sx,y+n.y*sy,2.5,n.cooldown>0?'#6f896b':'#cadd93');
-    if(this.boss&&!this.boss.dead)this.circle(x+this.boss.x*sx,y+this.boss.y*sy,3.5,'#edb595');
+    g.fillStyle='#141831e6';g.fillRect(x,y,w,h);g.strokeStyle='#85e8ef50';g.lineWidth=1;g.strokeRect(x,y,w,h);
+    g.strokeStyle='#86dbed28';g.strokeRect(x+(this.camera.x-this.width/2)*sx,y+(this.camera.y-this.height/2)*sy,Math.min(w,this.width*sx),Math.min(h,this.height*sy));
+    for(const n of this.nodes)this.circle(x+n.x*sx,y+n.y*sy,2.5,n.cooldown>0?'#6f896b':'#ffd34f');
+    if(this.boss&&!this.boss.dead)this.circle(x+this.boss.x*sx,y+this.boss.y*sy,3.5,'#ff77a6');
     this.circle(x+this.player.x*sx,y+this.player.y*sy,3,'#f3e8bd');
-    g.fillStyle='#abbe9b';g.textAlign='left';g.font='7px monospace';g.fillText('SECTOR '+this.chapter.no,x+5,y+11);
+    g.fillStyle='#b4c9ef';g.textAlign='left';g.font='7px monospace';g.fillText('FLOOR '+this.chapter.no,x+5,y+11);
   }
   nodeArrow(){
     const p=this.player,n=this.nodes.filter(n=>n.cooldown<=0).sort((a,b)=>this.distance(a,p)-this.distance(b,p))[0];
     if(!n||this.visible(n.x,n.y,-55))return;
     const a=Math.atan2(n.y-this.camera.y,n.x-this.camera.x),cx=this.width/2,cy=this.height/2,r=Math.min(cx-35,cy-48);
     const x=cx+Math.cos(a)*r,y=cy+Math.sin(a)*r,g=this.ctx;
-    g.save();g.translate(x,y);g.rotate(a);g.beginPath();g.moveTo(10,0);g.lineTo(-5,-6);g.lineTo(-5,6);g.closePath();g.fillStyle='#d3e4a1';g.fill();g.restore();
-    g.textAlign='center';g.font='8px monospace';g.fillStyle='#d3e4a1';g.fillText('NODE '+n.id,x,y+20);
+    g.save();g.translate(x,y);g.rotate(a);g.beginPath();g.moveTo(10,0);g.lineTo(-5,-6);g.lineTo(-5,6);g.closePath();g.fillStyle='#ffd350';g.fill();g.restore();
+    g.textAlign='center';g.font='8px monospace';g.fillStyle='#ffd350';g.fillText('COFFEE '+n.id,x,y+20);
   }
   render(){
     if(!this.player||!this.floor||this.state==='idle')return;
@@ -1024,22 +1039,22 @@ AG.Engine=class GardenEngine {
     }
     for(const gem of this.gems)if(this.visible(gem.x,gem.y,20)){
       const y=gem.y+(this.motion?Math.sin(this.time*3+gem.phase)*2:0);
-      if(gem.health){this.circle(gem.x,y,7,'#a8dabb','#486e59',2);this.line(gem.x-3,y,gem.x+3,y,'#f0ecd0',2);this.line(gem.x,y-3,gem.x,y+3,'#f0ecd0',2);}
-      else{g.save();g.translate(gem.x,y);g.rotate(Math.PI/4);g.fillStyle=gem.value>2?'#e9d398':'#c5dca0';g.fillRect(-3.5,-3.5,7,7);g.strokeStyle='#edf2c266';g.lineWidth=1;g.strokeRect(-3.5,-3.5,7,7);g.restore();}
+      if(gem.health){this.circle(gem.x,y,7,'#a0efff','#224e68',2);this.line(gem.x-3,y,gem.x+3,y,'#f0ecd0',2);this.line(gem.x,y-3,gem.x,y+3,'#f0ecd0',2);}
+      else{g.save();g.translate(gem.x,y);g.rotate(Math.PI/4);g.fillStyle=gem.value>2?'#ff9bb7':'#ffd25a';g.fillRect(-3.5,-3.5,7,7);g.strokeStyle='#fff7c666';g.lineWidth=1;g.strokeRect(-3.5,-3.5,7,7);g.restore();}
     }
     const drawables=this.enemies.map(e=>({y:e.y,e}));drawables.push({y:this.player.y,player:true});drawables.sort((a,b)=>a.y-b.y);
     for(const item of drawables)if(item.player)this.drawPlayer();else this.drawEnemy(item.e);
-    for(const s of this.slashes){g.globalAlpha=Math.max(0,s.life/s.max);g.beginPath();g.arc(s.x,s.y,s.r,s.full?0:s.angle-1.2,s.full?Math.PI*2:s.angle+1.2);g.strokeStyle=this.evolved.dawn?'#f4d7a5':'#d7deb0';g.lineWidth=9;g.stroke();g.beginPath();g.arc(s.x,s.y,s.r-15,s.angle-1.1,s.angle+1.1);g.strokeStyle='#c0d99c66';g.lineWidth=3;g.stroke();}g.globalAlpha=1;
-    for(const beam of this.beams){g.globalAlpha=beam.life/beam.max;const mx=(beam.x+beam.tx)/2+Math.sin(beam.x)*12,my=(beam.y+beam.ty)/2+Math.cos(beam.ty)*12;this.line(beam.x,beam.y,mx,my,'#b8dfdf66',8);this.line(mx,my,beam.tx,beam.ty,'#b8dfdf66',8);this.line(beam.x,beam.y,mx,my,'#def0dc',2);this.line(mx,my,beam.tx,beam.ty,'#def0dc',2);}g.globalAlpha=1;
-    for(const b of this.bullets)if(this.visible(b.x,b.y,20)){const c=b.drone?'#edcf93':this.character.color;this.line(b.x-b.vx*.025,b.y-b.vy*.025,b.x,b.y,c+'66',b.r*1.5);this.circle(b.x,b.y,b.r,c);this.circle(b.x-1,b.y-1,1.5,'#faf5d7');}
-    for(const b of this.enemyShots){this.circle(b.x,b.y,8,'#e1b5a332');this.circle(b.x,b.y,5,'#ddb093','#f3cfb3',1.5);}
+    for(const s of this.slashes){g.globalAlpha=Math.max(0,s.life/s.max);g.beginPath();g.arc(s.x,s.y,s.r,s.full?0:s.angle-1.2,s.full?Math.PI*2:s.angle+1.2);g.strokeStyle=this.evolved.dawn?'#ffd350':'#ff77a6';g.lineWidth=9;g.stroke();g.beginPath();g.arc(s.x,s.y,s.r-15,s.angle-1.1,s.angle+1.1);g.strokeStyle='#75dfe666';g.lineWidth=3;g.stroke();}g.globalAlpha=1;
+    for(const beam of this.beams){g.globalAlpha=beam.life/beam.max;const mx=(beam.x+beam.tx)/2+Math.sin(beam.x)*12,my=(beam.y+beam.ty)/2+Math.cos(beam.ty)*12;this.line(beam.x,beam.y,mx,my,'#73e7f366',8);this.line(mx,my,beam.tx,beam.ty,'#73e7f366',8);this.line(beam.x,beam.y,mx,my,'#92f7e5',2);this.line(mx,my,beam.tx,beam.ty,'#92f7e5',2);}g.globalAlpha=1;
+    for(const b of this.bullets)if(this.visible(b.x,b.y,20)){const c=b.drone?'#ff87b7':this.character.color;this.line(b.x-b.vx*.025,b.y-b.vy*.025,b.x,b.y,c+'66',b.r*1.5);this.circle(b.x,b.y,b.r,c);this.circle(b.x-1,b.y-1,1.5,'#faf5d7');}
+    for(const b of this.enemyShots){this.circle(b.x,b.y,8,'#ff6c9f32');this.circle(b.x,b.y,5,'#ff779a','#ffd4dc',1.5);}
     for(const r of this.rings){g.globalAlpha=r.life/r.max;const radius=r.r*(1-(r.life/r.max)**2);this.circle(r.x,r.y,radius,null,r.color,2.5);this.circle(r.x,r.y,Math.max(1,radius-9),null,r.color+'55',5);}g.globalAlpha=1;
     for(const p of this.particles){g.globalAlpha=p.life/p.max;g.save();g.translate(p.x,p.y);g.rotate(p.angle+p.life);g.fillStyle=p.color;g.beginPath();g.ellipse(0,0,p.size,p.size*.45,0,0,6.28);g.fill();g.restore();}g.globalAlpha=1;
-    for(const f of this.floaters){g.globalAlpha=Math.min(1,f.life*2);g.textAlign='center';g.font=(f.big?'bold 16px':'11px')+' monospace';g.fillStyle='#12281bb5';g.fillText(f.text,f.x+1,f.y+1);g.fillStyle=f.color;g.fillText(f.text,f.x,f.y);}g.globalAlpha=1;
-    // Fireflies, falling leaves, and rain are visual only.
+    for(const f of this.floaters){g.globalAlpha=Math.min(1,f.life*2);g.textAlign='center';g.font=(f.big?'bold 16px':'11px')+' monospace';g.fillStyle='#10132bb5';g.fillText(f.text,f.x+1,f.y+1);g.fillStyle=f.color;g.fillText(f.text,f.x,f.y);}g.globalAlpha=1;
+    // Subtle electrical pixels are visual only.
     if(this.motion){
-      for(let i=0;i<36;i++){const x=(i*137+this.ambient*6)%2160,y=(i*283+Math.sin(this.ambient*.5+i)*20)%1560;if(this.visible(x,y,10))this.circle(x,y,1+i%2*.5,'#e2e7b544');}
-      if(this.chapterIndex===1){for(let i=0;i<65;i++){const x=(i*179+this.ambient*10)%2160,y=(i*293+this.ambient*90)%1560;if(this.visible(x,y,20))this.line(x,y,x-3,y+14,'#c9dfe820',1);}}
+      for(let i=0;i<36;i++){const x=(i*137+this.ambient*6)%2160,y=(i*283+Math.sin(this.ambient*.5+i)*20)%1560;if(this.visible(x,y,10))this.circle(x,y,1+i%2*.5,'#78e8e544');}
+      if(this.chapterIndex===1){for(let i=0;i<65;i++){const x=(i*179+this.ambient*10)%2160,y=(i*293+this.ambient*90)%1560;if(this.visible(x,y,20))this.line(x,y,x-3,y+14,'#f099cb20',1);}}
     }
     g.restore();this.nodeArrow();this.drawMinimap();
   }
@@ -1072,8 +1087,8 @@ AG.Engine=class GardenEngine {
   const keys=new Set();let stick={active:false,id:null,x:0,y:0,ox:0,oy:0};
   const char=()=>C.characters.find(c=>c.id===S.data.selected)||C.characters[0];
   const chapter=()=>C.chapters[S.data.chapter]||C.chapters[0];
-  const weaponIcon={seed:'sprout',orbit:'moth',slash:'thorns',chain:'bolt'};
-  const palette={green:'#cadd93',amber:'#edc589',blue:'#a8c7db',pink:'#d2a394'};
+  const weaponIcon={seed:'stamp',orbit:'badge',slash:'shield',chain:'bolt'};
+  const palette={green:'#ffcf40',amber:'#ff77a6',blue:'#79e5e3',pink:'#9da6ff',yellow:'#ffcf40',cyan:'#79e5e3'};
   function toast(text){
     $('site-toast').textContent=text;$('site-toast').classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('site-toast').classList.remove('visible'),3500);
   }
@@ -1081,7 +1096,7 @@ AG.Engine=class GardenEngine {
     $('battle-toast').textContent=text;$('battle-toast').classList.add('visible');clearTimeout(battleTimer);battleTimer=setTimeout(()=>$('battle-toast').classList.remove('visible'),4200);
   }
   function tools(){
-    $('wallet').innerHTML=icon('sprout')+S.data.seeds;
+    $('wallet').innerHTML=icon('badge')+S.data.seeds;
     $('sound-btn').innerHTML=icon(AG.Audio.enabled?'sound':'mute');
     $('sound-btn').setAttribute('aria-pressed',String(AG.Audio.enabled));
     $('sound-btn').setAttribute('aria-label',AG.Audio.enabled?'소리 끄기':'소리 켜기');
@@ -1112,7 +1127,7 @@ AG.Engine=class GardenEngine {
     if(game&&['playing','paused','upgrade','story','help'].includes(game.state)&&!$('play-view').hidden){
       if(game.state==='playing')game.pause();
       else if(game.state==='paused')showPause();
-      else toast('지금 열린 선택을 마친 뒤 탐사를 일시정지할 수 있어요.');
+      else toast('지금 열린 선택을 마친 뒤 작전을 일시정지할 수 있어요.');
       return;
     }
     hideOverlay();clearInput();if(game)game.state='idle';route=next;
@@ -1124,21 +1139,21 @@ AG.Engine=class GardenEngine {
   function renderHome(){
     const done=C.chapters.filter(c=>S.data.clears[c.id]).length;
     return `<div class="hero">
-      <div class="hero-art"><img src="${A.scenes[0]}" alt="오래된 온실 안에서 등불과 씨앗을 들고 기다리는 작은 정원사들"></div>
-      <div class="hero-copy"><div class="eyebrow">GARDEN CHRONICLES / VOL. 02</div><p class="hero-wordmark">AFTERGROW</p><h1>잊힌 정원에도,<br><em>내일은 자란다.</em></h1>
-      <p class="hero-description">사람들이 떠난 뒤에도, 누군가는 꽃을 돌봤다.<br>네 명의 작은 정원사와 함께 잃어버린 편지를 찾고,<br>이 정원의 다음 봄을 만들어 주세요.</p>
-      <div class="button-row"><button class="primary" data-nav="roster">나의 정원사 고르기 ${icon('arrow')}</button><button class="secondary" data-action="quick">바로 탐사하기 ${icon('arrow')}</button></div>
-      <div class="hero-detail"><span>${icon('sprout')} 4 GARDEN KEEPERS</span><span>${icon('map')} 3 CHAPTERS</span><span>${icon('sun')} 3 MIN / RUN</span></div></div>
-      <div class="hero-caption"><span class="micro">07 / THE LAST CONSERVATORY</span><strong>Not everything left behind is lost.</strong><span class="micro">기다리던 정원에, 당신이 도착했습니다.</span></div>
-      <div class="hero-bottom"><span class="status">SYSTEM ONLINE · 새벽을 기다리는 중</span><span>${S.data.runs?`${S.data.runs}번의 탐사 · ${done}/3 구역 정화 · 기억 ${S.data.archive.length}/9`:'A STORY YOU CAN PLAY · 설치 없이 시작하는 작은 모험'}</span><span>SCROLL TO MEET THE KEEPERS ↓</span></div>
-    </div><section class="home-after"><div><span class="section-kicker">EVERY KEEPER HAS A STORY</span><h2>혼자가 아니어서, 괜찮아.</h2><p>서로 다른 무기, 서로 다른 약속. 당신은 누구인가요?</p></div><div class="mini-roster">${C.characters.map(c=>`<button class="mini-character" data-action="character" data-id="${c.id}" style="--accent:${c.color}" aria-label="${c.name}, ${c.title} 자세히 보기"><img src="${A.portraits[c.id]}" alt=""><span><strong>${c.name}</strong><small>${c.code} / ${c.id.toUpperCase()}</small></span></button>`).join('')}</div></section>`;
+      <div class="hero-art"><img src="${A.scenes[0]}" alt="야근에 맞서 싸우는 네 명의 직장인과 네온 빛 회사 전경"></div>
+      <div class="hero-copy"><div class="eyebrow">OFFICE SURVIVAL ACTION / 2026</div><p class="hero-wordmark">CLOCK OUT! <span class="hero-stamp">퇴근 승인 대기</span></p><h1>퇴근이<br><em>전쟁이다.</em></h1>
+      <p class="hero-description">퇴근 3분 전, 회사가 미쳐버렸다.<br>끝없는 회의, 쏟아지는 업무, 폭주한 야근 시스템.<br>동료들과 함께 모든 마감을 뚫고 퇴근하라!</p>
+      <div class="button-row"><button class="primary" data-nav="roster">직장인 선택하기 ${icon('arrow')}</button><button class="secondary" data-action="quick">바로 출근(?) ${icon('bolt')}</button></div>
+      <div class="hero-detail"><span>${icon('badge')} 4 PLAYABLE STAFF</span><span>${icon('map')} 3 OFFICE ZONES</span><span>${icon('coffee')} 03:00 TO ESCAPE</span></div></div>
+      <div class="hero-caption"><span class="micro">EMPLOYEE HANDBOOK / #000</span><strong>NO MORE OVERTIME.</strong><span class="micro">정시퇴근을 위해, 반격을 시작한다.</span></div>
+      <div class="hero-bottom"><span class="status">SECURITY ALERT · 퇴근 시스템 오류</span><span>${S.data.runs?`${S.data.runs}번의 작전 · ${done}/3 구역 돌파 · 사내 기록 ${S.data.archive.length}/9`:'NO LOGIN · NO INSTALL · JUST SURVIVE'}</span><span>MEET YOUR CREW ↓</span></div>
+    </div><section class="home-after"><div><span class="section-kicker">MEET THE OVERWORKED CREW</span><h2>누구와 탈출할 것인가?</h2><p>대리 · 기획자 · 팀장 · 개발자. 각자 다른 무기와 필살기.</p></div><div class="mini-roster">${C.characters.map(c=>`<button class="mini-character" data-action="character" data-id="${c.id}" style="--accent:${c.color}" aria-label="${c.name}, ${c.title} 자세히 보기"><img src="${A.portraits[c.id]}" alt=""><span><strong>${c.name}</strong><small>${c.code} / ${c.en}</small></span></button>`).join('')}</div></section>`;
   }
   function renderRoster(){
     const c=char();
-    return `<section class="page">${heading('CHOOSE YOUR GARDEN KEEPER','네 개의 마음. 같은 정원.','겉모습만 다른 캐릭터가 아닙니다.<br>무기와 전용 스킬, 이 밤을 걷는 이유까지 달라집니다.')}
-      <div class="roster-tabs" role="group" aria-label="정원사 선택">${C.characters.map(v=>`<button class="roster-tab ${v.id===c.id?'selected':''}" data-action="select-char" data-id="${v.id}" style="--accent:${v.color}" aria-pressed="${v.id===c.id}"><img src="${A.portraits[v.id]}" alt=""><span><strong>${v.name}</strong><small>${v.title}</small></span><span class="tab-check">✓</span></button>`).join('')}</div>
-      <div class="roster-layout" style="--accent:${c.color}"><div class="roster-portrait"><img src="${A.portraits[c.id]}" alt="${c.name}의 전신 일러스트"><div class="portrait-caption"><span>FIELD PORTRAIT / ${c.code}</span><span>STILL HERE. STILL GROWING.</span></div></div>
-        <div class="character-info"><div class="micro muted">${c.en}</div><div class="character-name"><h2>${c.name}</h2><span class="pill">${c.code} / ${c.style.toUpperCase()}</span></div><p class="character-title">${c.title}</p><p class="character-quote">${c.quote}</p><p class="character-bio">${c.bio}</p>
+    return `<section class="page">${heading('SELECT YOUR EMPLOYEE','네 명의 직장인. 단 하나의 목표.','겉모습만 다른 캐릭터가 아닙니다.<br>서류 투척부터 디버그 체인까지, 무기와 전용 스킬이 다릅니다.')}
+      <div class="roster-tabs" role="group" aria-label="직장인 선택">${C.characters.map(v=>`<button class="roster-tab ${v.id===c.id?'selected':''}" data-action="select-char" data-id="${v.id}" style="--accent:${v.color}" aria-pressed="${v.id===c.id}"><img src="${A.portraits[v.id]}" alt=""><span><strong>${v.name}</strong><small>${v.title}</small></span><span class="tab-check">✓</span></button>`).join('')}</div>
+      <div class="roster-layout" style="--accent:${c.color}"><div class="roster-portrait"><img src="${A.portraits[c.id]}" alt="${c.name}의 전신 일러스트"><div class="portrait-caption"><span>EMPLOYEE PORTRAIT / ${c.code}</span><span>OFF THE CLOCK? NOT YET.</span></div></div>
+        <div class="character-info"><div class="micro muted">${c.en}</div><div class="character-name"><h2>${c.name}</h2><span class="pill">${c.code} / ${({seed:'DOCUMENT',orbit:'STICKY NOTE',slash:'SIGN OFF',chain:'DEBUG'})[c.style]}</span></div><p class="character-title">${c.title}</p><p class="character-quote">${c.quote}</p><p class="character-bio">${c.bio}</p>
           <div class="character-stats">${['공격','기동','생존'].map((label,i)=>`<div class="stat-row"><span>${label}</span><span class="stat-pips">${Array.from({length:5},(_,j)=>`<i class="${j<c.stats[i]?'on':''}"></i>`).join('')}</span></div>`).join('')}</div>
           <div class="trait-grid"><div class="trait">${icon(weaponIcon[c.style])}<div><label>STARTING WEAPON</label><strong>${c.weapon}</strong><p>${c.weaponDesc}</p></div></div><div class="trait">${icon('star')}<div><label>UNIQUE SKILL / E · ${c.cooldown}S</label><strong>${c.skill}</strong><p>${c.skillDesc}</p></div></div></div>
           <div class="trait" style="margin-bottom:21px">${icon('shield')}<div><label>PASSIVE / ${c.passive}</label><p>${c.passiveDesc}</p></div></div>
@@ -1146,27 +1161,27 @@ AG.Engine=class GardenEngine {
   }
   function renderMap(){
     const c=char(),ch=chapter();
-    return `<section class="page">${heading('LETTERS FROM A FORGOTTEN GARDEN','어떤 기억을 찾아갈까요?','세 구역 모두 지금 탐사할 수 있습니다.<br>01번부터 걸으면 하나의 이야기가 이어집니다.')}
-      <div class="chapter-grid">${C.chapters.map((v,i)=>`<button class="chapter-card ${S.data.chapter===i?'selected':''}" data-action="select-chapter" data-id="${i}" style="--accent:${v.color}" aria-pressed="${S.data.chapter===i}"><div class="chapter-picture"><img src="${A.scenes[i]}" alt="${v.name}의 풍경"><span class="chapter-number">${v.no}</span><span class="chapter-stamp">${S.data.clears[v.id]?'MEMORY RESTORED':'UNEXPLORED'}</span></div><div class="chapter-info"><span class="micro">${v.en}</span><h2>${v.name}</h2><p>${v.description}</p><div class="chapter-meta"><span>03:00 · ${i===0?'차분한 시작':i===1?'주의 깊은 발걸음':'마지막 도전'}</span>${icon(S.data.chapter===i?'check':'arrow')}</div></div></button>`).join('')}</div>
-      <div class="expedition-bar" style="--accent:${c.color}"><img src="${A.portraits[c.id]}" alt=""><div class="expedition-copy"><span class="micro muted">EXPEDITION ${ch.no} / ${c.code}</span><h3>${c.name} · ${ch.name}</h3><p>${ch.danger} / 수호자: ${ch.boss}</p></div><button class="text-button" data-nav="roster">정원사 변경</button><button class="primary" data-action="begin-intro">이 구역으로 출발 ${icon('arrow')}</button></div>
-      <p class="map-note">자동 공격 · 이동 + 돌진 + 전용 스킬 · 탐사 중 만나는 편지의 선택이 능력과 결말을 바꿉니다.</p></section>`;
+    return `<section class="page">${heading('THREE LEVELS. ONE EXIT.','어느 층부터 뚫을까?','모든 층이 처음부터 열려 있습니다.<br>1층부터 차례로 플레이하면 퇴근 전쟁의 진상을 알 수 있어요.')}
+      <div class="chapter-grid">${C.chapters.map((v,i)=>`<button class="chapter-card ${S.data.chapter===i?'selected':''}" data-action="select-chapter" data-id="${i}" style="--accent:${v.color}" aria-pressed="${S.data.chapter===i}"><div class="chapter-picture"><img src="${A.scenes[i]}" alt="${v.name}의 풍경"><span class="chapter-number">${v.no}</span><span class="chapter-stamp">${S.data.clears[v.id]?'CLEARED':'LOCKDOWN'}</span></div><div class="chapter-info"><span class="micro">${v.en}</span><h2>${v.name}</h2><p>${v.description}</p><div class="chapter-meta"><span>03:00 · ${i===0?'마감의 시작':i===1?'무한 회의':'마지막 배포'}</span>${icon(S.data.chapter===i?'check':'arrow')}</div></div></button>`).join('')}</div>
+      <div class="expedition-bar" style="--accent:${c.color}"><img src="${A.portraits[c.id]}" alt=""><div class="expedition-copy"><span class="micro muted">OPERATION ${ch.no} / ${c.code}</span><h3>${c.name} · ${ch.name}</h3><p>${ch.danger} / 보스: ${ch.boss}</p></div><button class="text-button" data-nav="roster">직장인 변경</button><button class="primary" data-action="begin-intro">작전 개시 ${icon('arrow')}</button></div>
+      <p class="map-note">자동 공격 · 이동 + 돌진 + 전용 스킬 · 작전 중 만나는 편지의 선택이 능력과 결말을 바꿉니다.</p></section>`;
   }
   function unlockHint(a){
-    const c=C.characters.find(c=>c.id===a.id);if(c)return `${c.name}로 구역 하나를 정화하면 열립니다.`;
-    if(a.id==='ending')return '세 구역을 모두 정화하면 마지막 기록이 열립니다.';
-    return '해당 구역의 수호자를 정화하면 편지가 열립니다.';
+    const c=C.characters.find(c=>c.id===a.id);if(c)return `${c.name}로 구역 하나를 처리하면 열립니다.`;
+    if(a.id==='ending')return '세 구역을 모두 처리하면 마지막 기록이 열립니다.';
+    return '해당 구역의 보스를 처치하면 사내 기록이 열립니다.';
   }
   function renderArchive(){
     const a=C.archives.find(a=>a.id===selectedArchive&&S.data.archive.includes(a.id))||C.archives[0];
-    return `<section class="page">${heading('THE MEMORY HERBARIUM','잊지 않기로 한 것들.','정화한 구역과 함께 걸은 정원사의 이야기가 남습니다.<br>모은 기억은 이 브라우저에 저장됩니다.')}
-      <div class="archive-layout"><div class="archive-list">${C.archives.map(v=>{const open=S.data.archive.includes(v.id);return `<button class="archive-item ${v.id===a.id?'selected':''} ${open?'':'locked'}" data-action="read" data-id="${v.id}" aria-label="${v.title}${open?'':' · '+unlockHint(v)}">${icon(open?'letter':'lock')}<span><small>${v.tag}</small><strong>${open?v.title:'아직 닿지 않은 기억'}</strong></span></button>`;}).join('')}</div>
-      <article class="archive-page paper-grain"><div class="archive-decoration"><span class="micro">PRESSED MEMORIES<br>COLLECTED ${S.data.archive.length} / ${C.archives.length}</span>${icon('sprout')}</div><span class="micro" style="display:block;margin-top:25px">${a.tag}</span><h2>${a.title}</h2><p>${a.text}</p><div class="archive-sign">For the next spring,<br>The garden keepers.</div></article></div></section>`;
+    return `<section class="page">${heading('PERSONNEL FILE / CLASSIFIED','기록은 거짓말하지 않는다.','돌파한 구역과 함께한 동료의 기록이 쌓입니다.<br>진행 상황은 이 브라우저에 자동 저장됩니다.')}
+      <div class="archive-layout"><div class="archive-list">${C.archives.map(v=>{const open=S.data.archive.includes(v.id);return `<button class="archive-item ${v.id===a.id?'selected':''} ${open?'':'locked'}" data-action="read" data-id="${v.id}" aria-label="${v.title}${open?'':' · '+unlockHint(v)}">${icon(open?'letter':'lock')}<span><small>${v.tag}</small><strong>${open?v.title:'아직 닿지 않은 기록'}</strong></span></button>`;}).join('')}</div>
+      <article class="archive-page paper-grain"><div class="archive-decoration"><span class="micro">EMPLOYEE RECORDS<br>COLLECTED ${S.data.archive.length} / ${C.archives.length}</span>${icon('badge')}</div><span class="micro" style="display:block;margin-top:25px">${a.tag}</span><h2>${a.title}</h2><p>${a.text}</p><div class="archive-sign">NO MORE OVERTIME.<br>THE OFFICE CREW.</div></article></div></section>`;
   }
   function renderWorkshop(){
-    return `<section class="page">${heading('SMALL TOOLS. LASTING CHANGE.','다음 밤을 위한 준비.','탐사에서 모은 씨앗으로 모든 정원사를 강화하세요.<br>성장과 기억은 이 브라우저에 남습니다.')}
-      <div class="workshop-grid">${C.research.map(r=>{const lv=S.data.research[r.id],cost=r.cost*(lv+1),full=lv>=r.max;return `<article class="research-card">${icon(r.icon)}<span class="micro muted">PERMANENT RESEARCH / ${lv} OF ${r.max}</span><h2>${r.name}</h2><p>${r.desc}</p><div class="stat-pips">${Array.from({length:3},(_,i)=>`<i class="${i<lv?'on':''}"></i>`).join('')}</div><button class="secondary" data-action="buy" data-id="${r.id}" ${full||S.data.seeds<cost?'disabled':''}>${full?'연구 완료':icon('sprout')+cost+' 씨앗으로 연구'}</button></article>`;}).join('')}</div>
-      <p class="map-note">탐사를 마치면 최소 5 씨앗을 받습니다. 정화한 개체·노드·구역 완료에 따라 보상이 늘어납니다. ${S.available?'자동 저장 중':'브라우저 저장이 차단되어 이번 세션에서만 유지됩니다.'}</p>
-      <div class="recipe-section"><div class="section-kicker">EVOLUTION FIELD NOTES</div><h2>둘이 만나, 새로운 봄.</h2><div class="recipe-grid">${C.evolutions.map(e=>`<article class="recipe">${icon(e.icon)}<div><strong>${e.name}</strong><p>${e.desc}</p><span class="micro">${Object.entries(e.needs).map(([id,lv])=>C.modules.find(m=>m.id===id).name+' '+lv+'단계').join(' + ')}</span></div></article>`).join('')}</div><p class="map-note">탐사 중 조건을 갖추면 다음 레벨 업 선택지에 진화 카드가 우선 등장합니다. 작업실에서 미리 구매하는 방식은 아닙니다.</p></div></section>`;
+    return `<section class="page">${heading('PREPARE FOR YOUR NEXT SHIFT','커피 한 잔, 다음 작전.','작전에서 모은 업무 포인트로 모든 직장인을 영구 강화하세요.<br>업그레이드는 이 브라우저에 저장됩니다.')}
+      <div class="workshop-grid">${C.research.map(r=>{const lv=S.data.research[r.id],cost=r.cost*(lv+1),full=lv>=r.max;return `<article class="research-card">${icon(r.icon)}<span class="micro muted">PERMANENT RESEARCH / ${lv} OF ${r.max}</span><h2>${r.name}</h2><p>${r.desc}</p><div class="stat-pips">${Array.from({length:3},(_,i)=>`<i class="${i<lv?'on':''}"></i>`).join('')}</div><button class="secondary" data-action="buy" data-id="${r.id}" ${full||S.data.seeds<cost?'disabled':''}>${full?'연구 완료':icon('sprout')+cost+' 업무 포인트으로 연구'}</button></article>`;}).join('')}</div>
+      <p class="map-note">작전를 마치면 최소 5 업무 포인트을 받습니다. 처리한 개체·노드·구역 완료에 따라 보상이 늘어납니다. ${S.available?'자동 저장 중':'브라우저 저장이 차단되어 이번 세션에서만 유지됩니다.'}</p>
+      <div class="recipe-section"><div class="section-kicker">EVOLUTION FIELD NOTES</div><h2>장비가 쌓이면 퇴근이 빨라진다.</h2><div class="recipe-grid">${C.evolutions.map(e=>`<article class="recipe">${icon(e.icon)}<div><strong>${e.name}</strong><p>${e.desc}</p><span class="micro">${Object.entries(e.needs).map(([id,lv])=>C.modules.find(m=>m.id===id).name+' '+lv+'단계').join(' + ')}</span></div></article>`).join('')}</div><p class="map-note">작전 중 조건을 갖추면 다음 레벨 업 선택지에 진화 카드가 우선 등장합니다. 휴게실에서 미리 구매하는 방식은 아닙니다.</p></div></section>`;
   }
   function beginIntro(){
     if(!ready)return;introPage=0;showIntro();
@@ -1175,8 +1190,8 @@ AG.Engine=class GardenEngine {
     const c=char(),ch=chapter(),line=ch.intro[introPage],self=line.speaker==='self';
     const text=line.text==='$intro'?c.intro:line.text;
     setOverlay(`<div class="dialogue-stage" style="--accent:${c.color}">
-      <div class="dialogue-portrait">${self?`<img src="${A.portraits[c.id]}" alt="${c.name}">`:`<div class="radio-art">${icon('sprout')}</div>`}</div>
-      <article class="dialogue-paper"><span class="micro">CHAPTER ${ch.no} / ${ch.tag}</span><h2 id="dialog-title">${self?c.name:line.name}</h2><p class="dialogue-text">${text}</p><div class="dialogue-controls"><span class="dialogue-dots">${ch.intro.map((_,i)=>`<i class="${i<=introPage?'on':''}"></i>`).join('')}</span><button class="text-button" data-action="skip-intro">이야기 건너뛰기</button><button class="primary" data-action="next-intro">${introPage===ch.intro.length-1?'탐사 시작':'다음'} ${icon('arrow')}</button></div></article>
+      <div class="dialogue-portrait">${self?`<img src="${A.portraits[c.id]}" alt="${c.name}">`:`<div class="radio-art">${icon('monitor')}</div>`}</div>
+      <article class="dialogue-paper"><span class="micro">CHAPTER ${ch.no} / ${ch.tag}</span><h2 id="dialog-title">${self?c.name:line.name}</h2><p class="dialogue-text">${text}</p><div class="dialogue-controls"><span class="dialogue-dots">${ch.intro.map((_,i)=>`<i class="${i<=introPage?'on':''}"></i>`).join('')}</span><button class="text-button" data-action="skip-intro">브리핑 건너뛰기</button><button class="primary" data-action="next-intro">${introPage===ch.intro.length-1?'작전 시작':'다음'} ${icon('arrow')}</button></div></article>
     </div><button class="tool-button overlay-close" data-action="cancel-intro" aria-label="준비 화면으로 돌아가기">${icon('close')}</button>`,'intro');
   }
   function startGame(){
@@ -1191,34 +1206,34 @@ AG.Engine=class GardenEngine {
   }
   function showUpgrade(){
     const p=game.player;
-    setOverlay(`<section class="modal"><div class="modal-top"><div class="eyebrow">A LITTLE STRONGER, A LITTLE CLOSER</div><h2 id="dialog-title">어떤 봄을 피워 볼까요?</h2><p>LEVEL ${String(p.level).padStart(2,'0')} · 하나의 접목을 고르세요. 정원의 시간은 잠시 멈춥니다.</p></div><div class="upgrade-cards">${game.choices.map((m,i)=>`<button class="upgrade-card ${m.needs?'evolution':''}" data-action="upgrade" data-id="${i}" style="--accent:${palette[m.color]}" aria-label="${m.name}, ${m.desc}"><span class="card-key">${i+1}</span><span class="card-art">${icon(m.icon)}</span><span class="micro">${m.kind}${m.needs?' / NEW FORM':''}</span><h3>${m.name}</h3><p>${m.desc}</p><span class="card-bottom"><span>${m.needs?'EVOLUTION READY':game.levels[m.id]?'LEVEL '+game.levels[m.id]+' → '+(game.levels[m.id]+1):'NEW GROWTH'}</span>${icon('arrow')}</span></button>`).join('')}</div><div class="modal-foot"><span>숫자 1 · 2 · 3으로 선택할 수 있어요</span><button data-action="reroll" ${game.rerolls?'':'disabled'}>다시 뽑기 ${game.rerolls}/1</button></div></section>`,'upgrade');
+    setOverlay(`<section class="modal"><div class="modal-top"><div class="eyebrow">LEVEL UP / NEW PERK</div><h2 id="dialog-title">이번 야근, 어떻게 버틸까?</h2><p>LEVEL ${String(p.level).padStart(2,'0')} · 장비를 하나 고르세요. 선택하는 동안 시간은 멈춥니다.</p></div><div class="upgrade-cards">${game.choices.map((m,i)=>`<button class="upgrade-card ${m.needs?'evolution':''}" data-action="upgrade" data-id="${i}" style="--accent:${palette[m.color]}" aria-label="${m.name}, ${m.desc}"><span class="card-key">${i+1}</span><span class="card-art">${icon(m.icon)}</span><span class="micro">${m.kind}${m.needs?' / NEW FORM':''}</span><h3>${m.name}</h3><p>${m.desc}</p><span class="card-bottom"><span>${m.needs?'EVOLUTION READY':game.levels[m.id]?'LEVEL '+game.levels[m.id]+' → '+(game.levels[m.id]+1):'NEW PERK'}</span>${icon('arrow')}</span></button>`).join('')}</div><div class="modal-foot"><span>숫자 1 · 2 · 3으로 선택할 수 있어요</span><button data-action="reroll" ${game.rerolls?'':'disabled'}>다시 뽑기 ${game.rerolls}/1</button></div></section>`,'upgrade');
   }
   function showStory(reply=false){
     const e=game.chapter.event;
-    setOverlay(`<section class="story-choice">${icon('letter','story-icon')}<div class="eyebrow">${e.kicker}</div><h2 id="dialog-title">${e.title}</h2><p>${e.text}</p>
-      ${reply?`<p class="story-reply">${game.choice.reply}</p><div class="button-row"><button class="primary" data-action="story-continue">마음을 정하고, 다시 앞으로 ${icon('arrow')}</button></div>`:`<div class="story-options">${e.choices.map((c,i)=>`<button class="story-option" data-action="story-choice" data-id="${i}"><strong>${c.label} ${icon('arrow')}</strong><small>${c.description}</small></button>`).join('')}</div><div class="modal-foot">당신의 선택은 이번 탐사의 능력과 결말에 남습니다.</div>`}</section>`,reply?'story-reply':'story');
+    setOverlay(`<section class="story-choice">${icon('monitor','story-icon')}<div class="eyebrow">${e.kicker}</div><h2 id="dialog-title">${e.title}</h2><p>${e.text}</p>
+      ${reply?`<p class="story-reply">${game.choice.reply}</p><div class="button-row"><button class="primary" data-action="story-continue">선택 완료, 다시 전진 ${icon('arrow')}</button></div>`:`<div class="story-options">${e.choices.map((c,i)=>`<button class="story-option" data-action="story-choice" data-id="${i}"><strong>${c.label} ${icon('arrow')}</strong><small>${c.description}</small></button>`).join('')}</div><div class="modal-foot">당신의 선택은 이번 작전의 능력과 결말에 남습니다.</div>`}</section>`,reply?'story-reply':'story');
   }
   function showPause(){
-    setOverlay(`<section class="compact-modal"><div class="eyebrow">THE GARDEN CAN WAIT</div><h2 id="dialog-title">잠시, 숨 고르기.</h2><p>잘하고 있어요.<br>온실도 당신과 함께 쉬고 있습니다.</p><div class="micro">${game.character.name} · ${game.chapter.name} · ${fmt(game.time)}</div><button class="primary" data-action="resume">계속 걷기 ${icon('arrow')}</button><button class="secondary" data-action="help">조작법 보기</button><label class="motion-control"><input type="checkbox" id="motion-toggle" ${S.data.settings.motion?'checked':''}> 배경 움직임과 화면 흔들림</label><button class="text-button" data-action="abandon">이 탐사를 마치고 기록 남기기</button></section>`,'pause');
+    setOverlay(`<section class="compact-modal"><div class="eyebrow">PAUSED / TAKE FIVE</div><h2 id="dialog-title">커피 브레이크.</h2><p>잠깐 쉬어도 됩니다.<br>회사는 도망가지 않아요.</p><div class="micro">${game.character.name} · ${game.chapter.name} · ${fmt(game.time)}</div><button class="primary" data-action="resume">업무 재개 ${icon('arrow')}</button><button class="secondary" data-action="help">조작법 보기</button><label class="motion-control"><input type="checkbox" id="motion-toggle" ${S.data.settings.motion?'checked':''}> 배경 움직임과 화면 흔들림</label><button class="text-button" data-action="abandon">작전 포기하고 귀가하기</button></section>`,'pause');
   }
   function showResult(result){
     const reward=S.finish(result);tools();
     const isFirst=result.choice===result.chapter.event.choices[0];
-    const text=result.win?(isFirst?result.chapter.endCare:result.chapter.endSignal):'아직 닿지 못한 편지가 있어요. 회수한 씨앗은 작업실에 남았습니다. 작은 준비를 더하고, 다시 걸어가도 괜찮아요.';
-    setOverlay(`<section class="result-modal"><div class="result-art"><img src="${A.portraits[result.character.id]}" alt="${result.character.name}"></div><div class="result-copy"><div class="eyebrow">${result.win?'MEMORY RESTORED':'NOT THE END OF THE STORY'}</div><h2 id="dialog-title">${result.win?'정원이 당신을 기억해요.':'다음 봄에, 다시 만나요.'}</h2><p>${text}</p>${result.win?`<p class="ending-line">${result.character.ending}</p>`:''}<div class="result-stats"><div><label>생존 시간</label><strong>${fmt(result.time)}</strong></div><div><label>정화 개체</label><strong>${result.kills}</strong></div><div><label>성장 레벨</label><strong>${result.level}</strong></div><div><label>노드 복구</label><strong>${result.nodes}</strong></div></div><div class="reward-line">${icon('sprout')} +${reward} 씨앗 ${result.win?'· 새로운 기억이 도감에 남았습니다.':''}</div><div class="button-row"><button class="primary" data-action="${result.win&&S.data.chapter<2?'next-chapter':'retry'}">${result.win&&S.data.chapter<2?'다음 편지를 찾아서':'새로운 조합으로 다시'} ${icon('arrow')}</button><button class="secondary" data-action="result-workshop">작업실로</button><button class="text-button" data-action="result-home">${result.win?'기억 도감 열기':'정원으로 돌아가기'}</button></div></div></section>`,'result');
+    const text=result.win?(isFirst?result.chapter.endCare:result.chapter.endSignal):'정시퇴근에 실패했습니다. 모은 업무 포인트는 그대로! 휴게실에서 장비를 강화하고 재도전하세요.';
+    setOverlay(`<section class="result-modal"><div class="result-art"><img src="${A.portraits[result.character.id]}" alt="${result.character.name}"></div><div class="result-copy"><div class="eyebrow">${result.win?'CLOCK-OUT APPROVED':'MISSION FAILED / RETRY'}</div><h2 id="dialog-title">${result.win?'퇴근 승인 완료!':'아직 퇴근할 수 없다.'}</h2><p>${text}</p>${result.win?`<p class="ending-line">${result.character.ending}</p>`:''}<div class="result-stats"><div><label>버틴 시간</label><strong>${fmt(result.time)}</strong></div><div><label>처리 업무</label><strong>${result.kills}</strong></div><div><label>성장 레벨</label><strong>${result.level}</strong></div><div><label>커피 보충</label><strong>${result.nodes}</strong></div></div><div class="reward-line">${icon('badge')} +${reward} 업무 포인트 ${result.win?'· 새로운 사내 기록이 열렸습니다.':''}</div><div class="button-row"><button class="primary" data-action="${result.win&&S.data.chapter<2?'next-chapter':'retry'}">${result.win&&S.data.chapter<2?'다음 층 돌파':'다시 출근하기'} ${icon('arrow')}</button><button class="secondary" data-action="result-workshop">휴게실로</button><button class="text-button" data-action="result-home">${result.win?'사내 기록 보기':'로비로 돌아가기'}</button></div></div></section>`,'result');
     if(result.win)AG.Audio.sfx('upgrade');
   }
   function openHelp(){
     if(overlayKind==='help')return;
     helpReturn={html:$('overlay').innerHTML,kind:overlayKind,state:game?.state};
     if(game&&game.state!=='idle'&&game.state!=='result')game.state='help';
-    setOverlay(`<section class="help-modal"><div class="eyebrow">A FIELD GUIDE FOR YOUR FIRST NIGHT</div><h2 id="dialog-title">이 정원을 걷는 법.</h2><div class="help-rows">
+    setOverlay(`<section class="help-modal"><div class="eyebrow">EMPLOYEE TRAINING / QUICK START</div><h2 id="dialog-title">야근에서 살아남는 법.</h2><div class="help-rows">
       <div class="help-row"><span><kbd>W A S D</kbd><kbd>↑ ↓ ← →</kbd></span><div><strong>움직임이 곧 전략</strong><p>공격은 자동입니다. 모바일과 마우스는 게임 화면을 드래그해 이동합니다.</p></div></div>
       <div class="help-row"><span><kbd>SPACE</kbd></span><div><strong>무적 돌진</strong><p>바라보는 방향으로 빠르게 빠져나옵니다. 기본 대기시간 3초.</p></div></div>
-      <div class="help-row"><span><kbd>E</kbd></span><div><strong>정원사만의 전용 스킬</strong><p>과충전, 등불 폭발, 보호막, 시간 정지. 선택한 캐릭터마다 다릅니다.</p></div></div>
-      <div class="help-row"><span>씨앗 · 접목</span><div><strong>성장과 진화</strong><p>씨앗을 모아 3개 카드 중 하나를 고릅니다. 접목 코어 3 + 고속 축전기 2는 전용 무기를 진화시킵니다.</p></div></div>
-      <div class="help-row"><span>정화 노드</span><div><strong>2초의 용기</strong><p>빛나는 원 안에서 2초 머무르면 회복·충격파·경험치를 얻습니다. 23초 후 다시 켜집니다.</p></div></div>
-    </div><p class="help-tip"><strong>목표:</strong> 3분 이상 생존하고, 2분 25초에 나타나는 수호자를 정화하세요.<br>빗물 서고의 푸른 물웅덩이는 이동을 늦춥니다. 바닥 경보와 적의 사격을 피하세요.<br><kbd>P / ESC</kbd> 일시정지 · <kbd>M</kbd> 소리 · 선택과 이야기 중에는 전투가 멈춥니다.<br>진행도는 이 브라우저에 저장됩니다. ${S.available?'다른 기기로 자동 동기화되지는 않습니다.':'현재 저장이 차단되어 세션 종료 시 사라질 수 있습니다.'}</p><button class="primary" data-action="close-help">이제, 걸어 볼까요 ${icon('check')}</button></section>`,'help');
+      <div class="help-row"><span><kbd>E</kbd></span><div><strong>직장인 전용 필살기</strong><p>마감 부스터, 회의 취소, 종료 선언, 시스템 프리즈! 직군마다 다릅니다.</p></div></div>
+      <div class="help-row"><span>업무 포인트 · 장비</span><div><strong>성장과 진화</strong><p>업무 포인트를 모아 레벨업 카드 중 하나를 고릅니다. 결재 도장 3 + 업무 가속 매크로 2로 무기가 각성합니다.</p></div></div>
+      <div class="help-row"><span>커피 머신</span><div><strong>카페인 충전</strong><p>커피 머신 원 안에서 2초 머무르면 체력·충격파·경험치를 얻습니다. 23초 뒤 재충전됩니다.</p></div></div>
+    </div><p class="help-tip"><strong>목표:</strong> 3분을 버티고, 2분 25초에 등장하는 보스를 처치하세요.<br>무한 회의실의 캘린더 구역에서는 느려집니다. 바닥 경보와 알림 탄환을 피하세요.<br><kbd>P / ESC</kbd> 일시정지 · <kbd>M</kbd> 소리 · 선택과 이야기 중에는 전투가 멈춥니다.<br>진행도는 이 브라우저에 저장됩니다. ${S.available?'다른 기기로 자동 동기화되지는 않습니다.':'현재 저장이 차단되어 세션 종료 시 사라질 수 있습니다.'}</p><button class="primary" data-action="close-help">정시퇴근 도전 ${icon('check')}</button></section>`,'help');
   }
   function closeHelp(){
     const back=helpReturn;helpReturn=null;
@@ -1236,12 +1251,12 @@ AG.Engine=class GardenEngine {
     if(!game?.player||$('play-view').hidden)return;
     const p=game.player;
     $('hp-fill').style.width=Math.max(0,p.hp/p.maxHp*100)+'%';$('hp-text').textContent=Math.ceil(p.hp)+' / '+p.maxHp;$('lv-text').textContent='LV '+String(p.level).padStart(2,'0');
-    $('clock').textContent=game.time<game.chapter.duration?fmt(Math.ceil(game.chapter.duration-game.time)):'정화 중';
+    $('clock').textContent=game.time<game.chapter.duration?fmt(Math.ceil(game.chapter.duration-game.time)):'처리 중';
     $('clock').style.fontSize=game.time<game.chapter.duration?'':'22px';
-    $('objective').textContent=game.bossDefeated?'새벽까지 생존하세요':game.bossSpawned?'수호자를 정화하세요':'새벽까지 남은 시간';
+    $('objective').textContent=game.bossDefeated?'퇴근 시간까지 생존하세요':game.bossSpawned?'최종 관리자를 처치하세요':'퇴근까지 남은 시간';
     $('kill-text').textContent=String(game.kills).padStart(3,'0');$('xp-fill').style.width=Math.min(100,p.xp/p.nextXp*100)+'%';$('xp-text').textContent=Math.floor(p.xp)+' / '+p.nextXp;
-    $('nodes-text').textContent='노드 복구 '+game.nodesRestored+'회';
-    $('skill-cd').textContent=p.skillCd>0?p.skillCd.toFixed(1)+'s':p.buff>0?'과충전 중':'준비 완료';
+    $('nodes-text').textContent='커피 보충 '+game.nodesRestored+'회';
+    $('skill-cd').textContent=p.skillCd>0?p.skillCd.toFixed(1)+'s':p.buff>0?'스킬 발동 중':'준비 완료';
     $('dash-cd').textContent=p.dashCd>0?p.dashCd.toFixed(1)+'s':'준비 완료';
     $('skill-cover').style.height=p.skillCd/game.character.cooldown*100+'%';$('dash-cover').style.height=p.dashCd/Math.max(1.3,3-game.levels.speed*.3-game.bonus.dash)*100+'%';
     $('skill-btn').classList.toggle('ready',p.skillCd<=0);$('dash-btn').classList.toggle('ready',p.dashCd<=0);
@@ -1254,7 +1269,7 @@ AG.Engine=class GardenEngine {
       $('hud-portrait').src=A.portraits[game.character.id];$('hud-name').textContent=game.character.code+' / '+game.character.name;
       $('chapter-label').textContent='CH. '+game.chapter.no+' / '+game.chapter.name;
       $('skill-name').textContent=game.character.skill;$('skill-icon').innerHTML=icon(weaponIcon[game.character.style]);$('dash-icon').innerHTML=icon('wind');
-      $('mission-text').textContent=game.chapter.id==='rain'?'물웅덩이를 피해, 정화 노드 안에서 2초 머무르세요.':'정화 노드의 원 안에서 2초 머무르세요.';
+      $('mission-text').textContent=game.chapter.id==='rain'?'캘린더 구역을 피하고 커피 머신 안에서 2초 머무르세요.':'커피 머신의 원 안에서 2초 머무르세요.';
     }
     if(type==='upgrade')showUpgrade();
     if(type==='pause')showPause();
@@ -1262,7 +1277,7 @@ AG.Engine=class GardenEngine {
     if(type==='result')showResult(payload);
     if(type==='toast')battleToast(payload.text);
     if(type==='modules')updateModules();
-    if(type==='boss')showCut('GUARDIAN AWAKENED',game.chapter.boss,game.chapter.bossTitle);
+    if(type==='boss')showCut('BOSS INCOMING / FINAL TASK',game.chapter.boss,game.chapter.bossTitle);
   }
   function selectChar(id){
     if(!C.characters.some(c=>c.id===id))return;
@@ -1290,7 +1305,7 @@ AG.Engine=class GardenEngine {
       case 'close-help':closeHelp();break;
       case 'abandon':game.state='playing';game.finish(false);break;
       case 'read':{const a=C.archives.find(a=>a.id===id);if(!a)break;if(!S.data.archive.includes(id))toast(unlockHint(a));else{selectedArchive=id;go('archive',false);}break;}
-      case 'buy':{if(S.buy(id)){go('workshop',false);toast('연구 완료. 다음 탐사부터 모든 정원사에게 적용됩니다.');}else toast('씨앗이 부족하거나 이미 완료한 연구입니다.');break;}
+      case 'buy':{if(S.buy(id)){go('workshop',false);toast('강화 완료. 다음 작전부터 모든 직장인에게 적용됩니다.');}else toast('업무 포인트가 부족하거나 이미 완료한 강화입니다.');break;}
       case 'retry':startGame();break;
       case 'next-chapter':S.data.chapter=Math.min(2,S.data.chapter+1);S.save();game.state='idle';hideOverlay();beginIntro();break;
       case 'result-workshop':go('workshop');break;
@@ -1350,7 +1365,7 @@ AG.Engine=class GardenEngine {
   document.addEventListener('visibilitychange',()=>{if(document.hidden){clearInput();if(game?.state==='playing')game.pause();}if(game)game.last=performance.now();});
   async function init(){
     $('brand-icon').innerHTML=icon('sprout');$('help-btn').innerHTML=icon('help');tools();
-    $('menu').innerHTML='<section class="page"><div class="eyebrow">OPENING THE CONSERVATORY</div><h1 style="font:32px Georgia;margin-top:24px">정원의 문을 열고 있어요.</h1></section>';
+    $('menu').innerHTML='<section class="page"><div class="eyebrow">CONNECTING TO OFFICE NETWORK</div><h1 style="font:32px Georgia;margin-top:24px">회사 시스템에 접속하고 있어요.</h1></section>';
     try{
       await A.prepare();game=new AG.Engine($('game'),gameEvent);ready=true;go('home');
       setInterval(updateHud,100);
@@ -1369,7 +1384,7 @@ AG.Engine=class GardenEngine {
           updateHud,go};
       }
     }catch(err){
-      console.error(err);$('menu').innerHTML=`<section class="page"><h1>정원을 여는 중 문제가 생겼어요.</h1><p style="margin:20px 0">페이지를 새로 고치거나 최신 브라우저로 열어 주세요.</p><pre style="white-space:pre-wrap">${escape(err.message)}</pre></section>`;
+      console.error(err);$('menu').innerHTML=`<section class="page"><h1>출근 준비 중 문제가 생겼어요.</h1><p style="margin:20px 0">페이지를 새로 고치거나 최신 브라우저로 열어 주세요.</p><pre style="white-space:pre-wrap">${escape(err.message)}</pre></section>`;
     }
   }
   init();
