@@ -998,3 +998,383 @@ AG.Engine=class GardenEngine {
     g.fillStyle='#10291ecc';g.fillRect(x,y,w,h);g.strokeStyle='#d2dfb139';g.lineWidth=1;g.strokeRect(x,y,w,h);
     g.strokeStyle='#c0d49f28';g.strokeRect(x+(this.camera.x-this.width/2)*sx,y+(this.camera.y-this.height/2)*sy,Math.min(w,this.width*sx),Math.min(h,this.height*sy));
     for(const n of this.nodes)this.circle(x+n.x*sx,y+n.y*sy,2.5,n.cooldown>0?'#6f896b':'#cadd93');
+    if(this.boss&&!this.boss.dead)this.circle(x+this.boss.x*sx,y+this.boss.y*sy,3.5,'#edb595');
+    this.circle(x+this.player.x*sx,y+this.player.y*sy,3,'#f3e8bd');
+    g.fillStyle='#abbe9b';g.textAlign='left';g.font='7px monospace';g.fillText('SECTOR '+this.chapter.no,x+5,y+11);
+  }
+  nodeArrow(){
+    const p=this.player,n=this.nodes.filter(n=>n.cooldown<=0).sort((a,b)=>this.distance(a,p)-this.distance(b,p))[0];
+    if(!n||this.visible(n.x,n.y,-55))return;
+    const a=Math.atan2(n.y-this.camera.y,n.x-this.camera.x),cx=this.width/2,cy=this.height/2,r=Math.min(cx-35,cy-48);
+    const x=cx+Math.cos(a)*r,y=cy+Math.sin(a)*r,g=this.ctx;
+    g.save();g.translate(x,y);g.rotate(a);g.beginPath();g.moveTo(10,0);g.lineTo(-5,-6);g.lineTo(-5,6);g.closePath();g.fillStyle='#d3e4a1';g.fill();g.restore();
+    g.textAlign='center';g.font='8px monospace';g.fillStyle='#d3e4a1';g.fillText('NODE '+n.id,x,y+20);
+  }
+  render(){
+    if(!this.player||!this.floor||this.state==='idle')return;
+    const g=this.ctx;g.setTransform(this.dpr,0,0,this.dpr,0,0);g.fillStyle=this.chapter.floor;g.fillRect(0,0,this.width,this.height);
+    g.save();g.translate(this.width/2-this.camera.x+(this.shake?this.random(-this.shake,this.shake):0),this.height/2-this.camera.y);
+    g.drawImage(this.floor,0,0);
+    for(const n of this.nodes)if(this.visible(n.x,n.y))this.drawNode(n);
+    for(const h of this.hazards){
+      this.circle(h.x,h.y,h.r,h.warning>0?'#e9b17516':'#d7866348',h.warning>0?'#e6b484ae':'#e4a279',2);
+      const progress=1-Math.max(0,h.warning)/1.05;this.circle(h.x,h.y,h.r*progress,null,'#edd1a176',1);
+      for(let i=0;i<6;i++){const a=i*Math.PI/3;this.line(h.x+Math.cos(a)*(h.r-8),h.y+Math.sin(a)*(h.r-8),h.x+Math.cos(a)*(h.r+3),h.y+Math.sin(a)*(h.r+3),'#f0c99988',2);}
+      if(h.warning<=0){for(let i=0;i<4;i++){const x=h.x+Math.sin(i*4)*h.r*.6,y=h.y+Math.cos(i*4)*h.r*.55;g.beginPath();g.moveTo(x-6,y+5);g.lineTo(x,y-20);g.lineTo(x+8,y+4);g.fillStyle='#c58b66';g.fill();}}
+    }
+    for(const gem of this.gems)if(this.visible(gem.x,gem.y,20)){
+      const y=gem.y+(this.motion?Math.sin(this.time*3+gem.phase)*2:0);
+      if(gem.health){this.circle(gem.x,y,7,'#a8dabb','#486e59',2);this.line(gem.x-3,y,gem.x+3,y,'#f0ecd0',2);this.line(gem.x,y-3,gem.x,y+3,'#f0ecd0',2);}
+      else{g.save();g.translate(gem.x,y);g.rotate(Math.PI/4);g.fillStyle=gem.value>2?'#e9d398':'#c5dca0';g.fillRect(-3.5,-3.5,7,7);g.strokeStyle='#edf2c266';g.lineWidth=1;g.strokeRect(-3.5,-3.5,7,7);g.restore();}
+    }
+    const drawables=this.enemies.map(e=>({y:e.y,e}));drawables.push({y:this.player.y,player:true});drawables.sort((a,b)=>a.y-b.y);
+    for(const item of drawables)if(item.player)this.drawPlayer();else this.drawEnemy(item.e);
+    for(const s of this.slashes){g.globalAlpha=Math.max(0,s.life/s.max);g.beginPath();g.arc(s.x,s.y,s.r,s.full?0:s.angle-1.2,s.full?Math.PI*2:s.angle+1.2);g.strokeStyle=this.evolved.dawn?'#f4d7a5':'#d7deb0';g.lineWidth=9;g.stroke();g.beginPath();g.arc(s.x,s.y,s.r-15,s.angle-1.1,s.angle+1.1);g.strokeStyle='#c0d99c66';g.lineWidth=3;g.stroke();}g.globalAlpha=1;
+    for(const beam of this.beams){g.globalAlpha=beam.life/beam.max;const mx=(beam.x+beam.tx)/2+Math.sin(beam.x)*12,my=(beam.y+beam.ty)/2+Math.cos(beam.ty)*12;this.line(beam.x,beam.y,mx,my,'#b8dfdf66',8);this.line(mx,my,beam.tx,beam.ty,'#b8dfdf66',8);this.line(beam.x,beam.y,mx,my,'#def0dc',2);this.line(mx,my,beam.tx,beam.ty,'#def0dc',2);}g.globalAlpha=1;
+    for(const b of this.bullets)if(this.visible(b.x,b.y,20)){const c=b.drone?'#edcf93':this.character.color;this.line(b.x-b.vx*.025,b.y-b.vy*.025,b.x,b.y,c+'66',b.r*1.5);this.circle(b.x,b.y,b.r,c);this.circle(b.x-1,b.y-1,1.5,'#faf5d7');}
+    for(const b of this.enemyShots){this.circle(b.x,b.y,8,'#e1b5a332');this.circle(b.x,b.y,5,'#ddb093','#f3cfb3',1.5);}
+    for(const r of this.rings){g.globalAlpha=r.life/r.max;const radius=r.r*(1-(r.life/r.max)**2);this.circle(r.x,r.y,radius,null,r.color,2.5);this.circle(r.x,r.y,Math.max(1,radius-9),null,r.color+'55',5);}g.globalAlpha=1;
+    for(const p of this.particles){g.globalAlpha=p.life/p.max;g.save();g.translate(p.x,p.y);g.rotate(p.angle+p.life);g.fillStyle=p.color;g.beginPath();g.ellipse(0,0,p.size,p.size*.45,0,0,6.28);g.fill();g.restore();}g.globalAlpha=1;
+    for(const f of this.floaters){g.globalAlpha=Math.min(1,f.life*2);g.textAlign='center';g.font=(f.big?'bold 16px':'11px')+' monospace';g.fillStyle='#12281bb5';g.fillText(f.text,f.x+1,f.y+1);g.fillStyle=f.color;g.fillText(f.text,f.x,f.y);}g.globalAlpha=1;
+    // Fireflies, falling leaves, and rain are visual only.
+    if(this.motion){
+      for(let i=0;i<36;i++){const x=(i*137+this.ambient*6)%2160,y=(i*283+Math.sin(this.ambient*.5+i)*20)%1560;if(this.visible(x,y,10))this.circle(x,y,1+i%2*.5,'#e2e7b544');}
+      if(this.chapterIndex===1){for(let i=0;i<65;i++){const x=(i*179+this.ambient*10)%2160,y=(i*293+this.ambient*90)%1560;if(this.visible(x,y,20))this.line(x,y,x-3,y+14,'#c9dfe820',1);}}
+    }
+    g.restore();this.nodeArrow();this.drawMinimap();
+  }
+  frame(now){
+    if(!this.running)return;
+    const dt=Math.min(.05,this.last?(now-this.last)/1000:0);this.last=now;
+    if(this.state!=='idle'){
+      if(this.state==='playing'&&!this.manual){this.ambient+=dt;let left=dt;while(left>.000001&&this.state==='playing'){const step=Math.min(left,1/60);this.update(step);left-=step;}}
+      this.render();
+    }
+    this.raf=requestAnimationFrame(this.frame);
+  }
+  snapshot(){
+    return {state:this.state,time:this.time,kills:this.kills,nodesRestored:this.nodesRestored,player:this.player?{...this.player}:null,character:this.character?.id,chapter:this.chapter?.id,levels:{...this.levels},evolved:{...this.evolved},bonus:{...this.bonus},choices:this.choices?.map(x=>x.id),enemies:this.enemies?.map(e=>({...e})),bullets:this.bullets?.length,enemyShots:this.enemyShots?.length,nodes:this.nodes?.map(n=>({...n})),bossSpawned:this.bossSpawned,bossDefeated:this.bossDefeated,choice:this.choice?.id,rerolls:this.rerolls};
+  }
+  step(seconds){for(let t=0;t<seconds&&this.state==='playing';t+=1/60)this.update(Math.min(1/60,seconds-t));this.render();}
+  destroy(){this.running=false;cancelAnimationFrame(this.raf);this.resizeObserver.disconnect();}
+};
+
+</script>
+<script>
+/* Accessible DOM screens, input routing, and persistence integration. */
+(() => {
+  'use strict';
+  const $=id=>document.getElementById(id),C=AG.Content,S=AG.Store,A=AG.Art;
+  const icon=A.icon,escape=s=>String(s).replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
+  const fmt=t=>`${String(Math.floor(t/60)).padStart(2,'0')}:${String(Math.floor(t%60)).padStart(2,'0')}`;
+  let route='home',overlayKind=null,helpReturn=null,selectedArchive='origin',introPage=0,toastTimer,battleTimer,cutTimer,inputGuard=0;
+  let game=null,ready=false;
+  const keys=new Set();let stick={active:false,id:null,x:0,y:0,ox:0,oy:0};
+  const char=()=>C.characters.find(c=>c.id===S.data.selected)||C.characters[0];
+  const chapter=()=>C.chapters[S.data.chapter]||C.chapters[0];
+  const weaponIcon={seed:'sprout',orbit:'moth',slash:'thorns',chain:'bolt'};
+  const palette={green:'#cadd93',amber:'#edc589',blue:'#a8c7db',pink:'#d2a394'};
+  function toast(text){
+    $('site-toast').textContent=text;$('site-toast').classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('site-toast').classList.remove('visible'),3500);
+  }
+  function battleToast(text){
+    $('battle-toast').textContent=text;$('battle-toast').classList.add('visible');clearTimeout(battleTimer);battleTimer=setTimeout(()=>$('battle-toast').classList.remove('visible'),4200);
+  }
+  function tools(){
+    $('wallet').innerHTML=icon('sprout')+S.data.seeds;
+    $('sound-btn').innerHTML=icon(AG.Audio.enabled?'sound':'mute');
+    $('sound-btn').setAttribute('aria-pressed',String(AG.Audio.enabled));
+    $('sound-btn').setAttribute('aria-label',AG.Audio.enabled?'소리 끄기':'소리 켜기');
+    document.body.classList.toggle('low-motion',!S.data.settings.motion);
+  }
+  function clearInput(){
+    keys.clear();stick={active:false,id:null,x:0,y:0,ox:0,oy:0};$('touch-stick').hidden=true;game?.setInput(0,0);
+  }
+  function controls(){
+    let x=(keys.has('KeyD')||keys.has('ArrowRight')?1:0)-(keys.has('KeyA')||keys.has('ArrowLeft')?1:0);
+    let y=(keys.has('KeyS')||keys.has('ArrowDown')?1:0)-(keys.has('KeyW')||keys.has('ArrowUp')?1:0);
+    if(stick.active){x=stick.x;y=stick.y;}game?.setInput(x,y);
+  }
+  function setOverlay(html,kind){
+    clearInput();overlayKind=kind;$('overlay').hidden=false;$('overlay').className='overlay'+(kind==='intro'?' dialogue':'');
+    $('overlay').innerHTML=html;$('overlay').setAttribute('role','dialog');$('overlay').setAttribute('aria-modal','true');$('overlay').setAttribute('aria-labelledby','dialog-title');
+    inputGuard=performance.now()+200;requestAnimationFrame(()=>$('overlay').querySelector('button:not(:disabled)')?.focus({preventScroll:true}));
+  }
+  function hideOverlay(){
+    overlayKind=null;$('overlay').hidden=true;$('overlay').innerHTML='';clearInput();
+    if(game?.state==='playing')$('game').focus({preventScroll:true});
+  }
+  function heading(kicker,title,description,counter=''){
+    return `<div class="page-heading"><div><div class="eyebrow">${kicker}</div><h1>${title}</h1></div>${description?`<p>${description}</p>`:''}${counter?`<span class="page-counter">${counter}</span>`:''}</div>`;
+  }
+  function go(next,scroll=true){
+    if(next==='help'){openHelp();return;}
+    if(game&&['playing','paused','upgrade','story','help'].includes(game.state)&&!$('play-view').hidden){
+      if(game.state==='playing')game.pause();
+      else if(game.state==='paused')showPause();
+      else toast('지금 열린 선택을 마친 뒤 탐사를 일시정지할 수 있어요.');
+      return;
+    }
+    hideOverlay();clearInput();if(game)game.state='idle';route=next;
+    document.body.classList.remove('in-game');$('menu').hidden=false;$('play-view').hidden=true;$('footer').hidden=false;
+    document.querySelectorAll('.nav-link').forEach(b=>{b.classList.toggle('active',b.dataset.nav===next);b.setAttribute('aria-current',b.dataset.nav===next?'page':'false');});
+    const renders={home:renderHome,roster:renderRoster,map:renderMap,archive:renderArchive,workshop:renderWorkshop};
+    $('menu').innerHTML=(renders[next]||renderHome)();tools();if(scroll)window.scrollTo({top:0,behavior:'instant'});
+  }
+  function renderHome(){
+    const done=C.chapters.filter(c=>S.data.clears[c.id]).length;
+    return `<div class="hero">
+      <div class="hero-art"><img src="${A.scenes[0]}" alt="오래된 온실 안에서 등불과 씨앗을 들고 기다리는 작은 정원사들"></div>
+      <div class="hero-copy"><div class="eyebrow">GARDEN CHRONICLES / VOL. 02</div><p class="hero-wordmark">AFTERGROW</p><h1>잊힌 정원에도,<br><em>내일은 자란다.</em></h1>
+      <p class="hero-description">사람들이 떠난 뒤에도, 누군가는 꽃을 돌봤다.<br>네 명의 작은 정원사와 함께 잃어버린 편지를 찾고,<br>이 정원의 다음 봄을 만들어 주세요.</p>
+      <div class="button-row"><button class="primary" data-nav="roster">나의 정원사 고르기 ${icon('arrow')}</button><button class="secondary" data-action="quick">바로 탐사하기 ${icon('arrow')}</button></div>
+      <div class="hero-detail"><span>${icon('sprout')} 4 GARDEN KEEPERS</span><span>${icon('map')} 3 CHAPTERS</span><span>${icon('sun')} 3 MIN / RUN</span></div></div>
+      <div class="hero-caption"><span class="micro">07 / THE LAST CONSERVATORY</span><strong>Not everything left behind is lost.</strong><span class="micro">기다리던 정원에, 당신이 도착했습니다.</span></div>
+      <div class="hero-bottom"><span class="status">SYSTEM ONLINE · 새벽을 기다리는 중</span><span>${S.data.runs?`${S.data.runs}번의 탐사 · ${done}/3 구역 정화 · 기억 ${S.data.archive.length}/9`:'A STORY YOU CAN PLAY · 설치 없이 시작하는 작은 모험'}</span><span>SCROLL TO MEET THE KEEPERS ↓</span></div>
+    </div><section class="home-after"><div><span class="section-kicker">EVERY KEEPER HAS A STORY</span><h2>혼자가 아니어서, 괜찮아.</h2><p>서로 다른 무기, 서로 다른 약속. 당신은 누구인가요?</p></div><div class="mini-roster">${C.characters.map(c=>`<button class="mini-character" data-action="character" data-id="${c.id}" style="--accent:${c.color}" aria-label="${c.name}, ${c.title} 자세히 보기"><img src="${A.portraits[c.id]}" alt=""><span><strong>${c.name}</strong><small>${c.code} / ${c.id.toUpperCase()}</small></span></button>`).join('')}</div></section>`;
+  }
+  function renderRoster(){
+    const c=char();
+    return `<section class="page">${heading('CHOOSE YOUR GARDEN KEEPER','네 개의 마음. 같은 정원.','겉모습만 다른 캐릭터가 아닙니다.<br>무기와 전용 스킬, 이 밤을 걷는 이유까지 달라집니다.')}
+      <div class="roster-tabs" role="group" aria-label="정원사 선택">${C.characters.map(v=>`<button class="roster-tab ${v.id===c.id?'selected':''}" data-action="select-char" data-id="${v.id}" style="--accent:${v.color}" aria-pressed="${v.id===c.id}"><img src="${A.portraits[v.id]}" alt=""><span><strong>${v.name}</strong><small>${v.title}</small></span><span class="tab-check">✓</span></button>`).join('')}</div>
+      <div class="roster-layout" style="--accent:${c.color}"><div class="roster-portrait"><img src="${A.portraits[c.id]}" alt="${c.name}의 전신 일러스트"><div class="portrait-caption"><span>FIELD PORTRAIT / ${c.code}</span><span>STILL HERE. STILL GROWING.</span></div></div>
+        <div class="character-info"><div class="micro muted">${c.en}</div><div class="character-name"><h2>${c.name}</h2><span class="pill">${c.code} / ${c.style.toUpperCase()}</span></div><p class="character-title">${c.title}</p><p class="character-quote">${c.quote}</p><p class="character-bio">${c.bio}</p>
+          <div class="character-stats">${['공격','기동','생존'].map((label,i)=>`<div class="stat-row"><span>${label}</span><span class="stat-pips">${Array.from({length:5},(_,j)=>`<i class="${j<c.stats[i]?'on':''}"></i>`).join('')}</span></div>`).join('')}</div>
+          <div class="trait-grid"><div class="trait">${icon(weaponIcon[c.style])}<div><label>STARTING WEAPON</label><strong>${c.weapon}</strong><p>${c.weaponDesc}</p></div></div><div class="trait">${icon('star')}<div><label>UNIQUE SKILL / E · ${c.cooldown}S</label><strong>${c.skill}</strong><p>${c.skillDesc}</p></div></div></div>
+          <div class="trait" style="margin-bottom:21px">${icon('shield')}<div><label>PASSIVE / ${c.passive}</label><p>${c.passiveDesc}</p></div></div>
+          <button class="primary" data-nav="map">${c.name}와 함께 출발하기 ${icon('arrow')}</button></div></div></section>`;
+  }
+  function renderMap(){
+    const c=char(),ch=chapter();
+    return `<section class="page">${heading('LETTERS FROM A FORGOTTEN GARDEN','어떤 기억을 찾아갈까요?','세 구역 모두 지금 탐사할 수 있습니다.<br>01번부터 걸으면 하나의 이야기가 이어집니다.')}
+      <div class="chapter-grid">${C.chapters.map((v,i)=>`<button class="chapter-card ${S.data.chapter===i?'selected':''}" data-action="select-chapter" data-id="${i}" style="--accent:${v.color}" aria-pressed="${S.data.chapter===i}"><div class="chapter-picture"><img src="${A.scenes[i]}" alt="${v.name}의 풍경"><span class="chapter-number">${v.no}</span><span class="chapter-stamp">${S.data.clears[v.id]?'MEMORY RESTORED':'UNEXPLORED'}</span></div><div class="chapter-info"><span class="micro">${v.en}</span><h2>${v.name}</h2><p>${v.description}</p><div class="chapter-meta"><span>03:00 · ${i===0?'차분한 시작':i===1?'주의 깊은 발걸음':'마지막 도전'}</span>${icon(S.data.chapter===i?'check':'arrow')}</div></div></button>`).join('')}</div>
+      <div class="expedition-bar" style="--accent:${c.color}"><img src="${A.portraits[c.id]}" alt=""><div class="expedition-copy"><span class="micro muted">EXPEDITION ${ch.no} / ${c.code}</span><h3>${c.name} · ${ch.name}</h3><p>${ch.danger} / 수호자: ${ch.boss}</p></div><button class="text-button" data-nav="roster">정원사 변경</button><button class="primary" data-action="begin-intro">이 구역으로 출발 ${icon('arrow')}</button></div>
+      <p class="map-note">자동 공격 · 이동 + 돌진 + 전용 스킬 · 탐사 중 만나는 편지의 선택이 능력과 결말을 바꿉니다.</p></section>`;
+  }
+  function unlockHint(a){
+    const c=C.characters.find(c=>c.id===a.id);if(c)return `${c.name}로 구역 하나를 정화하면 열립니다.`;
+    if(a.id==='ending')return '세 구역을 모두 정화하면 마지막 기록이 열립니다.';
+    return '해당 구역의 수호자를 정화하면 편지가 열립니다.';
+  }
+  function renderArchive(){
+    const a=C.archives.find(a=>a.id===selectedArchive&&S.data.archive.includes(a.id))||C.archives[0];
+    return `<section class="page">${heading('THE MEMORY HERBARIUM','잊지 않기로 한 것들.','정화한 구역과 함께 걸은 정원사의 이야기가 남습니다.<br>모은 기억은 이 브라우저에 저장됩니다.')}
+      <div class="archive-layout"><div class="archive-list">${C.archives.map(v=>{const open=S.data.archive.includes(v.id);return `<button class="archive-item ${v.id===a.id?'selected':''} ${open?'':'locked'}" data-action="read" data-id="${v.id}" aria-label="${v.title}${open?'':' · '+unlockHint(v)}">${icon(open?'letter':'lock')}<span><small>${v.tag}</small><strong>${open?v.title:'아직 닿지 않은 기억'}</strong></span></button>`;}).join('')}</div>
+      <article class="archive-page paper-grain"><div class="archive-decoration"><span class="micro">PRESSED MEMORIES<br>COLLECTED ${S.data.archive.length} / ${C.archives.length}</span>${icon('sprout')}</div><span class="micro" style="display:block;margin-top:25px">${a.tag}</span><h2>${a.title}</h2><p>${a.text}</p><div class="archive-sign">For the next spring,<br>The garden keepers.</div></article></div></section>`;
+  }
+  function renderWorkshop(){
+    return `<section class="page">${heading('SMALL TOOLS. LASTING CHANGE.','다음 밤을 위한 준비.','탐사에서 모은 씨앗으로 모든 정원사를 강화하세요.<br>성장과 기억은 이 브라우저에 남습니다.')}
+      <div class="workshop-grid">${C.research.map(r=>{const lv=S.data.research[r.id],cost=r.cost*(lv+1),full=lv>=r.max;return `<article class="research-card">${icon(r.icon)}<span class="micro muted">PERMANENT RESEARCH / ${lv} OF ${r.max}</span><h2>${r.name}</h2><p>${r.desc}</p><div class="stat-pips">${Array.from({length:3},(_,i)=>`<i class="${i<lv?'on':''}"></i>`).join('')}</div><button class="secondary" data-action="buy" data-id="${r.id}" ${full||S.data.seeds<cost?'disabled':''}>${full?'연구 완료':icon('sprout')+cost+' 씨앗으로 연구'}</button></article>`;}).join('')}</div>
+      <p class="map-note">탐사를 마치면 최소 5 씨앗을 받습니다. 정화한 개체·노드·구역 완료에 따라 보상이 늘어납니다. ${S.available?'자동 저장 중':'브라우저 저장이 차단되어 이번 세션에서만 유지됩니다.'}</p>
+      <div class="recipe-section"><div class="section-kicker">EVOLUTION FIELD NOTES</div><h2>둘이 만나, 새로운 봄.</h2><div class="recipe-grid">${C.evolutions.map(e=>`<article class="recipe">${icon(e.icon)}<div><strong>${e.name}</strong><p>${e.desc}</p><span class="micro">${Object.entries(e.needs).map(([id,lv])=>C.modules.find(m=>m.id===id).name+' '+lv+'단계').join(' + ')}</span></div></article>`).join('')}</div><p class="map-note">탐사 중 조건을 갖추면 다음 레벨 업 선택지에 진화 카드가 우선 등장합니다. 작업실에서 미리 구매하는 방식은 아닙니다.</p></div></section>`;
+  }
+  function beginIntro(){
+    if(!ready)return;introPage=0;showIntro();
+  }
+  function showIntro(){
+    const c=char(),ch=chapter(),line=ch.intro[introPage],self=line.speaker==='self';
+    const text=line.text==='$intro'?c.intro:line.text;
+    setOverlay(`<div class="dialogue-stage" style="--accent:${c.color}">
+      <div class="dialogue-portrait">${self?`<img src="${A.portraits[c.id]}" alt="${c.name}">`:`<div class="radio-art">${icon('sprout')}</div>`}</div>
+      <article class="dialogue-paper"><span class="micro">CHAPTER ${ch.no} / ${ch.tag}</span><h2 id="dialog-title">${self?c.name:line.name}</h2><p class="dialogue-text">${text}</p><div class="dialogue-controls"><span class="dialogue-dots">${ch.intro.map((_,i)=>`<i class="${i<=introPage?'on':''}"></i>`).join('')}</span><button class="text-button" data-action="skip-intro">이야기 건너뛰기</button><button class="primary" data-action="next-intro">${introPage===ch.intro.length-1?'탐사 시작':'다음'} ${icon('arrow')}</button></div></article>
+    </div><button class="tool-button overlay-close" data-action="cancel-intro" aria-label="준비 화면으로 돌아가기">${icon('close')}</button>`,'intro');
+  }
+  function startGame(){
+    hideOverlay();clearInput();document.body.classList.add('in-game');$('menu').hidden=true;$('play-view').hidden=false;$('footer').hidden=true;
+    $('play-view').style.setProperty('--accent',char().color);game.motion=S.data.settings.motion;game.start(char(),chapter());
+    $('game').focus({preventScroll:true});AG.Audio.init();showCut('CHAPTER '+chapter().no,chapter().name,chapter().tag);updateHud();updateModules();
+  }
+  function showCut(kicker,title,desc){
+    $('chapter-cut').hidden=false;$('chapter-cut').innerHTML=`<span class="micro">${kicker}</span><h2>${title}</h2><p>${desc}</p>`;
+    $('chapter-cut').style.animation='none';void $('chapter-cut').offsetWidth;$('chapter-cut').style.animation='';
+    clearTimeout(cutTimer);cutTimer=setTimeout(()=>$('chapter-cut').hidden=true,3000);
+  }
+  function showUpgrade(){
+    const p=game.player;
+    setOverlay(`<section class="modal"><div class="modal-top"><div class="eyebrow">A LITTLE STRONGER, A LITTLE CLOSER</div><h2 id="dialog-title">어떤 봄을 피워 볼까요?</h2><p>LEVEL ${String(p.level).padStart(2,'0')} · 하나의 접목을 고르세요. 정원의 시간은 잠시 멈춥니다.</p></div><div class="upgrade-cards">${game.choices.map((m,i)=>`<button class="upgrade-card ${m.needs?'evolution':''}" data-action="upgrade" data-id="${i}" style="--accent:${palette[m.color]}" aria-label="${m.name}, ${m.desc}"><span class="card-key">${i+1}</span><span class="card-art">${icon(m.icon)}</span><span class="micro">${m.kind}${m.needs?' / NEW FORM':''}</span><h3>${m.name}</h3><p>${m.desc}</p><span class="card-bottom"><span>${m.needs?'EVOLUTION READY':game.levels[m.id]?'LEVEL '+game.levels[m.id]+' → '+(game.levels[m.id]+1):'NEW GROWTH'}</span>${icon('arrow')}</span></button>`).join('')}</div><div class="modal-foot"><span>숫자 1 · 2 · 3으로 선택할 수 있어요</span><button data-action="reroll" ${game.rerolls?'':'disabled'}>다시 뽑기 ${game.rerolls}/1</button></div></section>`,'upgrade');
+  }
+  function showStory(reply=false){
+    const e=game.chapter.event;
+    setOverlay(`<section class="story-choice">${icon('letter','story-icon')}<div class="eyebrow">${e.kicker}</div><h2 id="dialog-title">${e.title}</h2><p>${e.text}</p>
+      ${reply?`<p class="story-reply">${game.choice.reply}</p><div class="button-row"><button class="primary" data-action="story-continue">마음을 정하고, 다시 앞으로 ${icon('arrow')}</button></div>`:`<div class="story-options">${e.choices.map((c,i)=>`<button class="story-option" data-action="story-choice" data-id="${i}"><strong>${c.label} ${icon('arrow')}</strong><small>${c.description}</small></button>`).join('')}</div><div class="modal-foot">당신의 선택은 이번 탐사의 능력과 결말에 남습니다.</div>`}</section>`,reply?'story-reply':'story');
+  }
+  function showPause(){
+    setOverlay(`<section class="compact-modal"><div class="eyebrow">THE GARDEN CAN WAIT</div><h2 id="dialog-title">잠시, 숨 고르기.</h2><p>잘하고 있어요.<br>온실도 당신과 함께 쉬고 있습니다.</p><div class="micro">${game.character.name} · ${game.chapter.name} · ${fmt(game.time)}</div><button class="primary" data-action="resume">계속 걷기 ${icon('arrow')}</button><button class="secondary" data-action="help">조작법 보기</button><label class="motion-control"><input type="checkbox" id="motion-toggle" ${S.data.settings.motion?'checked':''}> 배경 움직임과 화면 흔들림</label><button class="text-button" data-action="abandon">이 탐사를 마치고 기록 남기기</button></section>`,'pause');
+  }
+  function showResult(result){
+    const reward=S.finish(result);tools();
+    const isFirst=result.choice===result.chapter.event.choices[0];
+    const text=result.win?(isFirst?result.chapter.endCare:result.chapter.endSignal):'아직 닿지 못한 편지가 있어요. 회수한 씨앗은 작업실에 남았습니다. 작은 준비를 더하고, 다시 걸어가도 괜찮아요.';
+    setOverlay(`<section class="result-modal"><div class="result-art"><img src="${A.portraits[result.character.id]}" alt="${result.character.name}"></div><div class="result-copy"><div class="eyebrow">${result.win?'MEMORY RESTORED':'NOT THE END OF THE STORY'}</div><h2 id="dialog-title">${result.win?'정원이 당신을 기억해요.':'다음 봄에, 다시 만나요.'}</h2><p>${text}</p>${result.win?`<p class="ending-line">${result.character.ending}</p>`:''}<div class="result-stats"><div><label>생존 시간</label><strong>${fmt(result.time)}</strong></div><div><label>정화 개체</label><strong>${result.kills}</strong></div><div><label>성장 레벨</label><strong>${result.level}</strong></div><div><label>노드 복구</label><strong>${result.nodes}</strong></div></div><div class="reward-line">${icon('sprout')} +${reward} 씨앗 ${result.win?'· 새로운 기억이 도감에 남았습니다.':''}</div><div class="button-row"><button class="primary" data-action="${result.win&&S.data.chapter<2?'next-chapter':'retry'}">${result.win&&S.data.chapter<2?'다음 편지를 찾아서':'새로운 조합으로 다시'} ${icon('arrow')}</button><button class="secondary" data-action="result-workshop">작업실로</button><button class="text-button" data-action="result-home">${result.win?'기억 도감 열기':'정원으로 돌아가기'}</button></div></div></section>`,'result');
+    if(result.win)AG.Audio.sfx('upgrade');
+  }
+  function openHelp(){
+    if(overlayKind==='help')return;
+    helpReturn={html:$('overlay').innerHTML,kind:overlayKind,state:game?.state};
+    if(game&&game.state!=='idle'&&game.state!=='result')game.state='help';
+    setOverlay(`<section class="help-modal"><div class="eyebrow">A FIELD GUIDE FOR YOUR FIRST NIGHT</div><h2 id="dialog-title">이 정원을 걷는 법.</h2><div class="help-rows">
+      <div class="help-row"><span><kbd>W A S D</kbd><kbd>↑ ↓ ← →</kbd></span><div><strong>움직임이 곧 전략</strong><p>공격은 자동입니다. 모바일과 마우스는 게임 화면을 드래그해 이동합니다.</p></div></div>
+      <div class="help-row"><span><kbd>SPACE</kbd></span><div><strong>무적 돌진</strong><p>바라보는 방향으로 빠르게 빠져나옵니다. 기본 대기시간 3초.</p></div></div>
+      <div class="help-row"><span><kbd>E</kbd></span><div><strong>정원사만의 전용 스킬</strong><p>과충전, 등불 폭발, 보호막, 시간 정지. 선택한 캐릭터마다 다릅니다.</p></div></div>
+      <div class="help-row"><span>씨앗 · 접목</span><div><strong>성장과 진화</strong><p>씨앗을 모아 3개 카드 중 하나를 고릅니다. 접목 코어 3 + 고속 축전기 2는 전용 무기를 진화시킵니다.</p></div></div>
+      <div class="help-row"><span>정화 노드</span><div><strong>2초의 용기</strong><p>빛나는 원 안에서 2초 머무르면 회복·충격파·경험치를 얻습니다. 23초 후 다시 켜집니다.</p></div></div>
+    </div><p class="help-tip"><strong>목표:</strong> 3분 이상 생존하고, 2분 25초에 나타나는 수호자를 정화하세요.<br>빗물 서고의 푸른 물웅덩이는 이동을 늦춥니다. 바닥 경보와 적의 사격을 피하세요.<br><kbd>P / ESC</kbd> 일시정지 · <kbd>M</kbd> 소리 · 선택과 이야기 중에는 전투가 멈춥니다.<br>진행도는 이 브라우저에 저장됩니다. ${S.available?'다른 기기로 자동 동기화되지는 않습니다.':'현재 저장이 차단되어 세션 종료 시 사라질 수 있습니다.'}</p><button class="primary" data-action="close-help">이제, 걸어 볼까요 ${icon('check')}</button></section>`,'help');
+  }
+  function closeHelp(){
+    const back=helpReturn;helpReturn=null;
+    if(game&&back?.state)game.state=back.state;
+    if(back?.kind)setOverlay(back.html,back.kind);else hideOverlay();
+  }
+  function updateModules(){
+    if(!game?.player)return;
+    const slots=[{name:game.character.weapon,icon:weaponIcon[game.character.style],level:1+game.levels.weapon}];
+    for(const m of C.modules)if(m.id!=='weapon'&&game.levels[m.id])slots.push({name:m.name,icon:m.icon,level:game.levels[m.id]});
+    for(const e of C.evolutions)if(game.evolved[e.id])slots.push({name:e.name,icon:e.icon,level:'✧',evolution:true});
+    $('module-rack').innerHTML=slots.map(s=>`<div class="module-slot ${s.evolution?'evolution':''}" title="${s.name} ${s.level}" aria-label="${s.name} ${s.level}">${icon(s.icon)}<small>${s.level}</small></div>`).join('');
+  }
+  function updateHud(){
+    if(!game?.player||$('play-view').hidden)return;
+    const p=game.player;
+    $('hp-fill').style.width=Math.max(0,p.hp/p.maxHp*100)+'%';$('hp-text').textContent=Math.ceil(p.hp)+' / '+p.maxHp;$('lv-text').textContent='LV '+String(p.level).padStart(2,'0');
+    $('clock').textContent=game.time<game.chapter.duration?fmt(Math.ceil(game.chapter.duration-game.time)):'정화 중';
+    $('clock').style.fontSize=game.time<game.chapter.duration?'':'22px';
+    $('objective').textContent=game.bossDefeated?'새벽까지 생존하세요':game.bossSpawned?'수호자를 정화하세요':'새벽까지 남은 시간';
+    $('kill-text').textContent=String(game.kills).padStart(3,'0');$('xp-fill').style.width=Math.min(100,p.xp/p.nextXp*100)+'%';$('xp-text').textContent=Math.floor(p.xp)+' / '+p.nextXp;
+    $('nodes-text').textContent='노드 복구 '+game.nodesRestored+'회';
+    $('skill-cd').textContent=p.skillCd>0?p.skillCd.toFixed(1)+'s':p.buff>0?'과충전 중':'준비 완료';
+    $('dash-cd').textContent=p.dashCd>0?p.dashCd.toFixed(1)+'s':'준비 완료';
+    $('skill-cover').style.height=p.skillCd/game.character.cooldown*100+'%';$('dash-cover').style.height=p.dashCd/Math.max(1.3,3-game.levels.speed*.3-game.bonus.dash)*100+'%';
+    $('skill-btn').classList.toggle('ready',p.skillCd<=0);$('dash-btn').classList.toggle('ready',p.dashCd<=0);
+    $('skill-btn').setAttribute('aria-label',game.character.skill+' '+(p.skillCd>0?'대기 중':'사용 가능'));$('dash-btn').setAttribute('aria-label','돌진 '+(p.dashCd>0?'대기 중':'사용 가능'));
+    const boss=game.boss;$('boss-hud').hidden=!boss||boss.dead;
+    if(boss&&!boss.dead){$('boss-name').textContent=game.chapter.boss;$('boss-percent').textContent=Math.max(0,Math.ceil(boss.hp/boss.maxHp*100))+'%';$('boss-fill').style.width=Math.max(0,boss.hp/boss.maxHp*100)+'%';}
+  }
+  function gameEvent(type,payload){
+    if(type==='start'){
+      $('hud-portrait').src=A.portraits[game.character.id];$('hud-name').textContent=game.character.code+' / '+game.character.name;
+      $('chapter-label').textContent='CH. '+game.chapter.no+' / '+game.chapter.name;
+      $('skill-name').textContent=game.character.skill;$('skill-icon').innerHTML=icon(weaponIcon[game.character.style]);$('dash-icon').innerHTML=icon('wind');
+      $('mission-text').textContent=game.chapter.id==='rain'?'물웅덩이를 피해, 정화 노드 안에서 2초 머무르세요.':'정화 노드의 원 안에서 2초 머무르세요.';
+    }
+    if(type==='upgrade')showUpgrade();
+    if(type==='pause')showPause();
+    if(type==='story')showStory();
+    if(type==='result')showResult(payload);
+    if(type==='toast')battleToast(payload.text);
+    if(type==='modules')updateModules();
+    if(type==='boss')showCut('GUARDIAN AWAKENED',game.chapter.boss,game.chapter.bossTitle);
+  }
+  function selectChar(id){
+    if(!C.characters.some(c=>c.id===id))return;
+    S.data.selected=id;S.save();go('roster',false);
+  }
+  document.addEventListener('click',event=>{
+    const target=event.target.closest('button');if(!target||target.disabled)return;
+    if(target.dataset.nav){AG.Audio.sfx('click');go(target.dataset.nav);return;}
+    const action=target.dataset.action,id=target.dataset.id;
+    if(!action)return;AG.Audio.sfx('click');
+    switch(action){
+      case 'character':S.data.selected=id;S.save();go('roster');break;
+      case 'select-char':selectChar(id);break;
+      case 'select-chapter':S.data.chapter=Number(id);S.save();go('map',false);break;
+      case 'quick':case 'begin-intro':beginIntro();break;
+      case 'next-intro':if(++introPage>=chapter().intro.length)startGame();else showIntro();break;
+      case 'skip-intro':startGame();break;
+      case 'cancel-intro':hideOverlay();go('map');break;
+      case 'upgrade':if(game.choose(Number(id))){hideOverlay();updateHud();}break;
+      case 'reroll':game.reroll();break;
+      case 'story-choice':if(game.applyStory(Number(id)))showStory(true);break;
+      case 'story-continue':game.resume();hideOverlay();break;
+      case 'resume':game.resume();hideOverlay();break;
+      case 'help':openHelp();break;
+      case 'close-help':closeHelp();break;
+      case 'abandon':game.state='playing';game.finish(false);break;
+      case 'read':{const a=C.archives.find(a=>a.id===id);if(!a)break;if(!S.data.archive.includes(id))toast(unlockHint(a));else{selectedArchive=id;go('archive',false);}break;}
+      case 'buy':{if(S.buy(id)){go('workshop',false);toast('연구 완료. 다음 탐사부터 모든 정원사에게 적용됩니다.');}else toast('씨앗이 부족하거나 이미 완료한 연구입니다.');break;}
+      case 'retry':startGame();break;
+      case 'next-chapter':S.data.chapter=Math.min(2,S.data.chapter+1);S.save();game.state='idle';hideOverlay();beginIntro();break;
+      case 'result-workshop':go('workshop');break;
+      case 'result-home':{const win=game.player.hp>0&&game.bossDefeated;if(win)selectedArchive=game.chapter.note;go(win?'archive':'home');break;}
+    }
+  });
+  document.addEventListener('change',e=>{
+    if(e.target.id==='motion-toggle'){S.data.settings.motion=e.target.checked;S.save();game.motion=e.target.checked;tools();}
+  });
+  $('sound-btn').addEventListener('click',()=>{AG.Audio.toggle();tools();});
+  $('help-btn').addEventListener('click',()=>{if(ready)openHelp();});
+  $('pause-btn').addEventListener('click',()=>game?.pause());
+  for(const [id,fn] of [['skill-btn',()=>game?.skill()],['dash-btn',()=>game?.dash()]]){
+    $(id).addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();fn();});
+    $(id).addEventListener('click',e=>{if(e.detail===0)fn();});
+  }
+  const tracked=['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'];
+  document.addEventListener('keydown',e=>{
+    if(!ready)return;
+    if(e.code==='Tab'&&overlayKind){
+      const els=[...$('overlay').querySelectorAll('button:not(:disabled),input:not(:disabled),a[href]')];const first=els[0],last=els.at(-1);
+      if(e.shiftKey&&(document.activeElement===first||!$('overlay').contains(document.activeElement))){e.preventDefault();last?.focus();}
+      if(!e.shiftKey&&(document.activeElement===last||!$('overlay').contains(document.activeElement))){e.preventDefault();first?.focus();}
+    }
+    if(!e.repeat){
+      if(e.code==='KeyM'){AG.Audio.toggle();tools();}
+      if(e.code==='F1'){e.preventDefault();if(overlayKind==='help')closeHelp();else openHelp();}
+      if(e.code==='Escape'||e.code==='KeyP'){
+        e.preventDefault();
+        if(overlayKind==='help')closeHelp();
+        else if(overlayKind==='pause'){game.resume();hideOverlay();}
+        else if(overlayKind==='intro'){hideOverlay();if(game)game.state='idle';go('map');}
+        else if(game?.state==='playing')game.pause();
+      }
+      if(overlayKind==='upgrade'&&performance.now()>inputGuard&&/^Digit[123]$/.test(e.code)){if(game.choose(Number(e.code.slice(-1))-1)){hideOverlay();updateHud();}}
+      if(overlayKind==='story'&&performance.now()>inputGuard&&/^Digit[12]$/.test(e.code)){if(game.applyStory(Number(e.code.slice(-1))-1))showStory(true);}
+      if(game?.state==='playing'&&e.code==='Space'){e.preventDefault();game.dash();}
+      if(game?.state==='playing'&&e.code==='KeyE'){e.preventDefault();game.skill();}
+    }
+    if(game?.state==='playing'&&tracked.includes(e.code)){e.preventDefault();keys.add(e.code);controls();}
+  });
+  document.addEventListener('keyup',e=>{keys.delete(e.code);controls();});
+  $('game').addEventListener('pointerdown',e=>{
+    if(game?.state!=='playing'||stick.active||e.button>0)return;e.preventDefault();
+    const r=$('game').getBoundingClientRect();stick={active:true,id:e.pointerId,x:0,y:0,ox:e.clientX-r.left,oy:e.clientY-r.top};
+    $('game').setPointerCapture(e.pointerId);$('touch-stick').hidden=false;$('touch-stick').style.left=(stick.ox-47)+'px';$('touch-stick').style.top=(stick.oy-47)+'px';$('touch-knob').style.transform='translate(0,0)';
+  });
+  $('game').addEventListener('pointermove',e=>{
+    if(!stick.active||e.pointerId!==stick.id)return;e.preventDefault();
+    const r=$('game').getBoundingClientRect(),dx=e.clientX-r.left-stick.ox,dy=e.clientY-r.top-stick.oy,len=Math.hypot(dx,dy),factor=len>34?34/len:1;
+    stick.x=dx*factor/34;stick.y=dy*factor/34;$('touch-knob').style.transform=`translate(${dx*factor}px,${dy*factor}px)`;controls();
+  });
+  const release=e=>{if(stick.id===e.pointerId){stick.active=false;stick.id=null;stick.x=stick.y=0;$('touch-stick').hidden=true;controls();}};
+  for(const event of ['pointerup','pointercancel','lostpointercapture'])$('game').addEventListener(event,release);
+  $('game').addEventListener('contextmenu',e=>e.preventDefault());
+  window.addEventListener('blur',()=>{clearInput();if(game?.state==='playing')game.pause();});
+  document.addEventListener('visibilitychange',()=>{if(document.hidden){clearInput();if(game?.state==='playing')game.pause();}if(game)game.last=performance.now();});
+  async function init(){
+    $('brand-icon').innerHTML=icon('sprout');$('help-btn').innerHTML=icon('help');tools();
+    $('menu').innerHTML='<section class="page"><div class="eyebrow">OPENING THE CONSERVATORY</div><h1 style="font:32px Georgia;margin-top:24px">정원의 문을 열고 있어요.</h1></section>';
+    try{
+      await A.prepare();game=new AG.Engine($('game'),gameEvent);ready=true;go('home');
+      setInterval(updateHud,100);
+      if(!S.available)toast('브라우저 저장이 차단되어 진행도가 이번 세션에서만 유지됩니다.');
+      if(new URLSearchParams(location.search).has('debug')){
+        window.__AG_TEST__={game,store:S,get route(){return route;},get overlay(){return overlayKind;},
+          snapshot:()=>game.snapshot(),
+          start:(id='rook',index=0)=>{S.data.selected=id;S.data.chapter=index;startGame();},
+          grant:(id,n=1)=>{const m=C.modules.find(m=>m.id===id);if(!m)throw new Error('Unknown module');
+            for(let i=0;i<n&&game.levels[id]<m.max;i++){game.levels[id]++;if(id==='hull'){game.player.maxHp+=20;game.heal(30);}}updateModules();},
+          xp:n=>{game.gainXp(n);game.checkLevel();},
+          step:n=>{game.step(n);updateHud();},
+          choose:i=>{const ok=game.choose(i);if(ok)hideOverlay();updateHud();return ok;},
+          story:(i=0)=>{if(game.applyStory(i)){game.resume();hideOverlay();}},
+          end:win=>game.finish(win),
+          updateHud,go};
+      }
+    }catch(err){
+      console.error(err);$('menu').innerHTML=`<section class="page"><h1>정원을 여는 중 문제가 생겼어요.</h1><p style="margin:20px 0">페이지를 새로 고치거나 최신 브라우저로 열어 주세요.</p><pre style="white-space:pre-wrap">${escape(err.message)}</pre></section>`;
+    }
+  }
+  init();
+})();
+
+</script>
+</body>
+</html>
