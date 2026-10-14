@@ -49,3 +49,50 @@ body.in-game .topbar{background:#17182d;border-bottom:2px solid #ffcf40}body.in-
 @media(max-width:760px){.topbar{height:68px;padding:0 4%;gap:9px}.brand{font-size:19px}.brand small{font-size:7px}.brand>span:first-child{width:31px;height:33px}.main-nav{overflow-x:auto}.nav-link{padding:10px 7px;font-size:10px}.seed-wallet{font-size:10px;padding:4px}.hero{min-height:650px}.hero:before{background:linear-gradient(90deg,#141324f5 0%,#141324c9 34%,#14132444 90%),linear-gradient(0deg,#141324ee 0%,transparent 45%)}.hero-art img{object-position:65% 50%}.hero-copy{padding:67px 5% 94px;max-width:96%}.hero-copy .eyebrow{font-size:9px;letter-spacing:1.6px}.hero-wordmark{font-size:20px}.hero h1{font-size:clamp(55px,10.7vw,83px);letter-spacing:-2.5px;text-shadow:3px 4px 0 #12152c,6px 7px 0 #ff77a6}.hero h1 em{text-shadow:3px 4px 0 #12152c,6px 7px 0 #ff77a6}.hero-description{font-size:12px;margin:28px 0 26px;max-width:380px}.hero .button-row{gap:10px}.hero .primary,.hero .secondary{min-height:44px;font-size:11px;padding:10px 14px}.hero-detail{gap:9px;margin-top:27px;font-size:8px}.hero-caption{display:none}.hero-bottom{left:4%;right:4%;font-size:7px;gap:5px}.hero-bottom>span:last-child{display:none}.home-after{display:block;padding:28px 4%}.home-after h2{font-size:25px}.home-after p{margin-bottom:17px}.mini-roster{grid-template-columns:repeat(2,1fr)}.mini-character{min-height:95px}.mini-character img{height:97px}.page{padding:29px 4% 48px}.page-heading h1{font-size:clamp(28px,6vw,40px)}.page-heading p{font-size:11px}.roster-tabs{grid-template-columns:repeat(2,1fr)}.roster-tab{padding:9px 11px}.roster-tab img{height:56px;width:52px}.roster-tab strong{font-size:12px}.roster-layout{display:block;padding:8px 21px 27px;box-shadow:6px 6px 0 #11132c}.roster-portrait{height:260px}.character-name h2{font-size:42px}.chapter-card{box-shadow:5px 5px 0 #13152a}.chapter-picture{min-height:190px}.chapter-number{font-size:43px}.chapter-info h2{font-size:25px}.expedition-bar{box-shadow:4px 4px 0 #11132c}.archive-page{box-shadow:5px 5px 0 #ff77a6}.archive-page h2{font-size:28px}.research-card h2{font-size:25px}body.in-game .topbar{height:54px}body.in-game .brand{font-size:15px}.play-view{height:calc(100dvh - 54px)}.mission{max-width:156px;top:97px;left:12px;padding:6px}.hud-clock strong{font-size:29px}.modal,.compact-modal,.help-modal,.result-modal,.story-choice,.dialogue-paper{box-shadow:5px 5px 0 #ff77a6}.upgrade-card h3{font-size:21px}.chapter-cut h2{font-size:34px}}
 @media(max-width:390px){.topbar .top-tools{gap:3px}.nav-link{font-size:9px;padding:9px 5px}.hero{min-height:610px}.hero h1{font-size:56px}.hero-description{font-size:11px}.hero-stamp{font-size:7px}.hero-detail{font-size:7px}.hero-bottom{font-size:6px}.mini-character{padding-right:2px}.mini-character small{display:none}.mini-character img{width:68px}.hud-counter strong{font-size:18px}}
 @media(prefers-reduced-motion:reduce){.mini-character:hover,.roster-tab:hover{transform:none}}
+
+/* Mobile onboarding and thumb-first controls: independent, readable touch targets. */
+.tutorial-modal{width:min(100%,570px);max-height:calc(100dvh - 32px);overflow-y:auto;padding:clamp(22px,4vw,38px);background:#211a36;border:3px solid #ffcf40;box-shadow:9px 9px 0 #ff77a6;color:#fff8eb;position:relative}
+.tutorial-kicker{font:700 11px var(--mono);letter-spacing:1.5px;color:#79e5e3}
+.tutorial-symbol{display:grid;place-items:center;margin:24px 0 18px;width:74px;height:74px;background:#ffcf40;color:#242036;box-shadow:7px 7px 0 #ff77a6;transform:rotate(-4deg)}
+.tutorial-symbol .icon{width:38px;height:38px}
+.tutorial-modal h2{font:800 clamp(26px,4vw,38px)/1.24 var(--sans);letter-spacing:-1.2px;word-break:keep-all}
+.tutorial-description{font-size:15px;line-height:1.85;margin:17px 0;color:#e5ddea;word-break:keep-all}
+.tutorial-hint{background:#15132b;padding:14px 15px;border-left:4px solid #79e5e3;color:#f5dba0;font-size:12px;line-height:1.7;word-break:keep-all}
+.tutorial-progress{display:flex;gap:7px;margin:22px 0}.tutorial-progress i{width:32px;height:5px;background:#f5f2ed40}.tutorial-progress i.on{background:#ffcf40}
+.tutorial-buttons{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.tutorial-buttons .text-button,.tutorial-buttons .secondary,.tutorial-buttons .primary{min-height:44px;padding:10px 13px;font-size:12px}.tutorial-forward{display:flex;align-items:center;gap:8px;margin-left:auto}.tutorial-buttons .primary{background:#ffcf40;color:#202037;border:0}
+.play-view .touch-stick{width:116px;height:116px;left:max(16px,env(safe-area-inset-left));bottom:max(38px,calc(env(safe-area-inset-bottom) + 25px));z-index:5;background:#1a1d43aa;border:2px solid #79e5e3b8;box-shadow:0 0 0 9px #79e5e310,inset 0 0 22px #0e1428;opacity:.75;transition:opacity .12s,border-color .12s}
+.play-view .touch-stick.active{opacity:1;border-color:#ffcf40;box-shadow:0 0 0 9px #ffcf401c,inset 0 0 22px #0e1428}
+.play-view .touch-stick div{width:44px;height:44px;top:calc(50% - 22px);left:calc(50% - 22px);background:#79e5e3a8;border:2px solid #fff9dc;box-shadow:0 0 13px #79e5e371}
+.touch-stick-label{position:absolute;bottom:-22px;left:0;right:0;text-align:center;color:#fcf3d7;font:700 11px var(--sans);letter-spacing:2px;text-shadow:0 2px 5px #080923}
+@media(max-width:760px){body.in-game .top-tools .tool-button{min-width:44px;min-height:44px;width:44px;height:44px}body.in-game .hud-counter>.tool-button{min-width:44px;min-height:44px;width:44px;height:44px;font-size:16px}body.in-game .hud-counter{gap:0}body.in-game .hud-counter>strong{font-size:17px}}
+@media(max-width:600px){
+  .play-view .module-rack{position:absolute;left:0;bottom:155px;max-width:155px;pointer-events:none}
+  .play-view .skill-buttons{gap:8px;margin-left:auto}
+  .play-view .ability-button:not(.dash){width:80px;min-width:80px;height:88px;min-height:88px;padding:8px 4px}
+  .play-view .ability-button.dash{width:72px;min-width:72px;height:76px;min-height:76px;padding:8px 4px}
+  .play-view .ability-button b{font-size:10px;line-height:1.15}
+  .play-view .ability-button small{font-size:8px}
+  .play-view .battle-toast{bottom:122px}
+  .tutorial-modal{max-height:calc(100dvh - 28px);padding:21px 20px;box-shadow:5px 5px 0 #ff77a6}
+  .tutorial-symbol{width:60px;height:60px;margin:15px 0 14px}.tutorial-symbol .icon{width:30px;height:30px}
+  .tutorial-modal h2{font-size:27px}.tutorial-description{font-size:13px;margin:13px 0}.tutorial-hint{font-size:11px;padding:10px 12px}
+  .tutorial-progress{margin:15px 0}.tutorial-buttons{gap:4px}.tutorial-buttons .primary{gap:4px}
+}
+@media(max-height:590px) and (max-width:600px){.play-view .touch-stick{width:100px;height:100px}.play-view .module-rack{bottom:136px}.tutorial-modal{padding:15px 17px}.tutorial-symbol{width:48px;height:48px;margin:8px 0}.tutorial-modal h2{font-size:23px}.tutorial-description{font-size:12px;margin:9px 0}.tutorial-hint{font-size:10px;padding:8px 10px}.tutorial-progress{margin:10px 0}}
+
+@media (hover:none) and (pointer:coarse) and (max-height:600px) and (min-width:601px){
+ body.in-game .topbar{height:50px;padding:0 3%}
+ body.in-game .top-tools .tool-button{width:44px;height:44px}
+ .play-view{min-height:0!important;height:calc(100dvh - 50px)!important}
+ .play-view .touch-stick{width:100px;height:100px;bottom:max(34px,calc(env(safe-area-inset-bottom) + 24px))}
+ .play-view .actionbar{bottom:max(12px,env(safe-area-inset-bottom));left:14px;right:14px}
+ .play-view .module-rack{position:absolute;left:0;bottom:126px;max-width:230px}
+ .play-view .skill-buttons{margin-left:auto;gap:8px}
+ .play-view .ability-button{min-width:90px;width:90px;height:72px;padding:8px}
+ .play-view .ability-button.dash{min-width:74px;width:74px;height:72px;padding:8px}
+ .play-view .ability-button b{font-size:10px}.play-view .ability-button small{font-size:8px}.play-view .ability-button kbd{display:none}
+ .play-view .hud-counter>.tool-button{width:44px;height:44px;min-width:44px;min-height:44px}
+ .play-view .hud{padding:12px 18px}.play-view .hud-clock{top:9px}
+ .play-view .hud-clock strong{font-size:31px}.play-view .mission{top:94px}
+ .play-view .battle-toast{bottom:98px}
+}
