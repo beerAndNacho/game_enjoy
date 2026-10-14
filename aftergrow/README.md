@@ -74,7 +74,7 @@ Playwright와 Chromium이 설치된 개발 환경에서:
 python aftergrow/tests/browser_checks.py --browser /usr/bin/chromium
 ```
 
-오피스 테마 변환 이후 **32개 시나리오 통과**: 메뉴/이미지 로드, 4명 무기·스킬, 3개 보스, 세 가지 진화, 6개 스토리 선택, 저장, 터치 이동, 작은 화면, 장시간 자동 전투, 엔딩 기록 등.
+오피스 테마 변환 이후 **34개 시나리오 구성**: 메뉴/이미지 로드, 4명 무기·스킬, 3개 보스, 세 가지 진화, 6개 스토리 선택, 저장, 터치 이동, 작은 화면, 장시간 자동 전투, 엔딩 기록 등.
 
 테스트는 브라우저 내 메모리 저장 어댑터를 사용하며, GitHub Pages 도메인에서의 실제 영구 저장이나 모든 휴대전화 기종을 보장하지 않습니다.
 
@@ -90,4 +90,12 @@ python aftergrow/tests/browser_checks.py --browser /usr/bin/chromium
 
 배포용 HTML은 `aftergrow/index.html`, 편집 소스는 `aftergrow/src/`입니다. `.github/workflows/clockout-pages.yml`에서 PR마다 빠른 회귀 테스트를 실행하고 `main`에 반영된 변경을 GitHub Pages로 배포하도록 구성했습니다. 최초 Pages 활성화와 문제 해결은 [배포 가이드](../docs/DEPLOYMENT.md)를 확인하세요.
 
-빠른 테스트: `python aftergrow/tests/browser_checks.py --smoke` (31개). 전체 테스트: `python aftergrow/tests/browser_checks.py` (32개, 장시간 시뮬레이션 포함). 실제 HTTP 저장 테스트: `python aftergrow/tests/http_smoke.py`.
+빠른 테스트: `python aftergrow/tests/browser_checks.py --smoke` (33개). 전체 테스트: `python aftergrow/tests/browser_checks.py` (34개, 장시간 시뮬레이션 포함). 실제 HTTP 저장 테스트: `python aftergrow/tests/http_smoke.py`.
+
+## 처음 플레이와 모바일 조작
+
+최초 전투 입장 시 3단계 신입사원 안내가 한 번 표시됩니다. 게임은 안내를 읽는 동안 일시정지하며, 건너뛰기 또는 끝까지 완료하면 진행 기록의 `tutorialSeen` 설정으로 다시 표시하지 않습니다. 게임 중 일시정지 메뉴의 **첫 출근 안내 다시 보기**를 누르면 언제든 다시 확인할 수 있습니다.
+
+모바일에서는 화면 왼쪽 아래 **이동 패드**가 항상 표시됩니다. 왼쪽 절반 가까이에서 드래그해 이동하고 오른쪽 **전용 스킬 / 돌진** 버튼을 눌러 전투하세요. 창 전환 중에는 자동으로 일시정지됩니다.
+
+가로 화면(높이 600px 이하)에서는 패드·스킬 버튼을 압축 배치하고, 상단 상태 표시를 유지합니다.
