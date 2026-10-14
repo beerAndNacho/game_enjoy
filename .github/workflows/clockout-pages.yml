@@ -1,0 +1,110 @@
+name: CLOCK OUT! verify and deploy
+
+on:
+  pull_request:
+    paths:
+      - 'aftergrow/**'
+      - '.github/workflows/clockout-pages.yml'
+      - 'README.md'
+  push:
+    branches: [main]
+    paths:
+      - 'aftergrow/**'
+      - '.github/workflows/clockout-pages.yml'
+      - 'README.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: clockout-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    name: Build, Chromium regression, and HTTP storage smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Check reproducible standalone HTML
+        shell: bash
+        run: |
+          python aftergrow/build.py --out "$RUNNER_TEMP/clockout-built.html"
+          cmp aftergrow/index.html "$RUNNER_TEMP/clockout-built.html"
+
+      - name: Install Playwright and Chromium
+        run: |
+          python -m pip install --disable-pip-version-check playwright==1.57.0
+          python -m playwright install --with-deps chromium
+
+      - name: Run browser gameplay regression (quick CI suite)
+        run: python aftergrow/tests/browser_checks.py --smoke
+
+      - name: Verify real HTTP origin and persistent storage
+        run: python aftergrow/tests/http_smoke.py
+
+      - name: Upload browser QA report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: clockout-chromium-qa-${{ github.run_id }}
+          path: aftergrow/tests/last-run.json
+          if-no-files-found: ignore
+          retention-days: 14
+
+  deploy:
+    name: Publish tested game to GitHub Pages
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout verified main
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Verify published output equals editable source
+        shell: bash
+        run: |
+          python aftergrow/build.py --out "$RUNNER_TEMP/clockout-built.html"
+          cmp aftergrow/index.html "$RUNNER_TEMP/clockout-built.html"
+
+      - name: Prepare minimal public site
+        shell: bash
+        run: |
+          mkdir -p _site/aftergrow
+          cp aftergrow/index.html _site/aftergrow/index.html
+          cp deploy/pages-root.html _site/index.html
+          touch _site/.nojekyll
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - name: Deploy Pages artifact
+        id: deployment
+        uses: actions/deploy-pages@v4
