@@ -13,6 +13,7 @@ PREVIEWS=ROOT.parent/"docs"/"previews"
 parser=argparse.ArgumentParser()
 parser.add_argument("--browser",default=shutil.which("chromium"))
 parser.add_argument("--screenshots",action="store_true")
+parser.add_argument("--smoke", action="store_true", help="Skip the slow four-character autoplay balance simulation")
 args=parser.parse_args()
 results=[]
 errors=[]
@@ -324,7 +325,10 @@ with sync_playwright() as playwright:
             expect(data["state"]=="result","Autoplay did not terminate")
             out.append(data)
         return out
-    check("28. Four unassisted-stat autoplay runs terminate and record balance outcomes",autoplay)
+    if args.smoke:
+        print("SKIP 28. Autoplay balance simulation (run full suite without --smoke)", flush=True)
+    else:
+        check("28. Four unassisted-stat autoplay runs terminate and record balance outcomes",autoplay)
 
     # Create a representative combat screenshot from an explicit showcase fixture.
     # This is a QA fixture, not a claim that a human earned this build.
