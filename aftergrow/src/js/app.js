@@ -66,33 +66,55 @@
   }
   function renderHome(){
     const done=C.chapters.filter(c=>S.data.clears[c.id]).length;
-    return `<div class="hero">
-      <div class="hero-art"><img src="${A.scenes[0]}" alt="야근에 맞서 싸우는 네 명의 직장인과 네온 빛 회사 전경"></div>
-      <div class="hero-copy"><div class="eyebrow">OFFICE SURVIVAL ACTION / 2026</div><p class="hero-wordmark">CLOCK OUT! <span class="hero-stamp">퇴근 승인 대기</span></p><h1>퇴근이<br><em>전쟁이다.</em></h1>
-      <p class="hero-description">퇴근 3분 전, 회사가 미쳐버렸다.<br>끝없는 회의, 쏟아지는 업무, 폭주한 야근 시스템.<br>동료들과 함께 모든 마감을 뚫고 퇴근하라!</p>
-      <div class="button-row"><button class="primary" data-nav="roster">직장인 선택하기 ${icon('arrow')}</button><button class="secondary" data-action="quick">바로 출근(?) ${icon('bolt')}</button></div>
-      <div class="hero-detail"><span>${icon('badge')} 4 PLAYABLE STAFF</span><span>${icon('map')} 3 OFFICE ZONES</span><span>${icon('coffee')} 03:00 TO ESCAPE</span></div></div>
-      <div class="hero-caption"><span class="micro">EMPLOYEE HANDBOOK / #000</span><strong>NO MORE OVERTIME.</strong><span class="micro">정시퇴근을 위해, 반격을 시작한다.</span></div>
-      <div class="hero-bottom"><span class="status">SECURITY ALERT · 퇴근 시스템 오류</span><span>${S.data.runs?`${S.data.runs}번의 작전 · ${done}/3 구역 돌파 · 사내 기록 ${S.data.archive.length}/9`:'NO LOGIN · NO INSTALL · JUST SURVIVE'}</span><span>MEET YOUR CREW ↓</span></div>
-    </div><section class="home-after"><div><span class="section-kicker">MEET THE OVERWORKED CREW</span><h2>누구와 탈출할 것인가?</h2><p>대리 · 기획자 · 팀장 · 개발자. 각자 다른 무기와 필살기.</p></div><div class="mini-roster">${C.characters.map(c=>`<button class="mini-character" data-action="character" data-id="${c.id}" style="--accent:${c.color}" aria-label="${c.name}, ${c.title} 자세히 보기"><img src="${A.portraits[c.id]}" alt=""><span><strong>${c.name}</strong><small>${c.code} / ${c.en}</small></span></button>`).join('')}</div></section>`;
+    const current=C.chapters[S.data.chapter]||C.chapters[0],c=char();
+    return `<div class="toon-home">
+      <div class="toon-top-note"><div class="toon-wrap"><span><i class="toon-live-dot"></i> 인터랙티브 오피스 웹툰</span><span>읽다가, 직접 살아남으세요 <span aria-hidden="true">↗</span></span></div></div>
+      <div class="hero toon-hero"><div class="toon-hero-inner toon-wrap">
+        <div class="toon-hero-copy">
+          <div class="toon-label"><span class="toon-label-square"></span> ORIGINAL INTERACTIVE SERIES <span class="toon-label-count">VOL. 01</span></div>
+          <div class="toon-title-stamp">월요병보다 무서운 게 찾아왔다</div>
+          <h1>퇴근이<br><em>사라졌다.</em></h1>
+          <p class="toon-hero-lead">퇴근 3분 전, 모든 출입문이 잠겼다.<br>이 회사에서 살아남아 <strong>오늘은 꼭 퇴근하세요.</strong></p>
+          <div class="toon-tags"><span>#오피스판타지</span><span>#생존액션</span><span>#직장인공감</span></div>
+          <div class="toon-main-actions"><button class="toon-start" data-action="start-first">1화부터 시작 ${icon('arrow')}</button><button class="toon-continue" data-action="continue-reading">${S.data.runs?'이어서 플레이':'회차 둘러보기'} <span aria-hidden="true">→</span></button></div>
+          <div class="toon-series-meta"><span>${icon('star')} 무료 플레이</span><span>${icon('badge')} 4명의 직장인</span><span>${icon('clock')} 1회 약 3분</span></div>
+        </div>
+        <div class="toon-hero-visual"><div class="toon-poster">
+          <img src="${A.scenes[0]}" alt="오피스 건물을 배경으로 펼쳐지는 퇴근 전쟁 웹툰 표지">
+          <div class="toon-poster-shadow"></div><div class="toon-poster-head"><span>화제의 사내 연재작</span><span>NEW</span></div>
+          <div class="toon-poster-bottom"><span>THE LAST THREE MINUTES</span><strong>CLOCK<br>OUT!</strong><small>퇴근 전쟁 · EPISODE 01</small></div>
+        </div><div class="toon-poster-sticker">오늘도<br><b>칼퇴!</b></div></div>
+      </div></div>
+      <section class="toon-wrap toon-home-content" aria-labelledby="toon-episode-heading">
+        <div class="toon-section-head"><div><span class="toon-overline">EPISODES · 03</span><h2 id="toon-episode-heading">퇴근까지 남은 이야기 <span aria-hidden="true">↘</span></h2><p>웹툰을 읽고, 마지막 컷은 직접 플레이하세요.</p></div><button class="toon-text-link" data-nav="map">전체 회차 보기 ${icon('arrow')}</button></div>
+        <div class="toon-home-grid"><div class="toon-episode-list">
+          ${C.chapters.map((v,i)=>`<button class="toon-episode-row" data-action="launch-episode" data-id="${i}" aria-label="${i+1}화 ${v.name} 읽고 플레이하기"><span class="toon-episode-thumb"><img src="${A.scenes[i]}" alt=""><span class="toon-thumb-no">${v.no}</span></span><span class="toon-episode-body"><span class="toon-episode-kicker">EPISODE ${v.no} <b class="${S.data.clears[v.id]?'is-clear':'is-new'}">${S.data.clears[v.id]?'완독':'플레이 가능'}</b></span><strong>${v.name}</strong><small>${v.description}</small><span class="toon-episode-time">${icon('clock')} 약 3분 · ${v.boss}</span></span><span class="toon-row-action" aria-hidden="true">${icon('arrow')}</span></button>`).join('')}
+        </div><aside class="toon-now-playing"><span class="toon-overline">MY DESK · 내 캐릭터</span><div class="toon-desk-art" style="--char-color:${c.color}"><img src="${A.portraits[c.id]}" alt="${c.name} 캐릭터"></div><h3>${c.name}</h3><p>${c.title}</p><span class="toon-desk-quote">${c.quote}</span><button class="toon-desk-button" data-nav="roster">등장인물 바꾸기 ${icon('arrow')}</button><div class="toon-desk-stats">퇴근 성공 <b>${done} / 3화</b></div></aside></div>
+      </section>
+      <section class="toon-wrap toon-cast-feature"><div class="toon-section-head"><div><span class="toon-overline">THE CAST</span><h2>우리에겐 네 명의 동료가 있다.</h2></div><button class="toon-text-link" data-nav="roster">등장인물 전체 보기 ${icon('arrow')}</button></div><div class="toon-cast-teasers">${C.characters.map((v,i)=>`<button class="toon-cast-teaser" data-action="character" data-id="${v.id}" style="--char-color:${v.color}"><span class="toon-cast-portrait"><img src="${A.portraits[v.id]}" alt=""></span><span class="toon-cast-caption"><small>0${i+1} / ${v.en}</small><strong>${v.name}</strong><span>${v.title}</span></span><span class="toon-cast-arrow">↗</span></button>`).join('')}</div></section>
+      <section class="toon-wrap toon-bottom-banner"><div><span>ABOUT THE GAME</span><h2>보는 웹툰에서, 살아가는 웹툰으로.</h2><p>손가락으로 컷을 넘기다가, 직접 사무실을 탈출하는 짧고 특별한 플레이.</p></div><button data-action="start-first">지금 1화 읽기 ${icon('arrow')}</button></section>
+    </div>`;
   }
   function renderRoster(){
     const c=char();
-    return `<section class="page">${heading('SELECT YOUR EMPLOYEE','네 명의 직장인. 단 하나의 목표.','겉모습만 다른 캐릭터가 아닙니다.<br>서류 투척부터 디버그 체인까지, 무기와 전용 스킬이 다릅니다.')}
-      <div class="roster-tabs" role="group" aria-label="직장인 선택">${C.characters.map(v=>`<button class="roster-tab ${v.id===c.id?'selected':''}" data-action="select-char" data-id="${v.id}" style="--accent:${v.color}" aria-pressed="${v.id===c.id}"><img src="${A.portraits[v.id]}" alt=""><span><strong>${v.name}</strong><small>${v.title}</small></span><span class="tab-check">✓</span></button>`).join('')}</div>
-      <div class="roster-layout" style="--accent:${c.color}"><div class="roster-portrait"><img src="${A.portraits[c.id]}" alt="${c.name}의 전신 일러스트"><div class="portrait-caption"><span>EMPLOYEE PORTRAIT / ${c.code}</span><span>OFF THE CLOCK? NOT YET.</span></div></div>
-        <div class="character-info"><div class="micro muted">${c.en}</div><div class="character-name"><h2>${c.name}</h2><span class="pill">${c.code} / ${({seed:'DOCUMENT',orbit:'STICKY NOTE',slash:'SIGN OFF',chain:'DEBUG'})[c.style]}</span></div><p class="character-title">${c.title}</p><p class="character-quote">${c.quote}</p><p class="character-bio">${c.bio}</p>
-          <div class="character-stats">${['공격','기동','생존'].map((label,i)=>`<div class="stat-row"><span>${label}</span><span class="stat-pips">${Array.from({length:5},(_,j)=>`<i class="${j<c.stats[i]?'on':''}"></i>`).join('')}</span></div>`).join('')}</div>
-          <div class="trait-grid"><div class="trait">${icon(weaponIcon[c.style])}<div><label>STARTING WEAPON</label><strong>${c.weapon}</strong><p>${c.weaponDesc}</p></div></div><div class="trait">${icon('star')}<div><label>UNIQUE SKILL / E · ${c.cooldown}S</label><strong>${c.skill}</strong><p>${c.skillDesc}</p></div></div></div>
-          <div class="trait" style="margin-bottom:21px">${icon('shield')}<div><label>PASSIVE / ${c.passive}</label><p>${c.passiveDesc}</p></div></div>
-          <button class="primary" data-nav="map">${c.name}와 함께 출발하기 ${icon('arrow')}</button></div></div></section>`;
+    return `<section class="page toon-page toon-cast-page"><div class="toon-page-intro"><span class="toon-overline">CHARACTER FILE / 등장인물</span><h1>이 회사에선<br><em>누구도 평범하지 않다.</em></h1><p>캐릭터를 터치해 프로필과 전용 스킬을 확인하세요. 누구든 첫 회부터 시작할 수 있어요.</p></div>
+      <div class="roster-tabs toon-character-tabs" role="group" aria-label="등장인물 선택">${C.characters.map((v,i)=>`<button class="roster-tab toon-character-tab ${v.id===c.id?'selected':''}" data-action="select-char" data-id="${v.id}" style="--accent:${v.color}" aria-pressed="${v.id===c.id}"><span class="toon-tab-portrait"><img src="${A.portraits[v.id]}" alt=""></span><span><small>CHARACTER 0${i+1}</small><strong>${v.name}</strong><small>${v.title}</small></span><span class="tab-check">✓</span></button>`).join('')}</div>
+      <div class="roster-layout toon-cast-detail" style="--accent:${c.color}"><div class="roster-portrait toon-cast-illustration"><div class="toon-cast-shape"></div><span class="toon-character-no">${c.code}</span><img src="${A.portraits[c.id]}" alt="${c.name}의 전신 일러스트"><div class="portrait-caption"><span>OFFICE WORKER / ORIGINAL CAST</span><span>↗</span></div></div>
+        <div class="character-info toon-character-info"><span class="toon-overline">${c.en}</span><div class="character-name"><h2>${c.name}</h2><span class="toon-role-tag">${c.title}</span></div><p class="character-quote">${c.quote}</p><p class="character-bio">${c.bio}</p>
+          <div class="character-stats toon-character-stats">${['공격','기동','생존'].map((label,i)=>`<div class="stat-row"><span>${label}</span><span class="stat-pips">${Array.from({length:5},(_,j)=>`<i class="${j<c.stats[i]?'on':''}"></i>`).join('')}</span></div>`).join('')}</div>
+          <div class="trait-grid toon-character-traits"><div class="trait">${icon(weaponIcon[c.style])}<div><label>BASIC ATTACK</label><strong>${c.weapon}</strong><p>${c.weaponDesc}</p></div></div><div class="trait">${icon('star')}<div><label>SPECIAL SKILL · E</label><strong>${c.skill}</strong><p>${c.skillDesc}</p></div></div></div>
+          <div class="toon-trait-passive">${icon('shield')}<div><strong>${c.passive}</strong><p>${c.passiveDesc}</p></div></div><button class="toon-start" data-nav="map">${c.name}와 함께 회차 선택 ${icon('arrow')}</button></div></div>
+    </section>`;
   }
   function renderMap(){
     const c=char(),ch=chapter();
-    return `<section class="page">${heading('THREE LEVELS. ONE EXIT.','어느 층부터 뚫을까?','모든 층이 처음부터 열려 있습니다.<br>1층부터 차례로 플레이하면 퇴근 전쟁의 진상을 알 수 있어요.')}
-      <div class="chapter-grid">${C.chapters.map((v,i)=>`<button class="chapter-card ${S.data.chapter===i?'selected':''}" data-action="select-chapter" data-id="${i}" style="--accent:${v.color}" aria-pressed="${S.data.chapter===i}"><div class="chapter-picture"><img src="${A.scenes[i]}" alt="${v.name}의 풍경"><span class="chapter-number">${v.no}</span><span class="chapter-stamp">${S.data.clears[v.id]?'CLEARED':'LOCKDOWN'}</span></div><div class="chapter-info"><span class="micro">${v.en}</span><h2>${v.name}</h2><p>${v.description}</p><div class="chapter-meta"><span>03:00 · ${i===0?'마감의 시작':i===1?'무한 회의':'마지막 배포'}</span>${icon(S.data.chapter===i?'check':'arrow')}</div></div></button>`).join('')}</div>
-      <div class="expedition-bar" style="--accent:${c.color}"><img src="${A.portraits[c.id]}" alt=""><div class="expedition-copy"><span class="micro muted">OPERATION ${ch.no} / ${c.code}</span><h3>${c.name} · ${ch.name}</h3><p>${ch.danger} / 보스: ${ch.boss}</p></div><button class="text-button" data-nav="roster">직장인 변경</button><button class="primary" data-action="begin-intro">작전 개시 ${icon('arrow')}</button></div>
-      <p class="map-note">자동 공격 · 이동 + 돌진 + 전용 스킬 · 작전 중 만나는 편지의 선택이 능력과 결말을 바꿉니다.</p></section>`;
+    return `<section class="page toon-page toon-chapter-page"><div class="toon-page-intro"><span class="toon-overline">SEASON 01 / EPISODES</span><h1>오늘의 퇴근은<br><em>어느 회차에 있나요?</em></h1><p>총 3개의 회차로 구성된 인터랙티브 웹툰입니다. 컷툰을 읽은 뒤 직접 플레이할 수 있어요.</p></div>
+      <div class="toon-episode-index"><div class="toon-section-head"><div><span class="toon-overline">ALL EPISODES</span><h2>시즌 01 · 퇴근 전쟁</h2></div><span class="toon-completion">읽은 회차 ${C.chapters.filter(v=>S.data.clears[v.id]).length} / 3</span></div>
+        <div class="chapter-grid toon-chapter-list">${C.chapters.map((v,i)=>`<button class="chapter-card toon-chapter-item ${S.data.chapter===i?'selected':''}" data-action="select-chapter" data-id="${i}" style="--accent:${v.color}" aria-pressed="${S.data.chapter===i}"><span class="chapter-picture toon-chapter-thumb"><img src="${A.scenes[i]}" alt="${v.name} 장면"><span class="chapter-number">EP.${v.no}</span></span><span class="chapter-info toon-chapter-info"><span class="toon-overline">${i===0?'사건의 시작':i===1?'두 번째 이야기':'시즌 피날레'}</span><strong>${v.name}</strong><span class="toon-chapter-desc">${v.description}</span><span class="toon-chapter-meta">3분 플레이 · ${v.boss} · ${S.data.clears[v.id]?'완료':'미완료'}</span></span><span class="toon-chapter-select">${S.data.chapter===i?'선택됨':'선택'} ${icon('arrow')}</span></button>`).join('')}</div>
+      </div>
+      <div class="expedition-bar toon-reading-dock" style="--accent:${c.color}"><img src="${A.portraits[c.id]}" alt=""><div class="expedition-copy"><span class="toon-overline">READY TO READ · EPISODE ${ch.no}</span><h3>${ch.name}</h3><p>주인공 ${c.name} · ${ch.danger}</p></div><button class="toon-text-link" data-nav="roster">캐릭터 변경</button><button class="toon-start" data-action="begin-intro">이 회차 읽고 플레이 ${icon('arrow')}</button></div>
+      <p class="toon-map-footnote">모든 회차는 무료로 열려 있습니다. 이야기를 먼저 읽으면 더 재미있지만, 언제든 건너뛸 수 있어요.</p>
+    </section>`;
   }
   function unlockHint(a){
     const c=C.characters.find(c=>c.id===a.id);if(c)return `${c.name}로 구역 하나를 처리하면 열립니다.`;
@@ -115,12 +137,15 @@
     if(!ready)return;introPage=0;showIntro();
   }
   function showIntro(){
-    const c=char(),ch=chapter(),line=ch.intro[introPage],self=line.speaker==='self';
-    const text=line.text==='$intro'?c.intro:line.text;
-    setOverlay(`<div class="dialogue-stage" style="--accent:${c.color}">
-      <div class="dialogue-portrait">${self?`<img src="${A.portraits[c.id]}" alt="${c.name}">`:`<div class="radio-art">${icon('monitor')}</div>`}</div>
-      <article class="dialogue-paper"><span class="micro">CHAPTER ${ch.no} / ${ch.tag}</span><h2 id="dialog-title">${self?c.name:line.name}</h2><p class="dialogue-text">${text}</p><div class="dialogue-controls"><span class="dialogue-dots">${ch.intro.map((_,i)=>`<i class="${i<=introPage?'on':''}"></i>`).join('')}</span><button class="text-button" data-action="skip-intro">브리핑 건너뛰기</button><button class="primary" data-action="next-intro">${introPage===ch.intro.length-1?'작전 시작':'다음'} ${icon('arrow')}</button></div></article>
-    </div><button class="tool-button overlay-close" data-action="cancel-intro" aria-label="준비 화면으로 돌아가기">${icon('close')}</button>`,'intro');
+    const c=char(),ch=chapter(),lines=ch.intro.slice(0,introPage+1);
+    const cuts=lines.map((line,i)=>{const self=line.speaker==='self',text=line.text==='$intro'?c.intro:line.text;
+      return `<article class="toon-story-cut ${i===0?'toon-story-opening':''}" data-cut="${i}"><div class="toon-story-image"><img src="${A.scenes[Math.min(2,S.data.chapter)]}" alt="" loading="eager"><span class="toon-cut-counter">CUT ${String(i+1).padStart(2,'0')}</span>${i>0?`<span class="toon-cut-worker"><img src="${A.portraits[c.id]}" alt=""></span>`:''}</div><div class="toon-story-caption"><span class="toon-speaker">${self?c.name:line.name}</span><p class="toon-speech">${escape(text)}</p></div></article>`;
+    }).join('');
+    setOverlay(`<section class="toon-reader"><div class="toon-reader-head"><button data-action="cancel-intro" aria-label="회차 목록으로 돌아가기">${icon('arrow')} <span>목록</span></button><div><small>CLOCK OUT! · 시즌 1</small><strong id="dialog-title">EP.${ch.no} ${ch.name}</strong></div><span class="toon-reader-count">${introPage+1} / ${ch.intro.length}</span></div>
+      <div class="toon-reader-body"><div class="toon-story-title"><span class="toon-overline">INTERACTIVE WEBTOON · ${ch.en}</span><h2>${ch.name}</h2><p>스크롤해서 컷을 읽어보세요.</p><span class="toon-reader-down">↓</span></div>
+        ${cuts}<div class="toon-story-next" id="toon-story-next"><span>TO BE CONTINUED...</span><p>${introPage===ch.intro.length-1?'이제 마지막 컷의 주인공은 당신입니다.':'다음 컷에는 무슨 일이 벌어질까요?'}</p><button class="toon-start" data-action="next-intro">${introPage===ch.intro.length-1?'직접 퇴근하러 가기':'다음 컷 읽기'} ${icon('arrow')}</button><button class="toon-reader-skip" data-action="skip-intro">${introPage===ch.intro.length-1?'바로 전투 시작':'스토리 건너뛰고 게임 시작'}</button></div>
+      </div></section>`,'intro');
+    requestAnimationFrame(()=>{const reader=$('overlay').querySelector('.toon-reader');if(reader){reader.scrollTop= introPage>0 ? reader.scrollHeight : 0;}});
   }
   function startGame(skipTutorial=false){
     hideOverlay();clearInput();document.body.classList.add('in-game');$('menu').hidden=true;$('play-view').hidden=false;$('footer').hidden=true;
@@ -158,8 +183,9 @@
   }
   function showStory(reply=false){
     const e=game.chapter.event;
-    setOverlay(`<section class="story-choice">${icon('monitor','story-icon')}<div class="eyebrow">${e.kicker}</div><h2 id="dialog-title">${e.title}</h2><p>${e.text}</p>
-      ${reply?`<p class="story-reply">${game.choice.reply}</p><div class="button-row"><button class="primary" data-action="story-continue">선택 완료, 다시 전진 ${icon('arrow')}</button></div>`:`<div class="story-options">${e.choices.map((c,i)=>`<button class="story-option" data-action="story-choice" data-id="${i}"><strong>${c.label} ${icon('arrow')}</strong><small>${c.description}</small></button>`).join('')}</div><div class="modal-foot">당신의 선택은 이번 작전의 능력과 결말에 남습니다.</div>`}</section>`,reply?'story-reply':'story');
+    setOverlay(`<section class="toon-story-choice"><div class="toon-choice-head"><span class="toon-overline">MID-EPISODE · STORY EVENT</span><h2 id="dialog-title">${e.title}</h2><p>${e.kicker}</p></div><div class="toon-choice-frame"><div class="toon-choice-illustration"><img src="${A.scenes[Math.min(2,S.data.chapter)]}" alt=""><span class="toon-choice-fx">!?</span></div><div class="toon-choice-bubble"><span>오늘의 선택</span><p>${e.text}</p></div></div>
+      ${reply?`<div class="toon-choice-reply"><span>당신의 선택</span><p>${game.choice.reply}</p><button class="toon-start" data-action="story-continue">이야기 이어가기 ${icon('arrow')}</button></div>`:`<div class="toon-choice-actions">${e.choices.map((v,i)=>`<button class="story-option toon-choice-option" data-action="story-choice" data-id="${i}"><span>0${i+1}</span><div><strong>${v.label}</strong><small>${v.description}</small></div>${icon('arrow')}</button>`).join('')}</div>`}
+      <div class="toon-choice-end">${reply?'선택이 기록되었습니다.':'이 선택은 현재 플레이의 능력과 이야기 결말에 영향을 줍니다.'}</div></section>`,reply?'story-reply':'story');
   }
   function showPause(){
     setOverlay(`<section class="compact-modal"><div class="eyebrow">PAUSED / TAKE FIVE</div><h2 id="dialog-title">커피 브레이크.</h2><p>잠깐 쉬어도 됩니다.<br>회사는 도망가지 않아요.</p><div class="micro">${game.character.name} · ${game.chapter.name} · ${fmt(game.time)}</div><button class="primary" data-action="resume">업무 재개 ${icon('arrow')}</button><button class="secondary" data-action="help">조작법 보기</button><button class="text-button" data-action="tutorial-replay">첫 출근 안내 다시 보기</button><label class="motion-control"><input type="checkbox" id="motion-toggle" ${S.data.settings.motion?'checked':''}> 배경 움직임과 화면 흔들림</label><button class="text-button" data-action="abandon">작전 포기하고 귀가하기</button></section>`,'pause');
@@ -201,7 +227,7 @@
     $('hp-fill').style.width=Math.max(0,p.hp/p.maxHp*100)+'%';$('hp-text').textContent=Math.ceil(p.hp)+' / '+p.maxHp;$('lv-text').textContent='LV '+String(p.level).padStart(2,'0');
     $('clock').textContent=game.time<game.chapter.duration?fmt(Math.ceil(game.chapter.duration-game.time)):'처리 중';
     $('clock').style.fontSize=game.time<game.chapter.duration?'':'22px';
-    $('objective').textContent=game.bossDefeated?'퇴근 시간까지 생존하세요':game.bossSpawned?'최종 관리자를 처치하세요':'퇴근까지 남은 시간';
+    $('objective').textContent=game.bossDefeated?'마지막 컷까지 살아남기':game.bossSpawned?'BOSS · 최종 관리자':'퇴근까지 남은 시간';
     $('kill-text').textContent=String(game.kills).padStart(3,'0');$('xp-fill').style.width=Math.min(100,p.xp/p.nextXp*100)+'%';$('xp-text').textContent=Math.floor(p.xp)+' / '+p.nextXp;
     $('nodes-text').textContent='커피 보충 '+game.nodesRestored+'회';
     $('skill-cd').textContent=p.skillCd>0?p.skillCd.toFixed(1)+'s':p.buff>0?'스킬 발동 중':'준비 완료';
@@ -215,7 +241,7 @@
   function gameEvent(type,payload){
     if(type==='start'){
       $('hud-portrait').src=A.portraits[game.character.id];$('hud-name').textContent=game.character.code+' / '+game.character.name;
-      $('chapter-label').textContent='CH. '+game.chapter.no+' / '+game.chapter.name;
+      $('chapter-label').textContent='EP. '+game.chapter.no+' / '+game.chapter.name;
       $('skill-name').textContent=game.character.skill;$('skill-icon').innerHTML=icon(weaponIcon[game.character.style]);$('dash-icon').innerHTML=icon('wind');
       $('mission-text').textContent=game.chapter.id==='rain'?'캘린더 구역을 피하고 커피 머신 안에서 2초 머무르세요.':'커피 머신의 원 안에서 2초 머무르세요.';
     }
@@ -240,6 +266,9 @@
       case 'character':S.data.selected=id;S.save();go('roster');break;
       case 'select-char':selectChar(id);break;
       case 'select-chapter':S.data.chapter=Number(id);S.save();go('map',false);break;
+      case 'start-first':S.data.chapter=0;S.save();beginIntro();break;
+      case 'continue-reading':go('map');break;
+      case 'launch-episode':S.data.chapter=Math.max(0,Math.min(2,Number(id)));S.save();beginIntro();break;
       case 'quick':case 'begin-intro':beginIntro();break;
       case 'next-intro':if(++introPage>=chapter().intro.length)startGame();else showIntro();break;
       case 'skip-intro':startGame();break;
@@ -248,11 +277,11 @@
       case 'reroll':game.reroll();break;
       case 'story-choice':if(game.applyStory(Number(id)))showStory(true);break;
       case 'story-continue':game.resume();hideOverlay();break;
-      case 'resume':game.resume();hideOverlay();break;
       case 'tutorial-next':if(tutorialPage===tutorialSteps.length-1)finishTutorial();else showTutorial(tutorialPage+1);break;
       case 'tutorial-back':showTutorial(tutorialPage-1);break;
       case 'tutorial-skip':finishTutorial();break;
       case 'tutorial-replay':helpReturn=null;showTutorial();break;
+      case 'resume':game.resume();hideOverlay();break;
       case 'help':openHelp();break;
       case 'close-help':closeHelp();break;
       case 'abandon':game.state='playing';game.finish(false);break;
@@ -289,8 +318,8 @@
         e.preventDefault();
         if(overlayKind==='help')closeHelp();
         else if(overlayKind==='pause'){game.resume();hideOverlay();}
-        else if(overlayKind==='intro'){hideOverlay();if(game)game.state='idle';go('map');}
         else if(overlayKind==='tutorial')finishTutorial();
+        else if(overlayKind==='intro'){hideOverlay();if(game)game.state='idle';go('map');}
         else if(game?.state==='playing')game.pause();
       }
       if(overlayKind==='upgrade'&&performance.now()>inputGuard&&/^Digit[123]$/.test(e.code)){if(game.choose(Number(e.code.slice(-1))-1)){hideOverlay();updateHud();}}
@@ -319,8 +348,8 @@
   const release=e=>{if(stick.id===e.pointerId){stick.active=false;stick.id=null;stick.x=stick.y=0;resetPad();controls();}};
   for(const event of ['pointerup','pointercancel','lostpointercapture'])$('game').addEventListener(event,release);
   $('game').addEventListener('contextmenu',e=>e.preventDefault());
-  window.addEventListener('blur',()=>{clearInput();if(game?.state==='playing')game.pause();});
   window.addEventListener('resize',()=>{if(!stick.active)resetPad();});
+  window.addEventListener('blur',()=>{clearInput();if(game?.state==='playing')game.pause();});
   document.addEventListener('visibilitychange',()=>{if(document.hidden){clearInput();if(game?.state==='playing')game.pause();}if(game)game.last=performance.now();});
   async function init(){
     $('brand-icon').innerHTML=icon('sprout');$('help-btn').innerHTML=icon('help');tools();

@@ -31,12 +31,12 @@ Pages 설정 변경은 GitHub 저장소 코드 작성 권한과 별도의 관리
 - `main` 브랜치에 게임 변경 반영: **verify** 통과 시 **deploy** 실행.
 - 수동 실행: Actions의 `workflow_dispatch` 지원.
 - **재현 가능한 빌드:** `python aftergrow/build.py`가 생성하는 HTML과 커밋된 `aftergrow/index.html`을 `cmp`로 비교.
-- **Chromium 회귀:** `python aftergrow/tests/browser_checks.py --smoke`로 33개 시나리오 검증.
+- **Chromium 회귀:** `python aftergrow/tests/browser_checks.py --smoke`로 35개 시나리오 검증.
 - **실제 브라우저 저장:** `python aftergrow/tests/http_smoke.py`로 로컬 HTTP 서버를 연 뒤 native localStorage가 새로고침 후 복원되는지 확인.
 - **QA 산출물:** `aftergrow/tests/last-run.json`을 Actions 아티팩트로 14일간 보관.
 - **배포:** 최신 통과 빌드의 게임 HTML만 정적 사이트에 게시.
 
-`--smoke`는 실행 시간이 긴 캐릭터 자동 전투 시뮬레이션 1개를 제외합니다. **전체 34개 검증**은 개발 환경에서 `python aftergrow/tests/browser_checks.py`로 수동 수행하세요. 스테이지/밸런스 변경 전후에 전체 검증을 권장합니다.
+`--smoke`는 실행 시간이 긴 캐릭터 자동 전투 시뮬레이션 1개를 제외합니다. **전체 36개 검증**은 개발 환경에서 `python aftergrow/tests/browser_checks.py`로 수동 수행하세요. 스테이지/밸런스 변경 전후에 전체 검증을 권장합니다.
 
 ## 4. 로컬 개발
 

@@ -1,4 +1,4 @@
-# CLOCK OUT! — 퇴근 전쟁
+# CLOCK OUT! — 퇴근 전쟁 | 인터랙티브 웹툰
 
 > 퇴근 3분 전, 회사가 미쳐버렸다. 직장인 4명이 업무 괴물을 뚫고 야근 알고리즘을 종료하는 2D 브라우저 생존 액션.
 
@@ -25,6 +25,6 @@ python aftergrow/tests/browser_checks.py --smoke
 python aftergrow/tests/http_smoke.py
 ```
 
-`--smoke`는 긴 자동 전투 밸런스 시뮬레이션을 제외한 33개 브라우저 시나리오를 실행합니다. 전체 34개 검증은 `--smoke` 옵션 없이 실행합니다. HTTP 저장 테스트는 localhost 접속이 허용되는 환경에서 실행합니다.
+`--smoke`는 긴 자동 전투 밸런스 시뮬레이션을 제외한 35개 브라우저 시나리오를 실행합니다. 전체 36개 검증은 `--smoke` 옵션 없이 실행합니다. HTTP 저장 테스트는 localhost 접속이 허용되는 환경에서 실행합니다.
 
 `main`에 게임 코드가 반영되면 GitHub Actions가 빌드·테스트 후 Pages 배포를 시도합니다. **최초 한 번** 저장소 **Settings → Pages → Build and deployment → Source: GitHub Actions** 선택이 필요할 수 있습니다. 자세한 안내는 [배포 문서](docs/DEPLOYMENT.md)를 참고하세요.
