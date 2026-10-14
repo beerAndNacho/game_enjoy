@@ -74,7 +74,7 @@ Playwright와 Chromium이 설치된 개발 환경에서:
 python aftergrow/tests/browser_checks.py --browser /usr/bin/chromium
 ```
 
-오피스 테마 변환 이후 **34개 시나리오 구성**: 메뉴/이미지 로드, 4명 무기·스킬, 3개 보스, 세 가지 진화, 6개 스토리 선택, 저장, 터치 이동, 작은 화면, 장시간 자동 전투, 엔딩 기록 등.
+오피스 테마 변환 이후 **36개 시나리오 구성**: 메뉴/이미지 로드, 4명 무기·스킬, 3개 보스, 세 가지 진화, 6개 스토리 선택, 저장, 터치 이동, 작은 화면, 장시간 자동 전투, 엔딩 기록 등.
 
 테스트는 브라우저 내 메모리 저장 어댑터를 사용하며, GitHub Pages 도메인에서의 실제 영구 저장이나 모든 휴대전화 기종을 보장하지 않습니다.
 
@@ -90,7 +90,7 @@ python aftergrow/tests/browser_checks.py --browser /usr/bin/chromium
 
 배포용 HTML은 `aftergrow/index.html`, 편집 소스는 `aftergrow/src/`입니다. `.github/workflows/clockout-pages.yml`에서 PR마다 빠른 회귀 테스트를 실행하고 `main`에 반영된 변경을 GitHub Pages로 배포하도록 구성했습니다. 최초 Pages 활성화와 문제 해결은 [배포 가이드](../docs/DEPLOYMENT.md)를 확인하세요.
 
-빠른 테스트: `python aftergrow/tests/browser_checks.py --smoke` (33개). 전체 테스트: `python aftergrow/tests/browser_checks.py` (34개, 장시간 시뮬레이션 포함). 실제 HTTP 저장 테스트: `python aftergrow/tests/http_smoke.py`.
+빠른 테스트: `python aftergrow/tests/browser_checks.py --smoke` (35개). 전체 테스트: `python aftergrow/tests/browser_checks.py` (34개, 장시간 시뮬레이션 포함). 실제 HTTP 저장 테스트: `python aftergrow/tests/http_smoke.py`.
 
 ## 처음 플레이와 모바일 조작
 
@@ -99,3 +99,12 @@ python aftergrow/tests/browser_checks.py --browser /usr/bin/chromium
 모바일에서는 화면 왼쪽 아래 **이동 패드**가 항상 표시됩니다. 왼쪽 절반 가까이에서 드래그해 이동하고 오른쪽 **전용 스킬 / 돌진** 버튼을 눌러 전투하세요. 창 전환 중에는 자동으로 일시정지됩니다.
 
 가로 화면(높이 600px 이하)에서는 패드·스킬 버튼을 압축 배치하고, 상단 상태 표시를 유지합니다.
+
+## 웹툰형 인터랙티브 리디자인 (2026-10-14)
+
+- 메인 작품 홈에 표지·작품 소개·회차 카드·등장인물 4명 추천 추가
+- 1~3화 회차를 웹툰형 목록에서 선택하고, 회차별 세로 스크롤 컷/대사 말풍선을 읽은 뒤 전투로 진입
+- 이야기 도중 선택지도 컷툰 말풍선으로 제공하고, 플레이 결과/기존 로컬 저장·튜토리얼은 유지
+- 모바일 우선 밝은 서비스 UI + 전투 중 읽기 쉬운 다크 액션 HUD
+- 공식 웹툰 서비스의 상표나 아트를 사용하지 않는 독자적인 디자인
+- 빠른 Chromium 회귀 35개(장시간 오토플레이 제외), 전체 36개(시간이 많이 드는 별도 검증)

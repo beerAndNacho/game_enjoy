@@ -71,6 +71,17 @@ with sync_playwright() as playwright:
             p.screenshot(path=str(PREVIEWS/name),full_page=full)
     PREVIEWS.mkdir(parents=True,exist_ok=True)
     check("01. Home loads and all four sprite images decode",lambda:expect(js("Object.values(AG.Art.sprites).length===4 && Object.values(AG.Art.sprites).every(i=>i&&i.naturalWidth>0)&&Object.values(AG.Art.enemies).every(i=>i&&i.naturalWidth>0)")))
+    def comic_entry():
+        expect(page.locator('.toon-poster img').count()==1,"Series cover missing")
+        expect(page.locator('.toon-episode-row').count()==3,"Episode list must have three issues")
+        expect(page.locator('.toon-cast-teaser').count()==4,"Character teaser cards missing")
+        page.click('[data-action="launch-episode"][data-id="1"]')
+        expect(js("AG.Store.data.chapter===1 && __AG_TEST__.overlay==='intro'"),"Direct episode launch broken")
+        expect("무한 회의실" in page.locator('#dialog-title').inner_text())
+        page.click('[data-action="cancel-intro"]')
+        expect(js("__AG_TEST__.route==='map'"),"Reader back navigation broken")
+        js("AG.Store.data.chapter=0;AG.Store.save();__AG_TEST__.go('home')")
+    check("01b. Comic cover, episode cards, cast and direct story routing",comic_entry)
     screen("01-home-desktop.png",full=True)
 
     def routes():
@@ -93,6 +104,16 @@ with sync_playwright() as playwright:
     js("__AG_TEST__.go('map')")
     screen("04-map-desktop.png",full=True)
 
+    def comic_scroll_reader():
+        page.click('[data-action="begin-intro"]')
+        for i in range(3):
+            expect(js("__AG_TEST__.overlay==='intro'"))
+            expect(page.locator('.toon-story-cut').count()==i+1,"Comic cuts must accumulate")
+            expect(page.locator('.toon-reader').count()==1,"Scroll reader not visible")
+            if i<2:page.click('[data-action="next-intro"]')
+        page.click('[data-action="cancel-intro"]')
+        expect(js("__AG_TEST__.route==='map'"))
+    check("04a. Vertical comic reader reveals three consecutive panels",comic_scroll_reader)
     def intro():
         page.click('[data-action="begin-intro"]')
         expect(js("__AG_TEST__.overlay==='intro'"))

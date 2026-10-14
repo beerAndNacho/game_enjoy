@@ -12,19 +12,19 @@
 <body>
 <div class="app-shell">
   <header class="topbar" id="topbar">
-    <button class="brand" data-nav="home" aria-label="처음 화면"><span id="brand-icon"></span><span>CLOCK OUT!<small>야근을 끝내는 전쟁</small></span></button>
+    <button class="brand" data-nav="home" aria-label="처음 화면"><span id="brand-icon"></span><span>CLOCK OUT!<small>INTERACTIVE WEBTOON</small></span></button>
     <nav class="main-nav" aria-label="주요 메뉴">
-      <button class="nav-link active" data-nav="home">로비</button>
-      <button class="nav-link" data-nav="roster">직장인 <sup>04</sup></button>
-      <button class="nav-link" data-nav="map">작전 구역</button>
-      <button class="nav-link" data-nav="archive">사내 기록</button>
-      <button class="nav-link" data-nav="workshop">휴게실</button>
+      <button class="nav-link active" data-nav="home">작품 홈</button>
+      <button class="nav-link" data-nav="roster">등장인물 <sup>04</sup></button>
+      <button class="nav-link" data-nav="map">회차 목록</button>
+      <button class="nav-link" data-nav="archive">비하인드</button>
+      <button class="nav-link" data-nav="workshop">성장</button>
     </nav>
     <div class="top-tools"><span class="seed-wallet" id="wallet" title="작전으로 모은 업무 포인트"></span><button class="tool-button" id="sound-btn" title="소리 전환 (M)" aria-label="소리 켜기" aria-pressed="false"></button><button class="tool-button" id="help-btn" title="조작법 (F1)" aria-label="조작법 열기"></button></div>
   </header>
   <main id="main">
     <section id="menu" class="menu-view" aria-live="off"></section>
-    <section id="play-view" class="play-view" hidden aria-label="오피스 작전">
+    <section id="play-view" class="play-view" hidden aria-label="웹툰형 오피스 생존 액션">
       <canvas id="game" tabindex="0" role="img" aria-label="WASD 또는 방향키 이동. Space 돌진. E 전용 스킬. P 일시정지. 터치 드래그 이동."></canvas>
       <div class="play-vignette"></div>
       <div id="hud" class="hud">
@@ -42,7 +42,7 @@
     </section>
     <div id="overlay" class="overlay" hidden></div>
   </main>
-  <footer id="footer"><span>NO MORE OVERTIME. WE CLOCK OUT.</span><span>OFFICE SURVIVAL <i>✧</i> VOL. 01</span><button data-nav="help">플레이 방법 ↗</button></footer>
+  <footer id="footer"><span>CLOCK OUT! · 오늘도 무사히 퇴근하세요.</span><span>INTERACTIVE COMIC <i>✧</i> SEASON 01</span><button data-nav="help">게임 이용 가이드 ↗</button></footer>
 </div>
 <div id="site-toast" class="site-toast" role="status" aria-live="polite"></div>
 <noscript><p style="padding:2rem">이 게임을 실행하려면 브라우저에서 JavaScript를 허용해 주세요.</p></noscript>

@@ -107,24 +107,515 @@ body.in-game .topbar{background:#17182d;border-bottom:2px solid #ffcf40}body.in-
  .play-view .battle-toast{bottom:98px}
 }
 
+
+
+/* =======================================================================
+   CLOCK OUT! — Season 01 / Interactive Comic Design System
+   Original editorial comic-reading UI; not a replica of another service.
+   ======================================================================= */
+html{background:#f5f7f4}
+body:not(.in-game){--bg:#f5f7f4;--panel:#fff;--ink:#16261f;--muted:#728078;--green:#19b876;--accent:#19b876;--line:#e2eae4;color:#16261f;background:#f5f7f4}
+body:not(.in-game) .app-shell{max-width:none}
+body:not(.in-game) #main{min-height:450px}
+body:not(.in-game) .topbar{max-width:none;height:78px;min-height:78px;padding:0 max(24px,calc((100vw - 1180px)/2));background:#fff;border-bottom:1px solid #e8ece9;position:sticky;top:0;z-index:12;box-shadow:0 3px 18px #20392a06;gap:16px}
+body:not(.in-game) .brand{font:900 24px/1.05 var(--sans);color:#183125;letter-spacing:-1.15px;white-space:nowrap;gap:11px}
+body:not(.in-game) .brand>span:first-child{height:36px;width:36px;background:#13b874;border:0;border-radius:12px;transform:rotate(-6deg);color:#fff}
+body:not(.in-game) .brand .icon{height:21px;width:21px}
+body:not(.in-game) .brand small{font:800 8px/1.2 var(--sans);letter-spacing:2px;color:#91a197;margin-top:5px}
+body:not(.in-game) .main-nav{gap:29px;height:100%}
+body:not(.in-game) .nav-link{font-weight:700;font-size:13px;color:#6d786f;padding:0;letter-spacing:-.3px}
+body:not(.in-game) .nav-link.active{color:#13a96a}
+body:not(.in-game) .nav-link.active:after{height:3px;background:#15bf79;left:0;right:0;border-radius:8px}
+body:not(.in-game) .nav-link:hover{color:#0e8f57}
+body:not(.in-game) .nav-link sup{display:none}
+body:not(.in-game) .top-tools{gap:8px}
+body:not(.in-game) .tool-button{width:35px;height:35px;border-radius:50%;border:1px solid #edf0ee;color:#566359;background:#f7f9f7}
+body:not(.in-game) .tool-button:hover{background:#e8f9ef;border-color:#aee5cb;color:#138454}
+body:not(.in-game) .seed-wallet{font:800 12px var(--sans);background:#eff9f3;color:#14865b;padding:8px 11px;border-radius:100px}
+body:not(.in-game) #footer{max-width:1200px;margin:60px auto 0;border-top:1px solid #e1e9e3;padding:26px 20px 35px;color:#87938b;font:600 10px var(--sans);letter-spacing:.4px}
+body:not(.in-game) #footer button{color:#34936b;font-weight:800;font-size:12px}
+body:not(.in-game) #footer i{color:#16ba74}
+body:not(.in-game) .primary{background:#14b772;border-color:#14b772;border-radius:12px;color:#fff;font-weight:850;font-size:13px;gap:10px;box-shadow:none;min-height:48px}
+body:not(.in-game) .primary:hover{background:#0c9f61;border-color:#0c9f61}
+body:not(.in-game) .secondary{color:#233a2c;border:1px solid #d7e1da;border-radius:11px;background:#fff;min-height:45px}
+body:not(.in-game) .secondary:hover{background:#f1f8f3;border-color:#8dcaaa}
+body:not(.in-game) .text-button{color:#59816b}
+body:not(.in-game) .text-button:hover{color:#0e935d}
+.toon-wrap{width:min(100%,1220px);margin:0 auto;padding-left:28px;padding-right:28px}
+.toon-top-note{background:#15392a;color:#e4f6e9;height:35px;display:flex;align-items:center;font-size:10px;font-weight:700;letter-spacing:.35px}
+.toon-top-note .toon-wrap{display:flex;justify-content:space-between;align-items:center;gap:20px}
+.toon-top-note .toon-wrap>span{display:flex;align-items:center;gap:9px}
+.toon-live-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#81f9a5;box-shadow:0 0 0 4px #81f9a51d}
+.toon-hero{min-height:0!important;overflow:visible!important;border:0!important;background:linear-gradient(133deg,#eff8f0 0%,#e5f2e8 65%,#d8ebe2 100%)!important;isolation:isolate}
+.toon-hero:before,.toon-hero:after{content:none!important}
+.toon-hero-inner{min-height:536px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:52px;padding-top:42px;padding-bottom:48px}
+.toon-hero-copy{padding:16px 0 18px}
+.toon-label{display:flex;align-items:center;gap:8px;font:850 10px var(--sans);letter-spacing:1.3px;color:#348b61}
+.toon-label-square{height:10px;width:10px;border:2px solid #11b978;transform:rotate(45deg)}
+.toon-label-count{margin-left:7px;color:#879d90}
+.toon-title-stamp{margin-top:34px;margin-bottom:11px;font-weight:800;font-size:13px;letter-spacing:-.3px;color:#345342;display:inline-flex;gap:6px}
+.toon-hero h1{font-family:var(--sans);font-size:clamp(53px,5.4vw,78px);font-weight:950;line-height:1.12;letter-spacing:-5.8px;color:#13271c;word-break:keep-all;margin:0 0 20px}
+.toon-hero h1 em{font-style:normal;color:#0ca96b;position:relative;white-space:nowrap}
+.toon-hero-lead{font-size:15px;line-height:1.85;color:#567064;margin:0 0 20px;letter-spacing:-.35px}
+.toon-hero-lead strong{color:#1e352a}
+.toon-tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:29px}
+.toon-tags>span{font-weight:750;font-size:11px;background:#fff9;border:1px solid #c6e4d0;color:#278059;border-radius:100px;padding:6px 10px}
+.toon-main-actions{display:flex;gap:13px;align-items:center;flex-wrap:wrap}
+.toon-start,.toon-bottom-banner button{border:0;background:#13b979;color:white;border-radius:12px;min-height:53px;padding:13px 23px;display:inline-flex;justify-content:center;align-items:center;gap:18px;font:900 14px var(--sans);letter-spacing:-.4px;box-shadow:0 7px 16px #14a56b26;transition:background .2s,transform .2s}
+.toon-start .icon,.toon-bottom-banner .icon{height:17px;width:17px}
+.toon-start:hover,.toon-bottom-banner button:hover{background:#0a945c;transform:translateY(-2px)}
+.toon-continue{font-size:13px;font-weight:850;display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:10px;color:#274738}
+.toon-continue:hover{color:#0c975b}
+.toon-continue span{font-size:20px}
+.toon-series-meta{margin-top:27px;display:flex;align-items:center;gap:21px;flex-wrap:wrap;font-size:10px;font-weight:750;color:#6c8878}
+.toon-series-meta span{display:flex;align-items:center;gap:5px}
+.toon-series-meta svg{width:14px;height:14px;color:#1aad70}
+.toon-hero-visual{height:462px;position:relative;display:flex;justify-content:center;align-items:center;padding:0 12px}
+.toon-poster{height:460px;width:min(100%,392px);position:relative;border-radius:18px;overflow:hidden;background:#17342e;box-shadow:22px 24px 0 #163f2b13,0 24px 44px #124a2f35;transform:rotate(2.1deg);border:7px solid #fff}
+.toon-poster img{width:100%;height:100%;object-fit:cover;object-position:60% center}
+.toon-poster-shadow{position:absolute;inset:0;background:linear-gradient(0deg,#0c1b18f5 0%,#16291dad 36%,transparent 73%),linear-gradient(180deg,#12252177,transparent 26%)}
+.toon-poster-head{position:absolute;top:15px;left:15px;right:15px;display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:10px;font-weight:850;color:#fff}
+.toon-poster-head span:last-child{color:#133324;background:#ccff71;border-radius:3px;padding:4px 8px}
+.toon-poster-bottom{position:absolute;bottom:28px;left:27px;right:12px;display:flex;flex-direction:column;gap:7px;color:#fff}
+.toon-poster-bottom>span{font-size:10px;letter-spacing:1.6px;font-weight:850;color:#bdeed1}
+.toon-poster-bottom strong{font:1000 clamp(66px,6.5vw,102px)/.83 var(--sans);letter-spacing:-6px;text-shadow:0 4px 18px #0005}
+.toon-poster-bottom small{font-size:10px;color:#d5e9da;letter-spacing:1.4px;margin-top:8px}
+.toon-poster-sticker{position:absolute;top:26px;right:-15px;background:#fff271;width:99px;height:99px;border-radius:50%;display:grid;place-content:center;text-align:center;font-size:15px;font-weight:800;line-height:1.3;color:#183d29;transform:rotate(14deg);box-shadow:0 12px 20px #153e2633;border:3px solid #17351e}
+.toon-poster-sticker b{font-size:23px;letter-spacing:-1px}
+.toon-home-content{padding-top:67px}
+.toon-section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:24px}
+.toon-overline{display:block;font-size:10px;color:#0da267;font-weight:900;letter-spacing:1.2px;margin-bottom:10px;text-transform:uppercase}
+.toon-section-head h2{font-size:clamp(22px,2.6vw,30px);font-weight:900;color:#1c2e24;line-height:1.25;letter-spacing:-1.35px}
+.toon-section-head h2 span{color:#20b774;font-weight:950}
+.toon-section-head p{margin-top:10px;font-size:13px;color:#869188}
+.toon-text-link{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:850;color:#527564;white-space:nowrap;padding:10px}
+.toon-text-link .icon{width:15px;height:15px}
+.toon-text-link:hover{color:#0da267}
+.toon-home-grid{display:grid;grid-template-columns:1fr 278px;gap:24px;align-items:start}
+.toon-episode-list{background:#fff;border:1px solid #e4eae6;border-radius:21px;overflow:hidden;box-shadow:0 11px 35px #243e2810}
+.toon-episode-row{display:flex;align-items:center;text-align:left;gap:20px;width:100%;padding:19px 21px;border-bottom:1px solid #eef2ef;transition:background .2s}
+.toon-episode-row:last-child{border-bottom:0}
+.toon-episode-row:hover{background:#f5faf6}
+.toon-episode-thumb{position:relative;width:172px;height:122px;flex-shrink:0;overflow:hidden;border-radius:12px;background:#2d3c36}
+.toon-episode-thumb img{height:100%;width:100%;object-fit:cover;object-position:center}
+.toon-thumb-no{position:absolute;top:9px;left:9px;background:#0c251db8;color:white;border-radius:6px;padding:3px 7px;font:900 11px var(--sans)}
+.toon-episode-body{flex:1;display:flex;flex-direction:column;min-width:0;gap:6px}
+.toon-episode-kicker{font-size:10px;font-weight:850;color:#94a39a;letter-spacing:.6px;display:flex;align-items:center;gap:9px}
+.toon-episode-kicker b{font-size:9px;border-radius:50px;padding:3px 7px;letter-spacing:0}
+.toon-episode-kicker b.is-new{color:#15905b;background:#e1f7e9}.toon-episode-kicker b.is-clear{color:#656b7a;background:#f0f0f3}
+.toon-episode-body>strong{font-weight:950;font-size:21px;letter-spacing:-.7px;color:#1b2d23}
+.toon-episode-body>small{font-size:12px;line-height:1.55;color:#7d8980;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.toon-episode-time{display:flex;align-items:center;gap:6px;font-size:10px;color:#9aa59e;font-weight:650;margin-top:2px}
+.toon-episode-time svg{width:13px;height:13px}
+.toon-row-action{display:grid;place-items:center;flex-shrink:0;width:35px;height:35px;border:1px solid #e4ebe6;border-radius:50%;color:#178955}
+.toon-row-action svg{width:17px;height:17px}
+.toon-episode-row:hover .toon-row-action{background:#16b476;color:#fff;border-color:#16b476}
+.toon-now-playing{background:#f6ebff;border:1px solid #eedafa;border-radius:20px;padding:21px;text-align:left;overflow:hidden}
+.toon-now-playing .toon-overline{color:#9a5fd0}
+.toon-desk-art{height:166px;border-radius:13px;background:color-mix(in srgb,var(--char-color) 18%,white);overflow:hidden;display:grid;place-items:center;margin-bottom:15px}
+.toon-desk-art img{height:172px;max-width:100%;object-fit:contain;object-position:center bottom}
+.toon-now-playing h3{font-size:21px;color:#352541;font-weight:950;letter-spacing:-.7px}
+.toon-now-playing p{font-size:12px;color:#7b687c;margin-top:3px}
+.toon-desk-quote{display:block;margin:13px 0 17px;font-size:12px;font-weight:650;color:#58445d;line-height:1.65}
+.toon-desk-button{width:100%;min-height:43px;display:flex;justify-content:center;align-items:center;gap:7px;border-radius:10px;background:#fff;color:#594c68;font-size:12px;font-weight:850;border:1px solid #ded3eb}
+.toon-desk-button svg{width:14px;height:14px}.toon-desk-button:hover{background:#fffafc}
+.toon-desk-stats{margin-top:14px;padding-top:14px;border-top:1px solid #e2d4eb;display:flex;justify-content:space-between;font-size:11px;color:#826c8b}
+.toon-desk-stats b{color:#674777}
+.toon-cast-feature{padding-top:70px}
+.toon-cast-teasers{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.toon-cast-teaser{min-width:0;background:#fff;border:1px solid #e8ece9;border-radius:19px;overflow:hidden;position:relative;text-align:left;transition:transform .18s,box-shadow .18s}
+.toon-cast-teaser:hover{transform:translateY(-4px);box-shadow:0 12px 30px #23462d16}
+.toon-cast-portrait{background:color-mix(in srgb,var(--char-color) 20%,#fafaf6);height:175px;display:grid;place-items:center;overflow:hidden}
+.toon-cast-portrait img{height:180px;max-width:100%;object-fit:contain;object-position:center bottom}
+.toon-cast-caption{padding:15px 16px 20px;display:flex;flex-direction:column;gap:5px}
+.toon-cast-caption small{font-size:8px;font-weight:850;letter-spacing:.6px;color:#a6b1a9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.toon-cast-caption strong{font-size:18px;color:#1e3427;font-weight:950}
+.toon-cast-caption>span{font-size:11px;color:#819087;min-height:24px}
+.toon-cast-arrow{position:absolute;right:13px;bottom:42px;color:#1fb471;font-weight:900;font-size:20px}
+.toon-bottom-banner{background:#16392b;border-radius:25px;margin-top:68px;padding:34px 42px;display:flex;align-items:center;justify-content:space-between;gap:23px;color:#fff}
+.toon-bottom-banner span{font-size:10px;font-weight:900;color:#85d8ab;letter-spacing:1.2px}
+.toon-bottom-banner h2{margin:10px 0;font-size:26px;font-weight:950;letter-spacing:-1px;word-break:keep-all}
+.toon-bottom-banner p{font-size:12px;color:#b4d0bb;line-height:1.65}
+.toon-bottom-banner button{white-space:nowrap;background:#d1f46f;color:#193524;box-shadow:none}
+.toon-bottom-banner button:hover{background:#e6ff9b}
+
+/* Series pages, cast and episode reader */
+.toon-page{width:min(100%,1220px);margin:0 auto;padding:48px 28px 70px}
+.toon-page-intro{margin-bottom:32px;padding-bottom:29px;border-bottom:1px solid #e1e9e2}
+.toon-page-intro h1{font-size:clamp(37px,4.6vw,59px);font-family:var(--sans);font-weight:950;line-height:1.2;letter-spacing:-3px;margin-bottom:14px;color:#172b1e}
+.toon-page-intro h1 em{font-style:normal;color:#17b26c}
+.toon-page-intro p{max-width:560px;font-size:13px;color:#73877a;line-height:1.9}
+.toon-character-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:0 0 23px}
+.toon-character-tab{min-width:0;min-height:120px;padding:12px;border-radius:15px;border:2px solid transparent;background:#fff;box-shadow:0 1px 5px #1e45260b;gap:10px}
+.toon-character-tab:hover{border-color:#94d4b2}
+.toon-character-tab.selected{border-color:#12b575;background:#f3fcf6}
+.toon-tab-portrait{width:60px;height:76px;flex-shrink:0;border-radius:10px;background:color-mix(in srgb,var(--accent) 17%,white);overflow:hidden;display:grid;place-items:center}
+.toon-tab-portrait img{height:74px;width:60px;max-width:100%;object-fit:contain}
+.toon-character-tab strong{font-weight:950;font-size:15px;color:#1d3226;margin:5px 0}
+.toon-character-tab small{font-size:10px;color:#7b887d;white-space:normal;line-height:1.4}
+.toon-character-tab .tab-check{color:#16a86c;font-weight:950}
+.toon-cast-detail{border:1px solid #e5eee7;background:#fff;border-radius:24px;box-shadow:0 15px 45px #21412b0b;overflow:hidden;padding:0;display:grid;grid-template-columns:minmax(0,43%) minmax(0,57%);gap:0;min-height:482px}
+.toon-cast-illustration{height:100%;min-height:482px;margin:0;overflow:hidden;background:color-mix(in srgb,var(--accent) 19%,#fff9ee);position:relative}
+.toon-cast-illustration:before{position:absolute;content:'';height:275px;width:275px;border-radius:50%;top:70px;left:50%;transform:translateX(-50%);background:#fff9}
+.toon-cast-illustration img{height:min(460px,88%);width:100%;position:absolute;left:0;bottom:14px;object-fit:contain;z-index:2;animation:none}
+.toon-character-no{position:absolute;z-index:1;top:26px;left:25px;font:950 56px var(--sans);letter-spacing:-3px;color:#ffffffa1}
+.toon-cast-illustration .portrait-caption{z-index:4;left:25px;bottom:20px;right:25px;color:#264431;font:900 9px var(--sans)}
+.toon-character-info{padding:clamp(25px,4.7vw,57px);display:flex;flex-direction:column;justify-content:center}
+.toon-character-info .toon-overline{color:#159b5f}
+.toon-character-info .character-name{margin:0 0 2px;display:block}
+.toon-character-info .character-name h2{font:950 clamp(38px,4vw,56px)/1.1 var(--sans);letter-spacing:-2.6px;color:#1e3427}
+.toon-role-tag{display:inline-flex;margin-top:13px;padding:6px 10px;background:#ebf8ef;color:#158151;border-radius:100px;font-size:11px;font-weight:750}
+.toon-character-info .character-quote{font:800 21px/1.5 var(--sans);color:#243a2e;margin:24px 0 12px}
+.toon-character-info .character-bio{font-size:12px;color:#849087;line-height:1.95}
+.toon-character-stats{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0}
+.toon-character-stats .stat-row{font-size:10px;gap:9px;color:#71847a}
+.toon-character-stats .stat-pips i.on{background:#1abb79}
+.toon-character-traits{border-top:1px solid #e8ede9;display:grid;grid-template-columns:1fr 1fr;gap:19px;padding-top:19px;margin:0 0 14px}
+.toon-character-traits .trait>.icon{color:#13a767;flex-shrink:0}
+.toon-character-traits .trait label{font-size:8px;color:#8b9b90}
+.toon-character-traits .trait strong{font-size:12px;color:#243b2d}
+.toon-character-traits .trait p{color:#88958d;font-size:10px;line-height:1.7}
+.toon-trait-passive{display:flex;align-items:flex-start;gap:9px;color:#738778;margin:8px 0 23px}
+.toon-trait-passive svg{flex-shrink:0;color:#12a66c;width:18px;height:18px}
+.toon-trait-passive strong{color:#274435;font-size:12px}.toon-trait-passive p{font-size:11px;color:#90a095;margin-top:4px;line-height:1.6}
+.toon-character-info>.toon-start{align-self:flex-start}
+.toon-episode-index{margin-top:12px}
+.toon-completion{font-weight:800;font-size:12px;padding:9px 13px;background:#e3f5e9;color:#108957;border-radius:100px}
+.toon-chapter-list{display:grid;grid-template-columns:1fr;gap:12px}
+.toon-chapter-item{display:flex;align-items:center;gap:25px;text-align:left;padding:14px;border-radius:18px;border:2px solid transparent;background:#fff;box-shadow:0 4px 12px #1d3b2310;min-height:168px;flex-direction:row}
+.toon-chapter-item.selected{border-color:#20bd7b;background:#fcfffc}
+.toon-chapter-item:hover{border-color:#a0ddbe}
+.toon-chapter-thumb{height:137px;width:218px;flex-shrink:0;border-radius:13px;overflow:hidden;position:relative}
+.toon-chapter-thumb img{height:100%;width:100%;object-fit:cover;object-position:center}
+.toon-chapter-thumb:after{display:none}
+.toon-chapter-thumb .chapter-number{top:10px;left:10px;font:950 13px var(--sans);background:#14372cca;color:#fff;border-radius:6px;padding:5px 7px}
+.toon-chapter-info{display:flex;flex-direction:column;gap:9px;flex:1;min-width:0;padding:0}
+.toon-chapter-info strong{font-size:23px;letter-spacing:-.8px;font-weight:950;color:#193125}
+.toon-chapter-desc{font-size:13px;color:#7f8f84;line-height:1.65}
+.toon-chapter-meta{font-size:10px;color:#95a098;font-weight:750}
+.toon-chapter-select{display:flex;gap:6px;align-items:center;padding-right:20px;color:#8b9c8c;font-size:12px;font-weight:850;white-space:nowrap}
+.toon-chapter-select svg{width:15px;height:15px}
+.toon-chapter-item.selected .toon-chapter-select{color:#0fa96e}
+.toon-reading-dock{background:#153b2c;color:#fff;border:0;border-radius:17px;margin:25px 0 0;padding:17px 23px;gap:20px;min-height:116px;box-shadow:0 9px 20px #19493120}
+.toon-reading-dock>img{height:75px;width:60px;object-fit:contain;border-radius:10px;background:#ffffff23}
+.toon-reading-dock .toon-overline{color:#a0e4b8;margin:0 0 4px}
+.toon-reading-dock .expedition-copy h3{font-size:21px;color:#fff;font-weight:900}
+.toon-reading-dock .expedition-copy p{color:#b8d1c1;font-size:11px}
+.toon-reading-dock .toon-text-link{color:#b4e4c8}
+.toon-reading-dock .toon-start{white-space:nowrap;background:#d5f580;color:#173726;box-shadow:none}
+.toon-reading-dock .toon-start:hover{background:#efff9f}
+.toon-map-footnote{font-size:11px;color:#95a499;margin:19px 0}
+
+/* All episodes now read as scrollable original comic panels. */
+.overlay.dialogue{background:#e8eee9!important;backdrop-filter:none!important;padding:0!important;align-items:stretch!important;justify-content:center!important;overflow:hidden!important}
+.toon-reader{height:100dvh;width:min(100%,730px);overflow-y:auto;overscroll-behavior:contain;background:#fff;box-shadow:0 0 0 1px #e1e6e3,0 20px 50px #0e271820;scroll-behavior:smooth;position:relative;color:#1c3427}
+.toon-reader-head{min-height:65px;display:grid;grid-template-columns:85px 1fr 65px;align-items:center;gap:4px;padding:10px 18px;border-bottom:1px solid #e8ece9;position:sticky;top:0;z-index:6;background:#fffc;backdrop-filter:blur(15px)}
+.toon-reader-head button{display:flex;align-items:center;gap:4px;color:#556d5b;font-weight:800;font-size:12px;padding:8px 0}
+.toon-reader-head button svg{width:17px;height:17px;transform:rotate(180deg)}
+.toon-reader-head>div{text-align:center}
+.toon-reader-head small{display:block;font-weight:800;font-size:9px;color:#88a08c;letter-spacing:.5px}
+.toon-reader-head strong{display:block;margin-top:3px;font-size:14px;letter-spacing:-.3px}
+.toon-reader-count{justify-self:end;font-size:12px;font-weight:900;color:#11a568;background:#e9f7ec;border-radius:100px;padding:6px 9px}
+.toon-reader-body{margin:auto;width:min(100%,690px);padding-bottom:70px}
+.toon-story-title{text-align:center;min-height:290px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(#f4faf3,#e6f3e7);padding:35px 22px}
+.toon-story-title .toon-overline{color:#199b66}
+.toon-story-title h2{font:950 clamp(38px,5vw,58px)/1.2 var(--sans);letter-spacing:-2.5px;margin-bottom:15px;color:#203728}
+.toon-story-title p{font-size:12px;color:#799484}
+.toon-reader-down{margin-top:18px;color:#1ba86d;font-size:27px;animation:toonBob 1.8s ease-in-out infinite}
+@keyframes toonBob{50%{transform:translateY(7px)}}
+.toon-story-cut{margin:42px auto 78px;position:relative;width:calc(100% - 38px);box-shadow:0 12px 25px #142a1d14}
+.toon-story-cut:nth-child(even){transform:rotate(.35deg)}
+.toon-story-cut:nth-child(odd){transform:rotate(-.3deg)}
+.toon-story-image{height:clamp(230px,32vw,420px);position:relative;overflow:hidden;background:#2b3e37}
+.toon-story-image>img{width:100%;height:100%;object-fit:cover;object-position:65% center;filter:saturate(.9)}
+.toon-story-cut:nth-of-type(2) .toon-story-image>img{object-position:85% center;transform:scale(1.09);filter:hue-rotate(18deg) saturate(.75)}
+.toon-story-cut:nth-of-type(3) .toon-story-image>img{object-position:25% center;transform:scale(1.12);filter:hue-rotate(-22deg) brightness(.83)}
+.toon-story-image:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#051d1878,transparent 72%);pointer-events:none}
+.toon-cut-counter{position:absolute;z-index:2;top:17px;left:18px;background:#d6f77b;color:#143828;font-size:11px;letter-spacing:1px;font-weight:950;padding:8px 11px;border-radius:4px;box-shadow:3px 4px 0 #1c342d}
+.toon-cut-worker{position:absolute;right:4%;bottom:-22%;height:110%;width:54%;display:grid;place-items:end;z-index:2;opacity:.97}
+.toon-cut-worker img{max-height:100%;height:100%;width:100%;object-fit:contain;object-position:bottom}
+.toon-story-caption{background:#fff;border:3px solid #1d3227;padding:27px clamp(20px,4vw,40px);position:relative;z-index:3}
+.toon-story-caption:before{content:'';position:absolute;width:20px;height:20px;background:#fff;border:3px solid #1d3227;border-right:0;border-bottom:0;top:-13px;left:38px;transform:rotate(45deg)}
+.toon-speaker{display:inline-flex;background:#1da66b;color:#fff;padding:4px 9px;border-radius:5px;font-size:10px;font-weight:900;letter-spacing:.2px}
+.toon-speech{font-size:clamp(16px,2.3vw,21px);font-weight:800;line-height:1.75;letter-spacing:-.6px;color:#28362b;margin-top:13px;word-break:keep-all}
+.toon-story-next{text-align:center;background:#172b21;color:#fff;padding:55px 22px 66px;margin:0 19px;display:flex;flex-direction:column;align-items:center;gap:14px}
+.toon-story-next>span{font-size:10px;letter-spacing:1.8px;color:#a9dbb9;font-weight:900}
+.toon-story-next>p{font-size:19px;font-weight:900;letter-spacing:-.7px;margin:0 0 10px;line-height:1.5}
+.toon-story-next .toon-start{background:#e3f97c;color:#133927}
+.toon-story-next .toon-start:hover{background:#f3ffaa}
+.toon-reader-skip{margin-top:5px;padding:12px;color:#b0c6b7;font-weight:700;font-size:11px;text-decoration:underline;text-underline-offset:4px}
+.toon-reader-skip:hover{color:#fff}
+/* In-game mid-episode choice in visual comic dialogue */
+.overlay:not(.dialogue) .toon-story-choice{width:min(100%,680px);max-height:calc(100dvh - 32px);overflow-y:auto;background:#fdfefc;border-radius:22px;box-shadow:0 24px 80px #02150c80;color:#21342a;padding:0}
+.toon-choice-head{padding:29px 31px 22px}
+.toon-choice-head h2{font-size:clamp(27px,3vw,36px);font-weight:950;letter-spacing:-1.4px}
+.toon-choice-head p{font-size:12px;color:#91a097;margin-top:8px}
+.toon-choice-frame{position:relative;background:#e8f1ed;padding:0 0 35px}
+.toon-choice-illustration{height:190px;position:relative;overflow:hidden}
+.toon-choice-illustration img{height:100%;width:100%;object-fit:cover;object-position:center}
+.toon-choice-illustration:after{content:'';position:absolute;inset:0;background:#0b342a65}
+.toon-choice-fx{position:absolute;top:26px;right:29px;font:900 60px var(--sans);z-index:2;color:#edff6c;text-shadow:4px 4px #1c392a;transform:rotate(12deg)}
+.toon-choice-bubble{position:relative;max-width:90%;margin:-31px auto 0;background:#fff;border:2px solid #244631;border-radius:19px;padding:21px 23px;z-index:3;box-shadow:4px 5px 0 #21412c}
+.toon-choice-bubble>span{display:block;color:#12a76b;font-size:10px;font-weight:900;letter-spacing:.8px;margin-bottom:8px}
+.toon-choice-bubble p{font-size:16px;font-weight:800;line-height:1.65;word-break:keep-all}
+.toon-choice-actions{display:grid;gap:10px;padding:25px 28px 12px}
+.toon-choice-option{display:grid;grid-template-columns:37px 1fr 23px;gap:12px;align-items:center;background:#fff;border:1px solid #dce8e0;border-radius:12px;padding:16px;text-align:left;min-height:76px;color:#243b2b}
+.toon-choice-option:hover{background:#edfaf1;border-color:#15b874}
+.toon-choice-option>span{font-size:18px;font-weight:950;color:#16ad72}
+.toon-choice-option strong{display:block;font-size:13px;color:#233e2b}.toon-choice-option small{display:block;margin-top:5px;font-size:11px;color:#809187}
+.toon-choice-option svg{width:18px;height:18px;color:#16a76a}
+.toon-choice-reply{padding:26px 28px 15px}
+.toon-choice-reply>span{display:block;font-size:10px;color:#129963;font-weight:900}
+.toon-choice-reply p{font-size:15px;font-weight:800;color:#33473a;line-height:1.8;margin:12px 0 22px}
+.toon-choice-end{text-align:center;padding:5px 24px 24px;font-size:11px;color:#91a198}
+/* Reading, archive, upgrades and combat also share the calmer design language. */
+body:not(.in-game) .page:not(.toon-page){max-width:1200px;margin:0 auto;color:#253829}
+body:not(.in-game) .page-heading h1{font:950 clamp(30px,3vw,44px)/1.2 var(--sans);color:#213728;letter-spacing:-1.8px}
+body:not(.in-game) .page-heading p{color:#859487}
+body:not(.in-game) .eyebrow{color:#129b62;font-weight:800}
+body:not(.in-game) .eyebrow:before{background:#17b57a}
+body:not(.in-game) .section-kicker{color:#188b5a;font-weight:850}
+body:not(.in-game) .archive-item,body:not(.in-game) .research-card,body:not(.in-game) .recipe{background:#fff;border:1px solid #e2eae4;border-radius:14px;color:#233b2c}
+body:not(.in-game) .archive-item:hover,body:not(.in-game) .archive-item.selected{background:#eaf8ed;border-color:#17ae73}
+body:not(.in-game) .archive-item strong,body:not(.in-game) .research-card h2,body:not(.in-game) .recipe strong{color:#203929;font-family:var(--sans);font-weight:900}
+body:not(.in-game) .archive-item .icon,body:not(.in-game) .research-card>.icon{color:#18ae6a}
+body:not(.in-game) .archive-page{border-radius:15px;box-shadow:4px 5px 0 #cedfd0}
+body:not(.in-game) .archive-page h2{font-family:var(--sans);font-weight:900}
+body:not(.in-game) .research-card p,body:not(.in-game) .recipe p{color:#8e9a90}
+body:not(.in-game) .research-card .stat-pips i.on{background:#18b271}
+body:not(.in-game) .recipe .icon{color:#169d66}
+body.in-game .topbar{background:#142a21;border-bottom:1px solid #335744}
+body.in-game .brand>span:first-child{background:#16ad70;color:#fff;border-color:#16ad70;border-radius:10px}
+body.in-game .top-tools .tool-button{border-color:#507a5c;color:#d7f3e2}
+body.in-game .hud{background:linear-gradient(#091e16e5,#0d271b69 79%,transparent);color:#fff}
+body.in-game .hud-clock strong{font-family:var(--sans);font-weight:950;letter-spacing:-1px}
+body.in-game .xp-track i{background:linear-gradient(90deg,#19b873,#d9f479)}
+body.in-game .hp-track i{background:linear-gradient(90deg,#ff6f7c,#ffb285)}
+body.in-game .ability-button{border-radius:14px;background:#18382ee8;border-color:#73bc8d77;box-shadow:0 8px 22px #030e0954}
+body.in-game .ability-button.ready{border-color:#7de2ac}
+body.in-game .ability-button b{color:#fff}
+body.in-game .ability-button .ability-icon{color:#c7f4ca}
+body.in-game .mission{background:#173b31c7;border-color:#629f7c59;border-radius:12px}
+body.in-game .module-slot{border-radius:8px;background:#193c2fd9}
+.overlay:not(.dialogue) .modal,.overlay:not(.dialogue) .compact-modal,.overlay:not(.dialogue) .help-modal,.overlay:not(.dialogue) .result-modal{border-radius:19px;border:2px solid #81ad95;background:#183528;color:#fff;box-shadow:0 19px 65px #040e0977}
+.overlay:not(.dialogue) .modal-top h2,.overlay:not(.dialogue) .compact-modal h2,.overlay:not(.dialogue) .help-modal h2,.overlay:not(.dialogue) .result-copy h2{font-family:var(--sans);font-weight:950;letter-spacing:-1px}
+.overlay:not(.dialogue) .compact-modal .primary,.overlay:not(.dialogue) .help-modal .primary{border-radius:12px;background:#d4fa8b;color:#1c382a;border:0}
+.overlay:not(.dialogue) .tutorial-modal{background:#f9fcf9;border:2px solid #3b6850;border-radius:21px;box-shadow:0 24px 60px #00160965;color:#183427}
+.tutorial-modal h2{color:#183527}.tutorial-description{color:#4f6958}.tutorial-hint{background:#e9f5ed;color:#367250;border-radius:11px;border-left-color:#0fa968}
+.tutorial-kicker{color:#0e985f}.tutorial-symbol{background:#e1fc9c;color:#24402c;border-radius:15px;transform:rotate(-2deg);box-shadow:4px 4px #15b271}
+.tutorial-buttons .primary{background:#13b679;color:white;border-radius:11px}
+.tutorial-progress i.on{background:#16b274}
+
+@media(max-width:1120px){
+ body:not(.in-game) .topbar{padding-left:22px;padding-right:22px}
+ .toon-hero-inner{gap:25px;grid-template-columns:1fr 1fr}
+ .toon-hero h1{font-size:clamp(55px,5.5vw,70px)}
+ .toon-cast-teasers{gap:11px}
+ .toon-character-tabs{gap:9px}
+ .toon-character-tab{padding:9px;gap:7px}
+ .toon-tab-portrait{width:48px}
+ .toon-cast-detail{grid-template-columns:41% 59%}
+}
+@media(max-width:850px){
+ body:not(.in-game) .topbar{height:auto;min-height:70px;display:grid;grid-template-columns:1fr auto;grid-template-rows:58px 41px;padding:3px 22px 0;gap:0}
+ body:not(.in-game) .topbar .brand{font-size:20px;grid-column:1;grid-row:1}
+ body:not(.in-game) .topbar .top-tools{grid-column:2;grid-row:1}
+ body:not(.in-game) .topbar .main-nav{grid-column:1/3;grid-row:2;margin:0;order:0;height:41px;width:100%;justify-content:flex-start;gap:28px;overflow-x:auto;scrollbar-width:none}
+ body:not(.in-game) .topbar .main-nav::-webkit-scrollbar{display:none}
+ body:not(.in-game) .nav-link{height:100%;font-size:12px;flex-shrink:0}
+ .toon-hero-inner{min-height:470px;gap:8px}
+ .toon-hero h1{font-size:clamp(49px,7vw,68px)}
+ .toon-hero-visual{height:420px}
+ .toon-poster{height:390px}
+ .toon-poster-sticker{right:0;width:77px;height:77px;font-size:12px}
+ .toon-poster-sticker b{font-size:19px}
+ .toon-home-grid{grid-template-columns:1fr 245px;gap:14px}
+ .toon-episode-row{gap:12px;padding:15px}
+ .toon-episode-thumb{width:132px;height:113px}
+ .toon-episode-body>strong{font-size:18px}
+ .toon-episode-body>small{font-size:11px}
+ .toon-row-action{display:none}
+ .toon-cast-teasers{grid-template-columns:repeat(2,1fr)}
+ .toon-cast-teaser{display:flex;min-height:125px}
+ .toon-cast-portrait{width:42%;height:137px}
+ .toon-cast-portrait img{height:136px}
+ .toon-cast-caption{flex:1;justify-content:center;padding:15px 10px}
+ .toon-cast-arrow{bottom:13px}
+ .toon-character-tabs{grid-template-columns:repeat(2,1fr)}
+ .toon-cast-detail{grid-template-columns:40% 60%}
+ .toon-character-info{padding:26px}
+}
+@media(max-width:650px){
+ .toon-wrap{padding-left:18px;padding-right:18px}
+ .toon-top-note{height:31px;font-size:9px}
+ .toon-top-note .toon-wrap>span:last-child{display:none}
+ .toon-hero-inner{display:flex;flex-direction:column;align-items:stretch;gap:0;padding:25px 18px 42px}
+ .toon-hero-copy{padding:8px 0 28px;order:1}
+ .toon-label{font-size:9px}
+ .toon-title-stamp{margin-top:23px;font-size:12px}
+ .toon-hero h1{font-size:clamp(48px,12vw,68px);letter-spacing:-3.9px;line-height:1.13;margin-bottom:14px}
+ .toon-hero-lead{font-size:13px;line-height:1.75;margin-bottom:14px}
+ .toon-tags{margin:0 0 20px;gap:6px}
+ .toon-tags>span{font-size:10px;padding:5px 8px}
+ .toon-main-actions{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
+ .toon-start{min-height:51px;padding:12px 16px;font-size:12px;gap:7px}
+ .toon-continue{font-size:12px;padding:8px 2px;min-height:45px;white-space:nowrap}
+ .toon-series-meta{gap:15px;margin-top:18px;font-size:10px}
+ .toon-hero-visual{order:2;height:370px;padding:0 25px 0 10px}
+ .toon-poster{height:365px;width:min(100%,280px);border-width:6px;border-radius:15px;transform:rotate(1deg);box-shadow:15px 16px 0 #163f2b15,0 20px 33px #124a2f31}
+ .toon-poster-bottom{left:18px;bottom:22px}
+ .toon-poster-bottom strong{font-size:73px;letter-spacing:-5px}
+ .toon-poster-sticker{top:5px;right:5px;width:79px;height:79px}
+ .toon-home-content{padding-top:49px}
+ .toon-section-head{margin-bottom:18px;gap:10px;align-items:flex-start}
+ .toon-section-head h2{font-size:23px;letter-spacing:-1.15px}
+ .toon-section-head p{font-size:11px}
+ .toon-section-head>.toon-text-link{font-size:10px;padding:7px 0;gap:5px}
+ .toon-section-head>.toon-text-link .icon{height:13px;width:13px}
+ .toon-home-grid{display:block}
+ .toon-episode-list{border-radius:16px}
+ .toon-episode-row{padding:12px;gap:13px;min-height:112px}
+ .toon-episode-thumb{width:112px;height:94px;border-radius:10px}
+ .toon-episode-body{gap:4px}
+ .toon-episode-body>strong{font-size:17px}
+ .toon-episode-body>small{font-size:10px;line-height:1.4;-webkit-line-clamp:1}
+ .toon-episode-time{font-size:9px;margin-top:3px}
+ .toon-episode-kicker{font-size:9px}
+ .toon-now-playing{display:grid;grid-template-columns:90px 1fr;grid-template-rows:auto auto auto auto;column-gap:12px;margin-top:17px;padding:15px;border-radius:16px;align-items:center}
+ .toon-now-playing .toon-overline{grid-column:1/3;margin-bottom:8px}
+ .toon-desk-art{grid-column:1;grid-row:2/5;height:118px;margin:0}
+ .toon-desk-art img{height:121px}
+ .toon-now-playing h3{grid-column:2;grid-row:2;font-size:19px}
+ .toon-now-playing p{grid-column:2;grid-row:3;font-size:11px}
+ .toon-desk-quote{grid-column:2;grid-row:4;margin:4px 0;font-size:11px}
+ .toon-desk-button{grid-column:1/3;margin-top:12px}
+ .toon-desk-stats{grid-column:1/3;margin-top:10px;padding-top:10px}
+ .toon-cast-feature{padding-top:52px}
+ .toon-cast-teasers{gap:9px}
+ .toon-cast-teaser{display:block}
+ .toon-cast-portrait{width:100%;height:125px}
+ .toon-cast-portrait img{height:131px}
+ .toon-cast-caption{padding:10px 12px 14px;gap:3px}
+ .toon-cast-caption small{font-size:7px}
+ .toon-cast-caption strong{font-size:17px}
+ .toon-cast-caption>span{font-size:10px}
+ .toon-cast-arrow{right:9px;bottom:9px;font-size:17px}
+ .toon-bottom-banner{margin:43px 18px 0;padding:27px 24px;display:block;border-radius:19px}
+ .toon-bottom-banner h2{font-size:23px}
+ .toon-bottom-banner p{font-size:11px}
+ .toon-bottom-banner button{width:100%;margin-top:20px}
+ .toon-page{padding:34px 18px 45px}
+ .toon-page-intro{margin-bottom:21px;padding-bottom:22px}
+ .toon-page-intro h1{font-size:clamp(32px,8vw,43px);letter-spacing:-2.2px}
+ .toon-page-intro p{font-size:11px}
+ .toon-character-tabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:13px}
+ .toon-character-tab{min-height:88px;padding:7px;gap:7px;border-radius:12px}
+ .toon-tab-portrait{width:48px;height:67px}
+ .toon-tab-portrait img{height:67px;width:46px}
+ .toon-character-tab strong{font-size:13px;margin:1px 0}
+ .toon-character-tab small{font-size:9px}
+ .toon-cast-detail{display:block;border-radius:17px}
+ .toon-cast-illustration{height:300px;min-height:0}
+ .toon-cast-illustration:before{height:200px;width:200px;top:43px}
+ .toon-cast-illustration img{height:95%;max-height:285px;bottom:0}
+ .toon-character-no{font-size:39px;top:20px}
+ .toon-character-info{padding:22px}
+ .toon-character-info .character-name h2{font-size:36px}
+ .toon-character-info .character-quote{font-size:18px;margin:18px 0 10px}
+ .toon-character-traits{gap:13px}
+ .toon-character-traits .trait p{font-size:10px}
+ .toon-character-info>.toon-start{width:100%}
+ .toon-chapter-item{gap:12px;min-height:112px;padding:10px;border-radius:13px}
+ .toon-chapter-thumb{width:112px;height:98px;border-radius:8px}
+ .toon-chapter-info{gap:5px}
+ .toon-chapter-info strong{font-size:17px}
+ .toon-chapter-desc{font-size:10px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+ .toon-chapter-meta{font-size:9px}
+ .toon-chapter-select{display:none}
+ .toon-reading-dock{display:grid;grid-template-columns:51px 1fr;gap:7px;padding:14px;border-radius:13px}
+ .toon-reading-dock>img{width:47px;height:64px;grid-row:1;grid-column:1}
+ .toon-reading-dock .expedition-copy{grid-row:1;grid-column:2}
+ .toon-reading-dock .expedition-copy h3{font-size:17px}
+ .toon-reading-dock .expedition-copy p{font-size:10px}
+ .toon-reading-dock .toon-text-link{grid-column:1;font-size:10px;padding:7px 0}
+ .toon-reading-dock .toon-start{grid-column:2;font-size:11px;min-width:0;padding:10px 8px}
+ .toon-reader-head{min-height:58px;padding:7px 13px;grid-template-columns:60px 1fr 55px}
+ .toon-reader-head strong{font-size:12px}.toon-reader-head small{font-size:8px}
+ .toon-reader-head button{font-size:11px}.toon-reader-head button svg{width:14px;height:14px}
+ .toon-reader-count{font-size:10px;padding:5px}
+ .toon-story-title{min-height:230px;padding:25px 16px}
+ .toon-story-title h2{font-size:38px;letter-spacing:-2.5px}
+ .toon-story-cut{width:calc(100% - 28px);margin:30px auto 59px}
+ .toon-story-image{height:270px}
+ .toon-cut-counter{font-size:10px;padding:6px 9px;top:12px;left:12px}
+ .toon-story-caption{padding:21px 17px;border-width:2px}
+ .toon-speech{font-size:17px}
+ .toon-story-next{margin:0 14px;padding:40px 18px 52px}
+ .toon-story-next>p{font-size:16px}
+ .toon-story-next .toon-start{width:100%}
+ .overlay:not(.dialogue) .toon-story-choice{max-height:calc(100dvh - 24px);border-radius:14px}
+ .toon-choice-head{padding:19px 18px 15px}
+ .toon-choice-head h2{font-size:26px}
+ .toon-choice-illustration{height:155px}
+ .toon-choice-bubble{padding:15px 16px}
+ .toon-choice-bubble p{font-size:13px}
+ .toon-choice-actions{padding:18px 17px 10px}
+ .toon-choice-option{min-height:65px;padding:11px}
+ .toon-choice-reply{padding:18px 18px 10px}
+ .toon-choice-reply p{font-size:13px}
+ body:not(.in-game) #footer{flex-direction:column;align-items:center;text-align:center;gap:8px;padding:23px 12px}
+}
+@media(max-width:365px){
+ .toon-hero h1{font-size:45px;letter-spacing:-3.6px}
+ .toon-main-actions{grid-template-columns:1fr}
+ .toon-main-actions .toon-continue{justify-content:center}
+ .toon-episode-thumb{width:93px;height:86px}
+ .toon-episode-body>strong{font-size:15px}
+ .toon-episode-body>small{font-size:9px}
+ .toon-episode-kicker b{font-size:8px}
+ .toon-series-meta{gap:10px}
+ .toon-chapter-thumb{width:90px;height:95px}
+ .toon-chapter-desc{-webkit-line-clamp:1}
+}
+@media(prefers-reduced-motion:reduce){.toon-reader-down{animation:none}.toon-poster,.toon-story-cut{transform:none}}
+
+/* Final service polish: strip the former neon poster typographic effects. */
+body:not(.in-game) .nav-link,body:not(.in-game) .nav-link:hover,body:not(.in-game) .nav-link.active{background:transparent!important;box-shadow:none!important;transform:none!important;border-radius:0!important;text-shadow:none!important}
+.toon-hero h1,.toon-page-intro h1,.toon-character-info .character-name h2,.toon-section-head h2,.toon-story-title h2,.toon-choice-head h2{color:inherit;-webkit-text-stroke:0!important;text-shadow:none!important;filter:none!important}
+.toon-hero h1{color:#13271c}
+.toon-hero h1 em,.toon-page-intro h1 em{color:#0ca96b}
+.toon-character-info .character-name h2{color:#1e3427}
+.toon-page-intro h1{color:#172b1e}
+.toon-section-head h2{color:#1c2e24}
+.toon-story-title h2,.toon-choice-head h2{color:#203728}
+body.in-game .chapter-cut{border:3px solid #214636!important;background:#eff9eb!important;box-shadow:7px 8px 0 #189667!important;border-radius:8px!important;color:#23422c!important}
+body.in-game .chapter-cut h2{color:#1e412c!important;font-family:var(--sans)!important;font-weight:950!important;text-shadow:none!important;letter-spacing:-1.5px!important}
+body.in-game .chapter-cut p,body.in-game .chapter-cut .micro{color:#39905f!important}
+body.in-game .chapter-cut:before,body.in-game .chapter-cut:after{display:none!important}
+@media(max-width:650px){.toon-bottom-banner{width:calc(100% - 36px);max-width:calc(100% - 36px)}.toon-wrap.toon-bottom-banner{padding-left:23px;padding-right:23px}}
+body:not(.in-game) .brand,body:not(.in-game) .brand *,.toon-hero h1 em{color:inherit;-webkit-text-stroke:0!important;text-shadow:none!important;filter:none!important}
+body:not(.in-game) .brand{color:#173a28}
+.toon-hero h1 em{color:#0ca96b}
+body:not(.in-game) #footer{background:transparent!important;box-shadow:none!important}
+
 </style>
 </head>
 <body>
 <div class="app-shell">
   <header class="topbar" id="topbar">
-    <button class="brand" data-nav="home" aria-label="처음 화면"><span id="brand-icon"></span><span>CLOCK OUT!<small>야근을 끝내는 전쟁</small></span></button>
+    <button class="brand" data-nav="home" aria-label="처음 화면"><span id="brand-icon"></span><span>CLOCK OUT!<small>INTERACTIVE WEBTOON</small></span></button>
     <nav class="main-nav" aria-label="주요 메뉴">
-      <button class="nav-link active" data-nav="home">로비</button>
-      <button class="nav-link" data-nav="roster">직장인 <sup>04</sup></button>
-      <button class="nav-link" data-nav="map">작전 구역</button>
-      <button class="nav-link" data-nav="archive">사내 기록</button>
-      <button class="nav-link" data-nav="workshop">휴게실</button>
+      <button class="nav-link active" data-nav="home">작품 홈</button>
+      <button class="nav-link" data-nav="roster">등장인물 <sup>04</sup></button>
+      <button class="nav-link" data-nav="map">회차 목록</button>
+      <button class="nav-link" data-nav="archive">비하인드</button>
+      <button class="nav-link" data-nav="workshop">성장</button>
     </nav>
     <div class="top-tools"><span class="seed-wallet" id="wallet" title="작전으로 모은 업무 포인트"></span><button class="tool-button" id="sound-btn" title="소리 전환 (M)" aria-label="소리 켜기" aria-pressed="false"></button><button class="tool-button" id="help-btn" title="조작법 (F1)" aria-label="조작법 열기"></button></div>
   </header>
   <main id="main">
     <section id="menu" class="menu-view" aria-live="off"></section>
-    <section id="play-view" class="play-view" hidden aria-label="오피스 작전">
+    <section id="play-view" class="play-view" hidden aria-label="웹툰형 오피스 생존 액션">
       <canvas id="game" tabindex="0" role="img" aria-label="WASD 또는 방향키 이동. Space 돌진. E 전용 스킬. P 일시정지. 터치 드래그 이동."></canvas>
       <div class="play-vignette"></div>
       <div id="hud" class="hud">
@@ -142,7 +633,7 @@ body.in-game .topbar{background:#17182d;border-bottom:2px solid #ffcf40}body.in-
     </section>
     <div id="overlay" class="overlay" hidden></div>
   </main>
-  <footer id="footer"><span>NO MORE OVERTIME. WE CLOCK OUT.</span><span>OFFICE SURVIVAL <i>✧</i> VOL. 01</span><button data-nav="help">플레이 방법 ↗</button></footer>
+  <footer id="footer"><span>CLOCK OUT! · 오늘도 무사히 퇴근하세요.</span><span>INTERACTIVE COMIC <i>✧</i> SEASON 01</span><button data-nav="help">게임 이용 가이드 ↗</button></footer>
 </div>
 <div id="site-toast" class="site-toast" role="status" aria-live="polite"></div>
 <noscript><p style="padding:2rem">이 게임을 실행하려면 브라우저에서 JavaScript를 허용해 주세요.</p></noscript>
@@ -1192,33 +1683,55 @@ AG.Engine=class OfficeEngine {
   }
   function renderHome(){
     const done=C.chapters.filter(c=>S.data.clears[c.id]).length;
-    return `<div class="hero">
-      <div class="hero-art"><img src="${A.scenes[0]}" alt="야근에 맞서 싸우는 네 명의 직장인과 네온 빛 회사 전경"></div>
-      <div class="hero-copy"><div class="eyebrow">OFFICE SURVIVAL ACTION / 2026</div><p class="hero-wordmark">CLOCK OUT! <span class="hero-stamp">퇴근 승인 대기</span></p><h1>퇴근이<br><em>전쟁이다.</em></h1>
-      <p class="hero-description">퇴근 3분 전, 회사가 미쳐버렸다.<br>끝없는 회의, 쏟아지는 업무, 폭주한 야근 시스템.<br>동료들과 함께 모든 마감을 뚫고 퇴근하라!</p>
-      <div class="button-row"><button class="primary" data-nav="roster">직장인 선택하기 ${icon('arrow')}</button><button class="secondary" data-action="quick">바로 출근(?) ${icon('bolt')}</button></div>
-      <div class="hero-detail"><span>${icon('badge')} 4 PLAYABLE STAFF</span><span>${icon('map')} 3 OFFICE ZONES</span><span>${icon('coffee')} 03:00 TO ESCAPE</span></div></div>
-      <div class="hero-caption"><span class="micro">EMPLOYEE HANDBOOK / #000</span><strong>NO MORE OVERTIME.</strong><span class="micro">정시퇴근을 위해, 반격을 시작한다.</span></div>
-      <div class="hero-bottom"><span class="status">SECURITY ALERT · 퇴근 시스템 오류</span><span>${S.data.runs?`${S.data.runs}번의 작전 · ${done}/3 구역 돌파 · 사내 기록 ${S.data.archive.length}/9`:'NO LOGIN · NO INSTALL · JUST SURVIVE'}</span><span>MEET YOUR CREW ↓</span></div>
-    </div><section class="home-after"><div><span class="section-kicker">MEET THE OVERWORKED CREW</span><h2>누구와 탈출할 것인가?</h2><p>대리 · 기획자 · 팀장 · 개발자. 각자 다른 무기와 필살기.</p></div><div class="mini-roster">${C.characters.map(c=>`<button class="mini-character" data-action="character" data-id="${c.id}" style="--accent:${c.color}" aria-label="${c.name}, ${c.title} 자세히 보기"><img src="${A.portraits[c.id]}" alt=""><span><strong>${c.name}</strong><small>${c.code} / ${c.en}</small></span></button>`).join('')}</div></section>`;
+    const current=C.chapters[S.data.chapter]||C.chapters[0],c=char();
+    return `<div class="toon-home">
+      <div class="toon-top-note"><div class="toon-wrap"><span><i class="toon-live-dot"></i> 인터랙티브 오피스 웹툰</span><span>읽다가, 직접 살아남으세요 <span aria-hidden="true">↗</span></span></div></div>
+      <div class="hero toon-hero"><div class="toon-hero-inner toon-wrap">
+        <div class="toon-hero-copy">
+          <div class="toon-label"><span class="toon-label-square"></span> ORIGINAL INTERACTIVE SERIES <span class="toon-label-count">VOL. 01</span></div>
+          <div class="toon-title-stamp">월요병보다 무서운 게 찾아왔다</div>
+          <h1>퇴근이<br><em>사라졌다.</em></h1>
+          <p class="toon-hero-lead">퇴근 3분 전, 모든 출입문이 잠겼다.<br>이 회사에서 살아남아 <strong>오늘은 꼭 퇴근하세요.</strong></p>
+          <div class="toon-tags"><span>#오피스판타지</span><span>#생존액션</span><span>#직장인공감</span></div>
+          <div class="toon-main-actions"><button class="toon-start" data-action="start-first">1화부터 시작 ${icon('arrow')}</button><button class="toon-continue" data-action="continue-reading">${S.data.runs?'이어서 플레이':'회차 둘러보기'} <span aria-hidden="true">→</span></button></div>
+          <div class="toon-series-meta"><span>${icon('star')} 무료 플레이</span><span>${icon('badge')} 4명의 직장인</span><span>${icon('clock')} 1회 약 3분</span></div>
+        </div>
+        <div class="toon-hero-visual"><div class="toon-poster">
+          <img src="${A.scenes[0]}" alt="오피스 건물을 배경으로 펼쳐지는 퇴근 전쟁 웹툰 표지">
+          <div class="toon-poster-shadow"></div><div class="toon-poster-head"><span>화제의 사내 연재작</span><span>NEW</span></div>
+          <div class="toon-poster-bottom"><span>THE LAST THREE MINUTES</span><strong>CLOCK<br>OUT!</strong><small>퇴근 전쟁 · EPISODE 01</small></div>
+        </div><div class="toon-poster-sticker">오늘도<br><b>칼퇴!</b></div></div>
+      </div></div>
+      <section class="toon-wrap toon-home-content" aria-labelledby="toon-episode-heading">
+        <div class="toon-section-head"><div><span class="toon-overline">EPISODES · 03</span><h2 id="toon-episode-heading">퇴근까지 남은 이야기 <span aria-hidden="true">↘</span></h2><p>웹툰을 읽고, 마지막 컷은 직접 플레이하세요.</p></div><button class="toon-text-link" data-nav="map">전체 회차 보기 ${icon('arrow')}</button></div>
+        <div class="toon-home-grid"><div class="toon-episode-list">
+          ${C.chapters.map((v,i)=>`<button class="toon-episode-row" data-action="launch-episode" data-id="${i}" aria-label="${i+1}화 ${v.name} 읽고 플레이하기"><span class="toon-episode-thumb"><img src="${A.scenes[i]}" alt=""><span class="toon-thumb-no">${v.no}</span></span><span class="toon-episode-body"><span class="toon-episode-kicker">EPISODE ${v.no} <b class="${S.data.clears[v.id]?'is-clear':'is-new'}">${S.data.clears[v.id]?'완독':'플레이 가능'}</b></span><strong>${v.name}</strong><small>${v.description}</small><span class="toon-episode-time">${icon('clock')} 약 3분 · ${v.boss}</span></span><span class="toon-row-action" aria-hidden="true">${icon('arrow')}</span></button>`).join('')}
+        </div><aside class="toon-now-playing"><span class="toon-overline">MY DESK · 내 캐릭터</span><div class="toon-desk-art" style="--char-color:${c.color}"><img src="${A.portraits[c.id]}" alt="${c.name} 캐릭터"></div><h3>${c.name}</h3><p>${c.title}</p><span class="toon-desk-quote">${c.quote}</span><button class="toon-desk-button" data-nav="roster">등장인물 바꾸기 ${icon('arrow')}</button><div class="toon-desk-stats">퇴근 성공 <b>${done} / 3화</b></div></aside></div>
+      </section>
+      <section class="toon-wrap toon-cast-feature"><div class="toon-section-head"><div><span class="toon-overline">THE CAST</span><h2>우리에겐 네 명의 동료가 있다.</h2></div><button class="toon-text-link" data-nav="roster">등장인물 전체 보기 ${icon('arrow')}</button></div><div class="toon-cast-teasers">${C.characters.map((v,i)=>`<button class="toon-cast-teaser" data-action="character" data-id="${v.id}" style="--char-color:${v.color}"><span class="toon-cast-portrait"><img src="${A.portraits[v.id]}" alt=""></span><span class="toon-cast-caption"><small>0${i+1} / ${v.en}</small><strong>${v.name}</strong><span>${v.title}</span></span><span class="toon-cast-arrow">↗</span></button>`).join('')}</div></section>
+      <section class="toon-wrap toon-bottom-banner"><div><span>ABOUT THE GAME</span><h2>보는 웹툰에서, 살아가는 웹툰으로.</h2><p>손가락으로 컷을 넘기다가, 직접 사무실을 탈출하는 짧고 특별한 플레이.</p></div><button data-action="start-first">지금 1화 읽기 ${icon('arrow')}</button></section>
+    </div>`;
   }
   function renderRoster(){
     const c=char();
-    return `<section class="page">${heading('SELECT YOUR EMPLOYEE','네 명의 직장인. 단 하나의 목표.','겉모습만 다른 캐릭터가 아닙니다.<br>서류 투척부터 디버그 체인까지, 무기와 전용 스킬이 다릅니다.')}
-      <div class="roster-tabs" role="group" aria-label="직장인 선택">${C.characters.map(v=>`<button class="roster-tab ${v.id===c.id?'selected':''}" data-action="select-char" data-id="${v.id}" style="--accent:${v.color}" aria-pressed="${v.id===c.id}"><img src="${A.portraits[v.id]}" alt=""><span><strong>${v.name}</strong><small>${v.title}</small></span><span class="tab-check">✓</span></button>`).join('')}</div>
-      <div class="roster-layout" style="--accent:${c.color}"><div class="roster-portrait"><img src="${A.portraits[c.id]}" alt="${c.name}의 전신 일러스트"><div class="portrait-caption"><span>EMPLOYEE PORTRAIT / ${c.code}</span><span>OFF THE CLOCK? NOT YET.</span></div></div>
-        <div class="character-info"><div class="micro muted">${c.en}</div><div class="character-name"><h2>${c.name}</h2><span class="pill">${c.code} / ${({seed:'DOCUMENT',orbit:'STICKY NOTE',slash:'SIGN OFF',chain:'DEBUG'})[c.style]}</span></div><p class="character-title">${c.title}</p><p class="character-quote">${c.quote}</p><p class="character-bio">${c.bio}</p>
-          <div class="character-stats">${['공격','기동','생존'].map((label,i)=>`<div class="stat-row"><span>${label}</span><span class="stat-pips">${Array.from({length:5},(_,j)=>`<i class="${j<c.stats[i]?'on':''}"></i>`).join('')}</span></div>`).join('')}</div>
-          <div class="trait-grid"><div class="trait">${icon(weaponIcon[c.style])}<div><label>STARTING WEAPON</label><strong>${c.weapon}</strong><p>${c.weaponDesc}</p></div></div><div class="trait">${icon('star')}<div><label>UNIQUE SKILL / E · ${c.cooldown}S</label><strong>${c.skill}</strong><p>${c.skillDesc}</p></div></div></div>
-          <div class="trait" style="margin-bottom:21px">${icon('shield')}<div><label>PASSIVE / ${c.passive}</label><p>${c.passiveDesc}</p></div></div>
-          <button class="primary" data-nav="map">${c.name}와 함께 출발하기 ${icon('arrow')}</button></div></div></section>`;
+    return `<section class="page toon-page toon-cast-page"><div class="toon-page-intro"><span class="toon-overline">CHARACTER FILE / 등장인물</span><h1>이 회사에선<br><em>누구도 평범하지 않다.</em></h1><p>캐릭터를 터치해 프로필과 전용 스킬을 확인하세요. 누구든 첫 회부터 시작할 수 있어요.</p></div>
+      <div class="roster-tabs toon-character-tabs" role="group" aria-label="등장인물 선택">${C.characters.map((v,i)=>`<button class="roster-tab toon-character-tab ${v.id===c.id?'selected':''}" data-action="select-char" data-id="${v.id}" style="--accent:${v.color}" aria-pressed="${v.id===c.id}"><span class="toon-tab-portrait"><img src="${A.portraits[v.id]}" alt=""></span><span><small>CHARACTER 0${i+1}</small><strong>${v.name}</strong><small>${v.title}</small></span><span class="tab-check">✓</span></button>`).join('')}</div>
+      <div class="roster-layout toon-cast-detail" style="--accent:${c.color}"><div class="roster-portrait toon-cast-illustration"><div class="toon-cast-shape"></div><span class="toon-character-no">${c.code}</span><img src="${A.portraits[c.id]}" alt="${c.name}의 전신 일러스트"><div class="portrait-caption"><span>OFFICE WORKER / ORIGINAL CAST</span><span>↗</span></div></div>
+        <div class="character-info toon-character-info"><span class="toon-overline">${c.en}</span><div class="character-name"><h2>${c.name}</h2><span class="toon-role-tag">${c.title}</span></div><p class="character-quote">${c.quote}</p><p class="character-bio">${c.bio}</p>
+          <div class="character-stats toon-character-stats">${['공격','기동','생존'].map((label,i)=>`<div class="stat-row"><span>${label}</span><span class="stat-pips">${Array.from({length:5},(_,j)=>`<i class="${j<c.stats[i]?'on':''}"></i>`).join('')}</span></div>`).join('')}</div>
+          <div class="trait-grid toon-character-traits"><div class="trait">${icon(weaponIcon[c.style])}<div><label>BASIC ATTACK</label><strong>${c.weapon}</strong><p>${c.weaponDesc}</p></div></div><div class="trait">${icon('star')}<div><label>SPECIAL SKILL · E</label><strong>${c.skill}</strong><p>${c.skillDesc}</p></div></div></div>
+          <div class="toon-trait-passive">${icon('shield')}<div><strong>${c.passive}</strong><p>${c.passiveDesc}</p></div></div><button class="toon-start" data-nav="map">${c.name}와 함께 회차 선택 ${icon('arrow')}</button></div></div>
+    </section>`;
   }
   function renderMap(){
     const c=char(),ch=chapter();
-    return `<section class="page">${heading('THREE LEVELS. ONE EXIT.','어느 층부터 뚫을까?','모든 층이 처음부터 열려 있습니다.<br>1층부터 차례로 플레이하면 퇴근 전쟁의 진상을 알 수 있어요.')}
-      <div class="chapter-grid">${C.chapters.map((v,i)=>`<button class="chapter-card ${S.data.chapter===i?'selected':''}" data-action="select-chapter" data-id="${i}" style="--accent:${v.color}" aria-pressed="${S.data.chapter===i}"><div class="chapter-picture"><img src="${A.scenes[i]}" alt="${v.name}의 풍경"><span class="chapter-number">${v.no}</span><span class="chapter-stamp">${S.data.clears[v.id]?'CLEARED':'LOCKDOWN'}</span></div><div class="chapter-info"><span class="micro">${v.en}</span><h2>${v.name}</h2><p>${v.description}</p><div class="chapter-meta"><span>03:00 · ${i===0?'마감의 시작':i===1?'무한 회의':'마지막 배포'}</span>${icon(S.data.chapter===i?'check':'arrow')}</div></div></button>`).join('')}</div>
-      <div class="expedition-bar" style="--accent:${c.color}"><img src="${A.portraits[c.id]}" alt=""><div class="expedition-copy"><span class="micro muted">OPERATION ${ch.no} / ${c.code}</span><h3>${c.name} · ${ch.name}</h3><p>${ch.danger} / 보스: ${ch.boss}</p></div><button class="text-button" data-nav="roster">직장인 변경</button><button class="primary" data-action="begin-intro">작전 개시 ${icon('arrow')}</button></div>
-      <p class="map-note">자동 공격 · 이동 + 돌진 + 전용 스킬 · 작전 중 만나는 편지의 선택이 능력과 결말을 바꿉니다.</p></section>`;
+    return `<section class="page toon-page toon-chapter-page"><div class="toon-page-intro"><span class="toon-overline">SEASON 01 / EPISODES</span><h1>오늘의 퇴근은<br><em>어느 회차에 있나요?</em></h1><p>총 3개의 회차로 구성된 인터랙티브 웹툰입니다. 컷툰을 읽은 뒤 직접 플레이할 수 있어요.</p></div>
+      <div class="toon-episode-index"><div class="toon-section-head"><div><span class="toon-overline">ALL EPISODES</span><h2>시즌 01 · 퇴근 전쟁</h2></div><span class="toon-completion">읽은 회차 ${C.chapters.filter(v=>S.data.clears[v.id]).length} / 3</span></div>
+        <div class="chapter-grid toon-chapter-list">${C.chapters.map((v,i)=>`<button class="chapter-card toon-chapter-item ${S.data.chapter===i?'selected':''}" data-action="select-chapter" data-id="${i}" style="--accent:${v.color}" aria-pressed="${S.data.chapter===i}"><span class="chapter-picture toon-chapter-thumb"><img src="${A.scenes[i]}" alt="${v.name} 장면"><span class="chapter-number">EP.${v.no}</span></span><span class="chapter-info toon-chapter-info"><span class="toon-overline">${i===0?'사건의 시작':i===1?'두 번째 이야기':'시즌 피날레'}</span><strong>${v.name}</strong><span class="toon-chapter-desc">${v.description}</span><span class="toon-chapter-meta">3분 플레이 · ${v.boss} · ${S.data.clears[v.id]?'완료':'미완료'}</span></span><span class="toon-chapter-select">${S.data.chapter===i?'선택됨':'선택'} ${icon('arrow')}</span></button>`).join('')}</div>
+      </div>
+      <div class="expedition-bar toon-reading-dock" style="--accent:${c.color}"><img src="${A.portraits[c.id]}" alt=""><div class="expedition-copy"><span class="toon-overline">READY TO READ · EPISODE ${ch.no}</span><h3>${ch.name}</h3><p>주인공 ${c.name} · ${ch.danger}</p></div><button class="toon-text-link" data-nav="roster">캐릭터 변경</button><button class="toon-start" data-action="begin-intro">이 회차 읽고 플레이 ${icon('arrow')}</button></div>
+      <p class="toon-map-footnote">모든 회차는 무료로 열려 있습니다. 이야기를 먼저 읽으면 더 재미있지만, 언제든 건너뛸 수 있어요.</p>
+    </section>`;
   }
   function unlockHint(a){
     const c=C.characters.find(c=>c.id===a.id);if(c)return `${c.name}로 구역 하나를 처리하면 열립니다.`;
@@ -1241,12 +1754,15 @@ AG.Engine=class OfficeEngine {
     if(!ready)return;introPage=0;showIntro();
   }
   function showIntro(){
-    const c=char(),ch=chapter(),line=ch.intro[introPage],self=line.speaker==='self';
-    const text=line.text==='$intro'?c.intro:line.text;
-    setOverlay(`<div class="dialogue-stage" style="--accent:${c.color}">
-      <div class="dialogue-portrait">${self?`<img src="${A.portraits[c.id]}" alt="${c.name}">`:`<div class="radio-art">${icon('monitor')}</div>`}</div>
-      <article class="dialogue-paper"><span class="micro">CHAPTER ${ch.no} / ${ch.tag}</span><h2 id="dialog-title">${self?c.name:line.name}</h2><p class="dialogue-text">${text}</p><div class="dialogue-controls"><span class="dialogue-dots">${ch.intro.map((_,i)=>`<i class="${i<=introPage?'on':''}"></i>`).join('')}</span><button class="text-button" data-action="skip-intro">브리핑 건너뛰기</button><button class="primary" data-action="next-intro">${introPage===ch.intro.length-1?'작전 시작':'다음'} ${icon('arrow')}</button></div></article>
-    </div><button class="tool-button overlay-close" data-action="cancel-intro" aria-label="준비 화면으로 돌아가기">${icon('close')}</button>`,'intro');
+    const c=char(),ch=chapter(),lines=ch.intro.slice(0,introPage+1);
+    const cuts=lines.map((line,i)=>{const self=line.speaker==='self',text=line.text==='$intro'?c.intro:line.text;
+      return `<article class="toon-story-cut ${i===0?'toon-story-opening':''}" data-cut="${i}"><div class="toon-story-image"><img src="${A.scenes[Math.min(2,S.data.chapter)]}" alt="" loading="eager"><span class="toon-cut-counter">CUT ${String(i+1).padStart(2,'0')}</span>${i>0?`<span class="toon-cut-worker"><img src="${A.portraits[c.id]}" alt=""></span>`:''}</div><div class="toon-story-caption"><span class="toon-speaker">${self?c.name:line.name}</span><p class="toon-speech">${escape(text)}</p></div></article>`;
+    }).join('');
+    setOverlay(`<section class="toon-reader"><div class="toon-reader-head"><button data-action="cancel-intro" aria-label="회차 목록으로 돌아가기">${icon('arrow')} <span>목록</span></button><div><small>CLOCK OUT! · 시즌 1</small><strong id="dialog-title">EP.${ch.no} ${ch.name}</strong></div><span class="toon-reader-count">${introPage+1} / ${ch.intro.length}</span></div>
+      <div class="toon-reader-body"><div class="toon-story-title"><span class="toon-overline">INTERACTIVE WEBTOON · ${ch.en}</span><h2>${ch.name}</h2><p>스크롤해서 컷을 읽어보세요.</p><span class="toon-reader-down">↓</span></div>
+        ${cuts}<div class="toon-story-next" id="toon-story-next"><span>TO BE CONTINUED...</span><p>${introPage===ch.intro.length-1?'이제 마지막 컷의 주인공은 당신입니다.':'다음 컷에는 무슨 일이 벌어질까요?'}</p><button class="toon-start" data-action="next-intro">${introPage===ch.intro.length-1?'직접 퇴근하러 가기':'다음 컷 읽기'} ${icon('arrow')}</button><button class="toon-reader-skip" data-action="skip-intro">${introPage===ch.intro.length-1?'바로 전투 시작':'스토리 건너뛰고 게임 시작'}</button></div>
+      </div></section>`,'intro');
+    requestAnimationFrame(()=>{const reader=$('overlay').querySelector('.toon-reader');if(reader){reader.scrollTop= introPage>0 ? reader.scrollHeight : 0;}});
   }
   function startGame(skipTutorial=false){
     hideOverlay();clearInput();document.body.classList.add('in-game');$('menu').hidden=true;$('play-view').hidden=false;$('footer').hidden=true;
@@ -1284,8 +1800,9 @@ AG.Engine=class OfficeEngine {
   }
   function showStory(reply=false){
     const e=game.chapter.event;
-    setOverlay(`<section class="story-choice">${icon('monitor','story-icon')}<div class="eyebrow">${e.kicker}</div><h2 id="dialog-title">${e.title}</h2><p>${e.text}</p>
-      ${reply?`<p class="story-reply">${game.choice.reply}</p><div class="button-row"><button class="primary" data-action="story-continue">선택 완료, 다시 전진 ${icon('arrow')}</button></div>`:`<div class="story-options">${e.choices.map((c,i)=>`<button class="story-option" data-action="story-choice" data-id="${i}"><strong>${c.label} ${icon('arrow')}</strong><small>${c.description}</small></button>`).join('')}</div><div class="modal-foot">당신의 선택은 이번 작전의 능력과 결말에 남습니다.</div>`}</section>`,reply?'story-reply':'story');
+    setOverlay(`<section class="toon-story-choice"><div class="toon-choice-head"><span class="toon-overline">MID-EPISODE · STORY EVENT</span><h2 id="dialog-title">${e.title}</h2><p>${e.kicker}</p></div><div class="toon-choice-frame"><div class="toon-choice-illustration"><img src="${A.scenes[Math.min(2,S.data.chapter)]}" alt=""><span class="toon-choice-fx">!?</span></div><div class="toon-choice-bubble"><span>오늘의 선택</span><p>${e.text}</p></div></div>
+      ${reply?`<div class="toon-choice-reply"><span>당신의 선택</span><p>${game.choice.reply}</p><button class="toon-start" data-action="story-continue">이야기 이어가기 ${icon('arrow')}</button></div>`:`<div class="toon-choice-actions">${e.choices.map((v,i)=>`<button class="story-option toon-choice-option" data-action="story-choice" data-id="${i}"><span>0${i+1}</span><div><strong>${v.label}</strong><small>${v.description}</small></div>${icon('arrow')}</button>`).join('')}</div>`}
+      <div class="toon-choice-end">${reply?'선택이 기록되었습니다.':'이 선택은 현재 플레이의 능력과 이야기 결말에 영향을 줍니다.'}</div></section>`,reply?'story-reply':'story');
   }
   function showPause(){
     setOverlay(`<section class="compact-modal"><div class="eyebrow">PAUSED / TAKE FIVE</div><h2 id="dialog-title">커피 브레이크.</h2><p>잠깐 쉬어도 됩니다.<br>회사는 도망가지 않아요.</p><div class="micro">${game.character.name} · ${game.chapter.name} · ${fmt(game.time)}</div><button class="primary" data-action="resume">업무 재개 ${icon('arrow')}</button><button class="secondary" data-action="help">조작법 보기</button><button class="text-button" data-action="tutorial-replay">첫 출근 안내 다시 보기</button><label class="motion-control"><input type="checkbox" id="motion-toggle" ${S.data.settings.motion?'checked':''}> 배경 움직임과 화면 흔들림</label><button class="text-button" data-action="abandon">작전 포기하고 귀가하기</button></section>`,'pause');
@@ -1327,7 +1844,7 @@ AG.Engine=class OfficeEngine {
     $('hp-fill').style.width=Math.max(0,p.hp/p.maxHp*100)+'%';$('hp-text').textContent=Math.ceil(p.hp)+' / '+p.maxHp;$('lv-text').textContent='LV '+String(p.level).padStart(2,'0');
     $('clock').textContent=game.time<game.chapter.duration?fmt(Math.ceil(game.chapter.duration-game.time)):'처리 중';
     $('clock').style.fontSize=game.time<game.chapter.duration?'':'22px';
-    $('objective').textContent=game.bossDefeated?'퇴근 시간까지 생존하세요':game.bossSpawned?'최종 관리자를 처치하세요':'퇴근까지 남은 시간';
+    $('objective').textContent=game.bossDefeated?'마지막 컷까지 살아남기':game.bossSpawned?'BOSS · 최종 관리자':'퇴근까지 남은 시간';
     $('kill-text').textContent=String(game.kills).padStart(3,'0');$('xp-fill').style.width=Math.min(100,p.xp/p.nextXp*100)+'%';$('xp-text').textContent=Math.floor(p.xp)+' / '+p.nextXp;
     $('nodes-text').textContent='커피 보충 '+game.nodesRestored+'회';
     $('skill-cd').textContent=p.skillCd>0?p.skillCd.toFixed(1)+'s':p.buff>0?'스킬 발동 중':'준비 완료';
@@ -1341,7 +1858,7 @@ AG.Engine=class OfficeEngine {
   function gameEvent(type,payload){
     if(type==='start'){
       $('hud-portrait').src=A.portraits[game.character.id];$('hud-name').textContent=game.character.code+' / '+game.character.name;
-      $('chapter-label').textContent='CH. '+game.chapter.no+' / '+game.chapter.name;
+      $('chapter-label').textContent='EP. '+game.chapter.no+' / '+game.chapter.name;
       $('skill-name').textContent=game.character.skill;$('skill-icon').innerHTML=icon(weaponIcon[game.character.style]);$('dash-icon').innerHTML=icon('wind');
       $('mission-text').textContent=game.chapter.id==='rain'?'캘린더 구역을 피하고 커피 머신 안에서 2초 머무르세요.':'커피 머신의 원 안에서 2초 머무르세요.';
     }
@@ -1366,6 +1883,9 @@ AG.Engine=class OfficeEngine {
       case 'character':S.data.selected=id;S.save();go('roster');break;
       case 'select-char':selectChar(id);break;
       case 'select-chapter':S.data.chapter=Number(id);S.save();go('map',false);break;
+      case 'start-first':S.data.chapter=0;S.save();beginIntro();break;
+      case 'continue-reading':go('map');break;
+      case 'launch-episode':S.data.chapter=Math.max(0,Math.min(2,Number(id)));S.save();beginIntro();break;
       case 'quick':case 'begin-intro':beginIntro();break;
       case 'next-intro':if(++introPage>=chapter().intro.length)startGame();else showIntro();break;
       case 'skip-intro':startGame();break;
@@ -1374,11 +1894,11 @@ AG.Engine=class OfficeEngine {
       case 'reroll':game.reroll();break;
       case 'story-choice':if(game.applyStory(Number(id)))showStory(true);break;
       case 'story-continue':game.resume();hideOverlay();break;
-      case 'resume':game.resume();hideOverlay();break;
       case 'tutorial-next':if(tutorialPage===tutorialSteps.length-1)finishTutorial();else showTutorial(tutorialPage+1);break;
       case 'tutorial-back':showTutorial(tutorialPage-1);break;
       case 'tutorial-skip':finishTutorial();break;
       case 'tutorial-replay':helpReturn=null;showTutorial();break;
+      case 'resume':game.resume();hideOverlay();break;
       case 'help':openHelp();break;
       case 'close-help':closeHelp();break;
       case 'abandon':game.state='playing';game.finish(false);break;
@@ -1415,8 +1935,8 @@ AG.Engine=class OfficeEngine {
         e.preventDefault();
         if(overlayKind==='help')closeHelp();
         else if(overlayKind==='pause'){game.resume();hideOverlay();}
-        else if(overlayKind==='intro'){hideOverlay();if(game)game.state='idle';go('map');}
         else if(overlayKind==='tutorial')finishTutorial();
+        else if(overlayKind==='intro'){hideOverlay();if(game)game.state='idle';go('map');}
         else if(game?.state==='playing')game.pause();
       }
       if(overlayKind==='upgrade'&&performance.now()>inputGuard&&/^Digit[123]$/.test(e.code)){if(game.choose(Number(e.code.slice(-1))-1)){hideOverlay();updateHud();}}
@@ -1445,8 +1965,8 @@ AG.Engine=class OfficeEngine {
   const release=e=>{if(stick.id===e.pointerId){stick.active=false;stick.id=null;stick.x=stick.y=0;resetPad();controls();}};
   for(const event of ['pointerup','pointercancel','lostpointercapture'])$('game').addEventListener(event,release);
   $('game').addEventListener('contextmenu',e=>e.preventDefault());
-  window.addEventListener('blur',()=>{clearInput();if(game?.state==='playing')game.pause();});
   window.addEventListener('resize',()=>{if(!stick.active)resetPad();});
+  window.addEventListener('blur',()=>{clearInput();if(game?.state==='playing')game.pause();});
   document.addEventListener('visibilitychange',()=>{if(document.hidden){clearInput();if(game?.state==='playing')game.pause();}if(game)game.last=performance.now();});
   async function init(){
     $('brand-icon').innerHTML=icon('sprout');$('help-btn').innerHTML=icon('help');tools();
