@@ -60,6 +60,53 @@ body.in-game .topbar{background:#17182d;border-bottom:2px solid #ffcf40}body.in-
 @media(max-width:390px){.topbar .top-tools{gap:3px}.nav-link{font-size:9px;padding:9px 5px}.hero{min-height:610px}.hero h1{font-size:56px}.hero-description{font-size:11px}.hero-stamp{font-size:7px}.hero-detail{font-size:7px}.hero-bottom{font-size:6px}.mini-character{padding-right:2px}.mini-character small{display:none}.mini-character img{width:68px}.hud-counter strong{font-size:18px}}
 @media(prefers-reduced-motion:reduce){.mini-character:hover,.roster-tab:hover{transform:none}}
 
+/* Mobile onboarding and thumb-first controls: independent, readable touch targets. */
+.tutorial-modal{width:min(100%,570px);max-height:calc(100dvh - 32px);overflow-y:auto;padding:clamp(22px,4vw,38px);background:#211a36;border:3px solid #ffcf40;box-shadow:9px 9px 0 #ff77a6;color:#fff8eb;position:relative}
+.tutorial-kicker{font:700 11px var(--mono);letter-spacing:1.5px;color:#79e5e3}
+.tutorial-symbol{display:grid;place-items:center;margin:24px 0 18px;width:74px;height:74px;background:#ffcf40;color:#242036;box-shadow:7px 7px 0 #ff77a6;transform:rotate(-4deg)}
+.tutorial-symbol .icon{width:38px;height:38px}
+.tutorial-modal h2{font:800 clamp(26px,4vw,38px)/1.24 var(--sans);letter-spacing:-1.2px;word-break:keep-all}
+.tutorial-description{font-size:15px;line-height:1.85;margin:17px 0;color:#e5ddea;word-break:keep-all}
+.tutorial-hint{background:#15132b;padding:14px 15px;border-left:4px solid #79e5e3;color:#f5dba0;font-size:12px;line-height:1.7;word-break:keep-all}
+.tutorial-progress{display:flex;gap:7px;margin:22px 0}.tutorial-progress i{width:32px;height:5px;background:#f5f2ed40}.tutorial-progress i.on{background:#ffcf40}
+.tutorial-buttons{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.tutorial-buttons .text-button,.tutorial-buttons .secondary,.tutorial-buttons .primary{min-height:44px;padding:10px 13px;font-size:12px}.tutorial-forward{display:flex;align-items:center;gap:8px;margin-left:auto}.tutorial-buttons .primary{background:#ffcf40;color:#202037;border:0}
+.play-view .touch-stick{width:116px;height:116px;left:max(16px,env(safe-area-inset-left));bottom:max(38px,calc(env(safe-area-inset-bottom) + 25px));z-index:5;background:#1a1d43aa;border:2px solid #79e5e3b8;box-shadow:0 0 0 9px #79e5e310,inset 0 0 22px #0e1428;opacity:.75;transition:opacity .12s,border-color .12s}
+.play-view .touch-stick.active{opacity:1;border-color:#ffcf40;box-shadow:0 0 0 9px #ffcf401c,inset 0 0 22px #0e1428}
+.play-view .touch-stick div{width:44px;height:44px;top:calc(50% - 22px);left:calc(50% - 22px);background:#79e5e3a8;border:2px solid #fff9dc;box-shadow:0 0 13px #79e5e371}
+.touch-stick-label{position:absolute;bottom:-22px;left:0;right:0;text-align:center;color:#fcf3d7;font:700 11px var(--sans);letter-spacing:2px;text-shadow:0 2px 5px #080923}
+@media(max-width:760px){body.in-game .top-tools .tool-button{min-width:44px;min-height:44px;width:44px;height:44px}body.in-game .hud-counter>.tool-button{min-width:44px;min-height:44px;width:44px;height:44px;font-size:16px}body.in-game .hud-counter{gap:0}body.in-game .hud-counter>strong{font-size:17px}}
+@media(max-width:600px){
+  .play-view .module-rack{position:absolute;left:0;bottom:155px;max-width:155px;pointer-events:none}
+  .play-view .skill-buttons{gap:8px;margin-left:auto}
+  .play-view .ability-button:not(.dash){width:80px;min-width:80px;height:88px;min-height:88px;padding:8px 4px}
+  .play-view .ability-button.dash{width:72px;min-width:72px;height:76px;min-height:76px;padding:8px 4px}
+  .play-view .ability-button b{font-size:10px;line-height:1.15}
+  .play-view .ability-button small{font-size:8px}
+  .play-view .battle-toast{bottom:122px}
+  .tutorial-modal{max-height:calc(100dvh - 28px);padding:21px 20px;box-shadow:5px 5px 0 #ff77a6}
+  .tutorial-symbol{width:60px;height:60px;margin:15px 0 14px}.tutorial-symbol .icon{width:30px;height:30px}
+  .tutorial-modal h2{font-size:27px}.tutorial-description{font-size:13px;margin:13px 0}.tutorial-hint{font-size:11px;padding:10px 12px}
+  .tutorial-progress{margin:15px 0}.tutorial-buttons{gap:4px}.tutorial-buttons .primary{gap:4px}
+}
+@media(max-height:590px) and (max-width:600px){.play-view .touch-stick{width:100px;height:100px}.play-view .module-rack{bottom:136px}.tutorial-modal{padding:15px 17px}.tutorial-symbol{width:48px;height:48px;margin:8px 0}.tutorial-modal h2{font-size:23px}.tutorial-description{font-size:12px;margin:9px 0}.tutorial-hint{font-size:10px;padding:8px 10px}.tutorial-progress{margin:10px 0}}
+
+@media (hover:none) and (pointer:coarse) and (max-height:600px) and (min-width:601px){
+ body.in-game .topbar{height:50px;padding:0 3%}
+ body.in-game .top-tools .tool-button{width:44px;height:44px}
+ .play-view{min-height:0!important;height:calc(100dvh - 50px)!important}
+ .play-view .touch-stick{width:100px;height:100px;bottom:max(34px,calc(env(safe-area-inset-bottom) + 24px))}
+ .play-view .actionbar{bottom:max(12px,env(safe-area-inset-bottom));left:14px;right:14px}
+ .play-view .module-rack{position:absolute;left:0;bottom:126px;max-width:230px}
+ .play-view .skill-buttons{margin-left:auto;gap:8px}
+ .play-view .ability-button{min-width:90px;width:90px;height:72px;padding:8px}
+ .play-view .ability-button.dash{min-width:74px;width:74px;height:72px;padding:8px}
+ .play-view .ability-button b{font-size:10px}.play-view .ability-button small{font-size:8px}.play-view .ability-button kbd{display:none}
+ .play-view .hud-counter>.tool-button{width:44px;height:44px;min-width:44px;min-height:44px}
+ .play-view .hud{padding:12px 18px}.play-view .hud-clock{top:9px}
+ .play-view .hud-clock strong{font-size:31px}.play-view .mission{top:94px}
+ .play-view .battle-toast{bottom:98px}
+}
+
 </style>
 </head>
 <body>
@@ -89,7 +136,7 @@ body.in-game .topbar{background:#17182d;border-bottom:2px solid #ffcf40}body.in-
       <div id="boss-hud" class="boss-hud" hidden><div><span id="boss-name"></span><span id="boss-percent"></span></div><div><i id="boss-fill"></i></div></div>
       <div id="mission" class="mission"><span class="micro">FIELD OBJECTIVE</span><p id="mission-text">커피 머신의 원 안에서 2초 머무르세요.</p><span id="nodes-text">커피 머신 사용 0회</span></div>
       <div class="actionbar" id="actionbar"><div id="module-rack" class="module-rack"></div><div class="skill-buttons"><button id="skill-btn" class="ability-button"><span class="ability-icon" id="skill-icon"></span><span><b id="skill-name"></b><small id="skill-cd"></small></span><kbd>E</kbd><i id="skill-cover"></i></button><button id="dash-btn" class="ability-button dash"><span class="ability-icon" id="dash-icon"></span><span><b>돌진</b><small id="dash-cd">준비 완료</small></span><kbd>SPACE</kbd><i id="dash-cover"></i></button></div></div>
-      <div class="touch-stick" id="touch-stick" hidden><div id="touch-knob"></div></div>
+      <div class="touch-stick" id="touch-stick" hidden aria-hidden="true"><div id="touch-knob"></div><span class="touch-stick-label">이동</span></div>
       <div id="chapter-cut" class="chapter-cut" hidden></div>
       <div id="battle-toast" class="battle-toast" role="status"></div>
     </section>
@@ -261,7 +308,7 @@ window.AG = window.AG || {};
 AG.Store = (() => {
   const KEY='clockout.office.v1';
   const finite=(v,max=1e7)=>Number.isFinite(v)?Math.max(0,Math.min(max,Math.floor(v))):0;
-  const defaults=()=>({version:2,seeds:0,runs:0,kills:0,clears:{},research:{vitality:0,focus:0,gather:0},archive:['origin'],selected:'rook',chapter:0,choices:{},best:{},settings:{sound:false,motion:!matchMedia('(prefers-reduced-motion: reduce)').matches}});
+  const defaults=()=>({version:2,seeds:0,runs:0,kills:0,clears:{},research:{vitality:0,focus:0,gather:0},archive:['origin'],selected:'rook',chapter:0,choices:{},best:{},settings:{sound:false,motion:!matchMedia('(prefers-reduced-motion: reduce)').matches,tutorialSeen:false}});
   let data=defaults(), available=true;
   try {
     const raw=JSON.parse(localStorage.getItem(KEY)||'null');
@@ -283,6 +330,7 @@ AG.Store = (() => {
       }
       if(typeof raw.settings?.sound==='boolean')data.settings.sound=raw.settings.sound;
       if(typeof raw.settings?.motion==='boolean')data.settings.motion=raw.settings.motion;
+      if(typeof raw.settings?.tutorialSeen==='boolean')data.settings.tutorialSeen=raw.settings.tutorialSeen;
     }
     localStorage.setItem(KEY,JSON.stringify(data));
   } catch(_){ available=false; }
@@ -1082,7 +1130,7 @@ AG.Engine=class OfficeEngine {
   const $=id=>document.getElementById(id),C=AG.Content,S=AG.Store,A=AG.Art;
   const icon=A.icon,escape=s=>String(s).replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
   const fmt=t=>`${String(Math.floor(t/60)).padStart(2,'0')}:${String(Math.floor(t%60)).padStart(2,'0')}`;
-  let route='home',overlayKind=null,helpReturn=null,selectedArchive='origin',introPage=0,toastTimer,battleTimer,cutTimer,inputGuard=0;
+  let route='home',overlayKind=null,helpReturn=null,selectedArchive='origin',introPage=0,tutorialPage=0,toastTimer,battleTimer,cutTimer,inputGuard=0;
   let game=null,ready=false;
   const keys=new Set();let stick={active:false,id:null,x:0,y:0,ox:0,oy:0};
   const char=()=>C.characters.find(c=>c.id===S.data.selected)||C.characters[0];
@@ -1102,8 +1150,14 @@ AG.Engine=class OfficeEngine {
     $('sound-btn').setAttribute('aria-label',AG.Audio.enabled?'소리 끄기':'소리 켜기');
     document.body.classList.toggle('low-motion',!S.data.settings.motion);
   }
+  const touchMode=()=>matchMedia('(pointer: coarse)').matches;
+  function resetPad(){
+    const pad=$('touch-stick');
+    pad.classList.remove('active');pad.style.removeProperty('left');pad.style.removeProperty('top');
+    $('touch-knob').style.transform='translate(0,0)';pad.hidden=!touchMode();
+  }
   function clearInput(){
-    keys.clear();stick={active:false,id:null,x:0,y:0,ox:0,oy:0};$('touch-stick').hidden=true;game?.setInput(0,0);
+    keys.clear();stick={active:false,id:null,x:0,y:0,ox:0,oy:0};resetPad();game?.setInput(0,0);
   }
   function controls(){
     let x=(keys.has('KeyD')||keys.has('ArrowRight')?1:0)-(keys.has('KeyA')||keys.has('ArrowLeft')?1:0);
@@ -1194,15 +1248,35 @@ AG.Engine=class OfficeEngine {
       <article class="dialogue-paper"><span class="micro">CHAPTER ${ch.no} / ${ch.tag}</span><h2 id="dialog-title">${self?c.name:line.name}</h2><p class="dialogue-text">${text}</p><div class="dialogue-controls"><span class="dialogue-dots">${ch.intro.map((_,i)=>`<i class="${i<=introPage?'on':''}"></i>`).join('')}</span><button class="text-button" data-action="skip-intro">브리핑 건너뛰기</button><button class="primary" data-action="next-intro">${introPage===ch.intro.length-1?'작전 시작':'다음'} ${icon('arrow')}</button></div></article>
     </div><button class="tool-button overlay-close" data-action="cancel-intro" aria-label="준비 화면으로 돌아가기">${icon('close')}</button>`,'intro');
   }
-  function startGame(){
+  function startGame(skipTutorial=false){
     hideOverlay();clearInput();document.body.classList.add('in-game');$('menu').hidden=true;$('play-view').hidden=false;$('footer').hidden=true;
     $('play-view').style.setProperty('--accent',char().color);game.motion=S.data.settings.motion;game.start(char(),chapter());
-    $('game').focus({preventScroll:true});AG.Audio.init();showCut('CHAPTER '+chapter().no,chapter().name,chapter().tag);updateHud();updateModules();
+    $('game').focus({preventScroll:true});AG.Audio.init();resetPad();updateHud();updateModules();
+    if(!skipTutorial&&!S.data.settings.tutorialSeen)showTutorial();
+    else showCut('CHAPTER '+chapter().no,chapter().name,chapter().tag);
   }
   function showCut(kicker,title,desc){
     $('chapter-cut').hidden=false;$('chapter-cut').innerHTML=`<span class="micro">${kicker}</span><h2>${title}</h2><p>${desc}</p>`;
     $('chapter-cut').style.animation='none';void $('chapter-cut').offsetWidth;$('chapter-cut').style.animation='';
     clearTimeout(cutTimer);cutTimer=setTimeout(()=>$('chapter-cut').hidden=true,3000);
+  }
+  const tutorialSteps=[
+    {label:'01 / MOVE',icon:'wind',title:'먼저, 안전한 자리로 이동!',text:'적은 쫓아오고 공격은 자동으로 나갑니다. 멈춰 서지 말고 책상 사이를 움직이세요.',hint:'PC: WASD 또는 방향키 · 모바일: 화면 왼쪽을 드래그하고 원형 패드로 이동'},
+    {label:'02 / ACTION',icon:'bolt',title:'돌진과 직장인 필살기',text:'위험할 땐 돌진으로 피하고, 직장인별 전용 스킬로 적 무리를 정리하세요.',hint:'PC: Space 돌진 · E 필살기 / 모바일: 오른쪽 아래 두 버튼 터치'},
+    {label:'03 / SURVIVE',icon:'coffee',title:'커피를 마시고 퇴근까지 버티기!',text:'커피 머신 원 안에서 2초 머물면 회복됩니다. 업무 경험치를 모으면 새로운 장비를 선택할 수 있어요.',hint:'3분 생존 + 2분 25초에 등장하는 보스 처치 = 퇴근 성공'}
+  ];
+  function showTutorial(page=0){
+    if(!game?.player)return;
+    tutorialPage=Math.max(0,Math.min(tutorialSteps.length-1,page));
+    if(game.state==='playing')game.state='paused';
+    const step=tutorialSteps[tutorialPage];
+    setOverlay(`<section class="tutorial-modal" data-training-step="${tutorialPage}"><span class="tutorial-kicker">EMPLOYEE ONBOARDING · ${step.label}</span><div class="tutorial-symbol">${icon(step.icon)}</div><h2 id="dialog-title">${step.title}</h2><p class="tutorial-description">${step.text}</p><p class="tutorial-hint">${step.hint}</p><div class="tutorial-progress" aria-label="안내 ${tutorialPage+1} / ${tutorialSteps.length}">${tutorialSteps.map((_,i)=>`<i class="${i<=tutorialPage?'on':''}"></i>`).join('')}</div><div class="tutorial-buttons"><button class="text-button" data-action="tutorial-skip">건너뛰기</button><div class="tutorial-forward">${tutorialPage>0?'<button class="secondary" data-action="tutorial-back">이전</button>':''}<button class="primary" data-action="tutorial-next">${tutorialPage===tutorialSteps.length-1?'퇴근 전쟁 시작':'다음 안내'} ${icon('arrow')}</button></div></div></section>`,'tutorial');
+  }
+  function finishTutorial(){
+    S.data.settings.tutorialSeen=true;S.save();
+    if(game?.state==='paused')game.resume();
+    hideOverlay();
+    if(game?.state==='playing'&&game.time<1)showCut('CHAPTER '+chapter().no,chapter().name,chapter().tag);
   }
   function showUpgrade(){
     const p=game.player;
@@ -1214,7 +1288,7 @@ AG.Engine=class OfficeEngine {
       ${reply?`<p class="story-reply">${game.choice.reply}</p><div class="button-row"><button class="primary" data-action="story-continue">선택 완료, 다시 전진 ${icon('arrow')}</button></div>`:`<div class="story-options">${e.choices.map((c,i)=>`<button class="story-option" data-action="story-choice" data-id="${i}"><strong>${c.label} ${icon('arrow')}</strong><small>${c.description}</small></button>`).join('')}</div><div class="modal-foot">당신의 선택은 이번 작전의 능력과 결말에 남습니다.</div>`}</section>`,reply?'story-reply':'story');
   }
   function showPause(){
-    setOverlay(`<section class="compact-modal"><div class="eyebrow">PAUSED / TAKE FIVE</div><h2 id="dialog-title">커피 브레이크.</h2><p>잠깐 쉬어도 됩니다.<br>회사는 도망가지 않아요.</p><div class="micro">${game.character.name} · ${game.chapter.name} · ${fmt(game.time)}</div><button class="primary" data-action="resume">업무 재개 ${icon('arrow')}</button><button class="secondary" data-action="help">조작법 보기</button><label class="motion-control"><input type="checkbox" id="motion-toggle" ${S.data.settings.motion?'checked':''}> 배경 움직임과 화면 흔들림</label><button class="text-button" data-action="abandon">작전 포기하고 귀가하기</button></section>`,'pause');
+    setOverlay(`<section class="compact-modal"><div class="eyebrow">PAUSED / TAKE FIVE</div><h2 id="dialog-title">커피 브레이크.</h2><p>잠깐 쉬어도 됩니다.<br>회사는 도망가지 않아요.</p><div class="micro">${game.character.name} · ${game.chapter.name} · ${fmt(game.time)}</div><button class="primary" data-action="resume">업무 재개 ${icon('arrow')}</button><button class="secondary" data-action="help">조작법 보기</button><button class="text-button" data-action="tutorial-replay">첫 출근 안내 다시 보기</button><label class="motion-control"><input type="checkbox" id="motion-toggle" ${S.data.settings.motion?'checked':''}> 배경 움직임과 화면 흔들림</label><button class="text-button" data-action="abandon">작전 포기하고 귀가하기</button></section>`,'pause');
   }
   function showResult(result){
     const reward=S.finish(result);tools();
@@ -1301,6 +1375,10 @@ AG.Engine=class OfficeEngine {
       case 'story-choice':if(game.applyStory(Number(id)))showStory(true);break;
       case 'story-continue':game.resume();hideOverlay();break;
       case 'resume':game.resume();hideOverlay();break;
+      case 'tutorial-next':if(tutorialPage===tutorialSteps.length-1)finishTutorial();else showTutorial(tutorialPage+1);break;
+      case 'tutorial-back':showTutorial(tutorialPage-1);break;
+      case 'tutorial-skip':finishTutorial();break;
+      case 'tutorial-replay':helpReturn=null;showTutorial();break;
       case 'help':openHelp();break;
       case 'close-help':closeHelp();break;
       case 'abandon':game.state='playing';game.finish(false);break;
@@ -1338,6 +1416,7 @@ AG.Engine=class OfficeEngine {
         if(overlayKind==='help')closeHelp();
         else if(overlayKind==='pause'){game.resume();hideOverlay();}
         else if(overlayKind==='intro'){hideOverlay();if(game)game.state='idle';go('map');}
+        else if(overlayKind==='tutorial')finishTutorial();
         else if(game?.state==='playing')game.pause();
       }
       if(overlayKind==='upgrade'&&performance.now()>inputGuard&&/^Digit[123]$/.test(e.code)){if(game.choose(Number(e.code.slice(-1))-1)){hideOverlay();updateHud();}}
@@ -1349,19 +1428,25 @@ AG.Engine=class OfficeEngine {
   });
   document.addEventListener('keyup',e=>{keys.delete(e.code);controls();});
   $('game').addEventListener('pointerdown',e=>{
-    if(game?.state!=='playing'||stick.active||e.button>0)return;e.preventDefault();
-    const r=$('game').getBoundingClientRect();stick={active:true,id:e.pointerId,x:0,y:0,ox:e.clientX-r.left,oy:e.clientY-r.top};
-    $('game').setPointerCapture(e.pointerId);$('touch-stick').hidden=false;$('touch-stick').style.left=(stick.ox-47)+'px';$('touch-stick').style.top=(stick.oy-47)+'px';$('touch-knob').style.transform='translate(0,0)';
+    if(game?.state!=='playing'||stick.active||e.button>0)return;
+    const r=$('game').getBoundingClientRect();
+    if(touchMode()&&e.pointerType==='touch'&&(e.clientX-r.left>r.width*.65||!e.isPrimary))return;
+    e.preventDefault();
+    stick={active:true,id:e.pointerId,x:0,y:0,ox:e.clientX-r.left,oy:e.clientY-r.top};
+    $('game').setPointerCapture(e.pointerId);
+    const pad=$('touch-stick');pad.hidden=false;pad.classList.add('active');
+    pad.style.left=(stick.ox-58)+'px';pad.style.top=(stick.oy-58)+'px';$('touch-knob').style.transform='translate(0,0)';
   });
   $('game').addEventListener('pointermove',e=>{
     if(!stick.active||e.pointerId!==stick.id)return;e.preventDefault();
-    const r=$('game').getBoundingClientRect(),dx=e.clientX-r.left-stick.ox,dy=e.clientY-r.top-stick.oy,len=Math.hypot(dx,dy),factor=len>34?34/len:1;
-    stick.x=dx*factor/34;stick.y=dy*factor/34;$('touch-knob').style.transform=`translate(${dx*factor}px,${dy*factor}px)`;controls();
+    const r=$('game').getBoundingClientRect(),dx=e.clientX-r.left-stick.ox,dy=e.clientY-r.top-stick.oy,len=Math.hypot(dx,dy),factor=len>42?42/len:1;
+    stick.x=dx*factor/42;stick.y=dy*factor/42;$('touch-knob').style.transform=`translate(${dx*factor}px,${dy*factor}px)`;controls();
   });
-  const release=e=>{if(stick.id===e.pointerId){stick.active=false;stick.id=null;stick.x=stick.y=0;$('touch-stick').hidden=true;controls();}};
+  const release=e=>{if(stick.id===e.pointerId){stick.active=false;stick.id=null;stick.x=stick.y=0;resetPad();controls();}};
   for(const event of ['pointerup','pointercancel','lostpointercapture'])$('game').addEventListener(event,release);
   $('game').addEventListener('contextmenu',e=>e.preventDefault());
   window.addEventListener('blur',()=>{clearInput();if(game?.state==='playing')game.pause();});
+  window.addEventListener('resize',()=>{if(!stick.active)resetPad();});
   document.addEventListener('visibilitychange',()=>{if(document.hidden){clearInput();if(game?.state==='playing')game.pause();}if(game)game.last=performance.now();});
   async function init(){
     $('brand-icon').innerHTML=icon('sprout');$('help-btn').innerHTML=icon('help');tools();
@@ -1373,7 +1458,7 @@ AG.Engine=class OfficeEngine {
       if(new URLSearchParams(location.search).has('debug')){
         window.__AG_TEST__={game,store:S,get route(){return route;},get overlay(){return overlayKind;},
           snapshot:()=>game.snapshot(),
-          start:(id='rook',index=0)=>{S.data.selected=id;S.data.chapter=index;startGame();},
+          start:(id='rook',index=0)=>{S.data.selected=id;S.data.chapter=index;startGame(true);},
           grant:(id,n=1)=>{const m=C.modules.find(m=>m.id===id);if(!m)throw new Error('Unknown module');
             for(let i=0;i<n&&game.levels[id]<m.max;i++){game.levels[id]++;if(id==='hull'){game.player.maxHp+=20;game.heal(30);}}updateModules();},
           xp:n=>{game.gainXp(n);game.checkLevel();},
