@@ -2,7 +2,7 @@ window.AG = window.AG || {};
 AG.Store = (() => {
   const KEY='clockout.office.v1';
   const finite=(v,max=1e7)=>Number.isFinite(v)?Math.max(0,Math.min(max,Math.floor(v))):0;
-  const defaults=()=>({version:2,seeds:0,runs:0,kills:0,clears:{},research:{vitality:0,focus:0,gather:0},archive:['origin'],selected:'rook',chapter:0,choices:{},best:{},settings:{sound:false,motion:!matchMedia('(prefers-reduced-motion: reduce)').matches}});
+  const defaults=()=>({version:2,seeds:0,runs:0,kills:0,clears:{},research:{vitality:0,focus:0,gather:0},archive:['origin'],selected:'rook',chapter:0,choices:{},best:{},settings:{sound:false,motion:!matchMedia('(prefers-reduced-motion: reduce)').matches,tutorialSeen:false}});
   let data=defaults(), available=true;
   try {
     const raw=JSON.parse(localStorage.getItem(KEY)||'null');
@@ -24,6 +24,7 @@ AG.Store = (() => {
       }
       if(typeof raw.settings?.sound==='boolean')data.settings.sound=raw.settings.sound;
       if(typeof raw.settings?.motion==='boolean')data.settings.motion=raw.settings.motion;
+      if(typeof raw.settings?.tutorialSeen==='boolean')data.settings.tutorialSeen=raw.settings.tutorialSeen;
     }
     localStorage.setItem(KEY,JSON.stringify(data));
   } catch(_){ available=false; }
